@@ -5,6 +5,7 @@ extends Node2D
 var hp = 100
 var card_hover: Card
 var card_hover_candidates = []
+var battle_ready = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -42,7 +43,7 @@ func card_clicked(card):
 			return
 			
 	if card.get_parent() == $BattleField:
-		$BattleField.unset_card(card)
+		$BattleField.unset_card()
 		$Hand.add_card(card)
 		return
 		
@@ -76,5 +77,37 @@ func unset_card_hover(card):
 		set_card_hover(card_hover_candidate)
 
 
+func get_battle_field_card():
+	return $BattleField.card_set
+	
+
+func get_set_field_cards():
+	return $SetField.get_cards()
+
+
+func get_set_cards():
+	var result = get_set_field_cards()
+	result.append(get_battle_field_card())
+	return result
+
+
+func get_attack_point(is_night: bool):
+	var card = $BattleField.card_set
+	return card.night_attack_point if is_night else card.day_attack_point
+
+
+func ready_battle():
+	for card in get_set_field_cards():
+		if card.type == Card.CardType.CHRACTOR:
+			$BattleField.drop_card()
+			$SetField.remove_card(card)
+			$BattleField.set_card(card)
+			return
+	
+
 func _on_draw_button_pressed():
 	draw()
+
+
+func _on_ready_button_pressed():
+	battle_ready = true

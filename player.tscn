@@ -83,4 +83,12 @@ offset_right = 864.0
 offset_bottom = 420.0
 text = "Draw"
 
+[node name="ReadyButton" type="Button" parent="."]
+offset_left = 806.0
+offset_top = 339.0
+offset_right = 862.0
+offset_bottom = 370.0
+text = "Ready"
+
 [connection signal="pressed" from="DrawButton" to="." method="_on_draw_button_pressed"]
+[connection signal="pressed" from="ReadyButton" to="." method="_on_ready_button_pressed"]
