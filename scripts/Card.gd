@@ -1,15 +1,16 @@
 class_name Card
 extends Area2D
 
-enum CardType {CHRACTOR, ENCHANT}
+enum CardType {CHARACTER, ENCHANT}
 
 var player : Player
 var order = 0
 var hover_scale = 1.1
 var top_z_index = 100
 var selectable = true
+var target_image_width = 90.0
 
-var type = CardType.CHRACTOR
+var type = CardType.CHARACTER
 var card_number: int
 var card_name: String
 var clock: int = 1
@@ -21,8 +22,13 @@ var power_cost: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	#var texture = load("res://resources/cards/img/1/2.webp")
+	#$CardImage.texture = texture
+	#var scale = target_image_width / texture.get_width()
+	#$CardImage.scale = Vector2(scale, scale)
+	var rng = RandomNumberGenerator.new()
+	night_attack_point = rng.randi_range(0, 20) * 10
+	day_attack_point = rng.randi_range(0, 20) * 10
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -41,6 +47,10 @@ func set_hover(hover: bool):
 	else:
 		scale /= hover_scale
 		z_index = order
+		
+
+func show_card():
+	$CardBack.visible = false
 
 
 func _on_input_event(viewport, event, shape_idx):

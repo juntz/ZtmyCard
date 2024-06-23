@@ -2,6 +2,7 @@ class_name Player
 extends Node2D
 
 @export var card_scene: PackedScene
+@export var controllable: bool
 var hp = 100
 var card_hover: Card
 var card_hover_candidates = []
@@ -21,6 +22,8 @@ func _process(delta):
 func draw():
 	var card = card_scene.instantiate()
 	card.player = self
+	if controllable:
+		card.show_card()
 	$Hand.add_card(card)
 
 
@@ -98,7 +101,7 @@ func get_attack_point(is_night: bool):
 
 func ready_battle():
 	for card in get_set_field_cards():
-		if card.type == Card.CardType.CHRACTOR:
+		if card.type == Card.CardType.CHARACTER:
 			$BattleField.drop_card()
 			$SetField.remove_card(card)
 			$BattleField.set_card(card)

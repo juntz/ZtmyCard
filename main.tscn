@@ -12,6 +12,7 @@ position = Vector2(578, 277)
 texture = ExtResource("1_id7ih")
 
 [node name="MainPlayer" parent="." instance=ExtResource("2_x3eei")]
+controllable = true
 
 [node name="SubPlayer" parent="." instance=ExtResource("2_x3eei")]
 position = Vector2(896, 657)
