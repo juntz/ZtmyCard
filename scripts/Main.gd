@@ -40,7 +40,7 @@ func _battle():
 	)
 	for player in players:
 		var damage = total_attack_point - 2 * player.get_attack_point(is_night())
-		if damage > 0:
+		if damage < 0:
 			damage = 0
 		player.hp -= damage
 	
