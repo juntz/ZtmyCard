@@ -13,12 +13,12 @@ func _process(delta):
 	pass
 
 
-func _get_cards():
+func get_cards():
 	return get_children().filter(func(node): return node is Card)
 
 
 func _reposition_cards():
-	var cards = _get_cards()
+	var cards = get_cards()
 	for i in range(cards.size()):
 		cards[i].position = Vector2(cards_offset * (i - 1), 0)
 		cards[i].set_order(i)

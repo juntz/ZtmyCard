@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://nc7kybcnbhmp"]
+[gd_scene load_steps=4 format=3 uid="uid://nc7kybcnbhmp"]
 
 [ext_resource type="Texture2D" uid="uid://njltp1wf0f7y" path="res://resources/ztmy-mat.png" id="1_jxmyf"]
+[ext_resource type="Script" path="res://scripts/Main.gd" id="1_m1pte"]
 [ext_resource type="PackedScene" uid="uid://bd377sxk4fxdy" path="res://player.tscn" id="2_x3eei"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_m1pte")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(579, 326)
@@ -21,4 +23,4 @@ offset_left = 997.0
 offset_top = 10.0
 offset_right = 1137.0
 offset_bottom = 33.0
-text = "Time: 0 (Midnight)"
+text = "Chronos: 5 (Night)"

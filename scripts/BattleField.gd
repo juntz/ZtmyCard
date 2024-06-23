@@ -19,7 +19,15 @@ func set_card(card):
 	add_child(card)
 
 
-func unset_card(card):
-	if card == card_set:
-		card_set = null
-		remove_child(card)
+func unset_card():
+	remove_child(card_set)
+	card_set = null
+
+
+func drop_card():
+	if !card_set:
+		return
+	
+	var card = card_set
+	unset_card()
+	$"../Abyss".add_child(card)
