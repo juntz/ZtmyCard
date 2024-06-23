@@ -1,13 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://nc7kybcnbhmp"]
+[gd_scene load_steps=8 format=3 uid="uid://nc7kybcnbhmp"]
 
 [ext_resource type="Texture2D" uid="uid://njltp1wf0f7y" path="res://resources/ztmy-mat.png" id="1_jxmyf"]
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_m1pte"]
+[ext_resource type="Texture2D" uid="uid://btpthtmmbkli7" path="res://resources/background.jpg" id="2_h8bom"]
 [ext_resource type="PackedScene" uid="uid://bd377sxk4fxdy" path="res://player.tscn" id="2_x3eei"]
+[ext_resource type="Script" path="res://scripts/Background.gd" id="3_ydkjl"]
+[ext_resource type="Texture2D" uid="uid://d12qy5cuvf0mv" path="res://resources/orangeCircle.png" id="5_d542b"]
+[ext_resource type="Script" path="res://scripts/Chronos.gd" id="6_2ficq"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_m1pte")
 
 [node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.381703, 0.381703, 0.381703, 1)
+z_index = -100
+position = Vector2(577, 324)
+rotation = 0.692896
+scale = Vector2(0.66, 0.66)
+texture = ExtResource("2_h8bom")
+script = ExtResource("3_ydkjl")
+
+[node name="Mat" type="Sprite2D" parent="."]
+z_index = -99
 position = Vector2(579, 326)
 scale = Vector2(0.2684, 0.2684)
 texture = ExtResource("1_jxmyf")
@@ -20,8 +34,19 @@ position = Vector2(896, 657)
 rotation = 3.14159
 
 [node name="TimeLabel" type="Label" parent="."]
+visible = false
 offset_left = 997.0
 offset_top = 10.0
 offset_right = 1137.0
 offset_bottom = 33.0
 text = "Chronos: 5 (Night)"
+
+[node name="Chronos" type="Node2D" parent="."]
+position = Vector2(578.715, 327.015)
+script = ExtResource("6_2ficq")
+
+[node name="OrangeCircle" type="Sprite2D" parent="Chronos"]
+z_index = -1
+position = Vector2(0, -150)
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("5_d542b")

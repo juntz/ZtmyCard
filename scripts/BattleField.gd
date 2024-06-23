@@ -13,14 +13,13 @@ func _process(delta):
 	pass
 
 
-func set_card(card):
+func set_card(card: Card):
 	card_set = card
-	card.position = Vector2()
-	add_child(card)
+	card.reparent(self)
+	card.fly_to(Vector2(0, 0))
 
 
 func unset_card():
-	remove_child(card_set)
 	card_set = null
 
 
@@ -30,4 +29,5 @@ func drop_card():
 	
 	var card = card_set
 	unset_card()
-	$"../Abyss".add_child(card)
+	card.reparent($"../Abyss")
+	card.fly_to(Vector2(0, 0))

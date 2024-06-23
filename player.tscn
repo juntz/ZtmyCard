@@ -1,10 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://bd377sxk4fxdy"]
+[gd_scene load_steps=16 format=3 uid="uid://bd377sxk4fxdy"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_onpsp"]
 [ext_resource type="PackedScene" uid="uid://q1boos0cq5c3" path="res://card.tscn" id="2_pgcg1"]
 [ext_resource type="Script" path="res://scripts/SetField.gd" id="3_bn8j2"]
 [ext_resource type="Script" path="res://scripts/BattleField.gd" id="3_dllld"]
 [ext_resource type="Script" path="res://scripts/Hand.gd" id="3_fs750"]
+[ext_resource type="Texture2D" uid="uid://wbp82ufiload" path="res://resources/orangeTriangle.png" id="6_2fb2j"]
+[ext_resource type="Script" path="res://scripts/Hp.gd" id="6_lx0n0"]
+[ext_resource type="Texture2D" uid="uid://cdaao8q5lyd6t" path="res://resources/cardSample.webp" id="7_n5mhn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mx6v0"]
 size = Vector2(280, 125)
@@ -22,7 +25,13 @@ size = Vector2(88, 122)
 size = Vector2(88, 120)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ylydq"]
-size = Vector2(172, 124)
+size = Vector2(157, 124)
+
+[sub_resource type="Curve2D" id="Curve2D_0n4v4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 295, 0, 0, 0, 0, 0, 0)
+}
+point_count = 2
 
 [node name="Player" type="Node2D"]
 position = Vector2(262, -8)
@@ -30,7 +39,7 @@ script = ExtResource("1_onpsp")
 card_scene = ExtResource("2_pgcg1")
 
 [node name="SetField" type="Area2D" parent="."]
-position = Vector2(323, 587)
+position = Vector2(323, 585)
 script = ExtResource("3_bn8j2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SetField"]
@@ -50,7 +59,7 @@ position = Vector2(75, 585)
 shape = SubResource("RectangleShape2D_23nga")
 
 [node name="DeckZone" type="Area2D" parent="."]
-position = Vector2(535, 586)
+position = Vector2(535, 580)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeckZone"]
 shape = SubResource("RectangleShape2D_cmyf4")
@@ -62,14 +71,39 @@ position = Vector2(42, 439)
 shape = SubResource("RectangleShape2D_li1dn")
 
 [node name="Hand" type="Area2D" parent="."]
-position = Vector2(705, 587)
+position = Vector2(726, 565)
 script = ExtResource("3_fs750")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hand"]
-position = Vector2(86, 0)
+position = Vector2(78.5, 0)
 shape = SubResource("RectangleShape2D_ylydq")
 
+[node name="HpBar" type="Path2D" parent="."]
+position = Vector2(619, 331)
+curve = SubResource("Curve2D_0n4v4")
+script = ExtResource("6_lx0n0")
+
+[node name="HpPathFollow" type="PathFollow2D" parent="HpBar"]
+rotation = 1.5708
+progress = 295.0
+rotates = false
+loop = false
+
+[node name="HpIndicator" type="Node2D" parent="HpBar/HpPathFollow"]
+
+[node name="HpIndicatorSpriteL" type="Sprite2D" parent="HpBar/HpPathFollow/HpIndicator"]
+position = Vector2(0, 22)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("6_2fb2j")
+
+[node name="HpIndicatorSpriteR" type="Sprite2D" parent="HpBar/HpPathFollow/HpIndicator"]
+position = Vector2(0, -24)
+rotation = -3.14159
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("6_2fb2j")
+
 [node name="HpLabel" type="Label" parent="."]
+visible = false
 offset_left = 800.0
 offset_top = 463.0
 offset_right = 858.0
@@ -77,6 +111,7 @@ offset_bottom = 486.0
 text = "HP: 100"
 
 [node name="DrawButton" type="Button" parent="."]
+visible = false
 offset_left = 814.0
 offset_top = 389.0
 offset_right = 864.0
@@ -84,12 +119,22 @@ offset_bottom = 420.0
 text = "Draw"
 
 [node name="ReadyButton" type="Button" parent="."]
-offset_left = 806.0
-offset_top = 339.0
-offset_right = 862.0
-offset_bottom = 370.0
+offset_left = 730.0
+offset_top = 426.0
+offset_right = 826.0
+offset_bottom = 467.0
 disabled = true
-text = "Ready"
+text = "BATTLE"
 
+[node name="CardInfo" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(771, 169)
+scale = Vector2(0.27, 0.27)
+texture = ExtResource("7_n5mhn")
+
+[connection signal="child_entered_tree" from="SetField" to="SetField" method="_on_child_entered_tree"]
+[connection signal="child_exiting_tree" from="SetField" to="SetField" method="_on_child_exiting_tree"]
+[connection signal="child_entered_tree" from="Hand" to="Hand" method="_on_child_entered_tree"]
+[connection signal="child_exiting_tree" from="Hand" to="Hand" method="_on_child_exiting_tree"]
 [connection signal="pressed" from="DrawButton" to="." method="_on_draw_button_pressed"]
 [connection signal="pressed" from="ReadyButton" to="." method="_on_ready_button_pressed"]

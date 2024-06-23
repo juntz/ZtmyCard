@@ -1,24 +1,46 @@
+class_name Main
 extends Node2D
 
+enum Phase{DRAW, SET, OPEN, READY, CLOCK, BATTLE, END}
 var chronos = 5
+var phase = Phase.END
+var hold_phase = false
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	for player in _get_players():
+		player.draw()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if hold_phase:
+		return
+	
+	var next_phase = (phase + 1) % Phase.size()
+	if _get_players().all(func(p): return p.ready_status[next_phase]):
+		_get_players().map(func(p): p.ready_status[next_phase] = false)
+		phase = next_phase
+		print("Current phase: " + Phase.keys()[phase])
+		_process_phase_transition()
+
+
+func _process_phase_transition():
 	var players = _get_players()
-	if players.all(func(p): return p.battle_ready):
-		_fix_cards()
-		_ready_battle()
-		_update_chronos()
-		_battle()
-		_clean_up_battle()
+	if phase == Phase.DRAW:
 		for player in players:
-			player.battle_ready = false
+			player.draw()
+	elif phase == Phase.OPEN:
+		_open_cards()
+	elif phase == Phase.READY:
+		_ready_battle()
+	elif phase == Phase.CLOCK:
+		_update_chronos()
+	elif phase == Phase.BATTLE:
+		_battle()
+	elif phase == Phase.END:
+		_clean_up_battle()
 
 
 func _get_players():
@@ -27,11 +49,10 @@ func _get_players():
 		)
 
 
-func _fix_cards():
+func _open_cards():
 	var players = _get_players()
 	for player in players:
-		for card in player.get_set_cards():
-			card.selectable = false
+		player.open_cards()
 	
 
 func _battle():
@@ -45,19 +66,22 @@ func _battle():
 		var damage = total_attack_point - 2 * player.get_attack_point(is_night())
 		if damage < 0:
 			damage = 0
-		player.hp -= damage
+		player.hit(damage)
 	
 	
 func _update_chronos():
+	var total_clocks = 0
 	for player in _get_players():
-		chronos += player.get_set_cards().map(
+		total_clocks += player.get_set_cards().map(
 			func(c): return c.clock
 		).reduce(
 			func(a, b): return a + b,
 			0
 		)
+	chronos += total_clocks
 	chronos %= 18
-	$TimeLabel.text = "Chronos: " + str(chronos) + (" (Night)" if is_night() else " (Day)")
+	print("Chronos: " + str(chronos) + (" (Night)" if is_night() else " (Day)"))
+	$Chronos.turn(total_clocks)
 
 
 func _ready_battle():

@@ -1,6 +1,7 @@
 extends Area2D
 
 var cards_offset = 25
+var need_reposition = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,24 +10,22 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if need_reposition:
+		_reposition_cards()
+		need_reposition = false
+
 
 func _reposition_cards():
-	var cards = []
-	for node in get_children():
-		if node is Card:
-			cards.append(node)
+	var cards = get_children().filter(func(node): return node is Card)
 	
 	for i in range(cards.size()):
-		cards[i].position = Vector2(cards_offset * i, 0)
+		cards[i].fly_to(Vector2(cards_offset * i, 0))
 		cards[i].set_order(i)
 
 
-func add_card(card):
-	add_child(card)
-	_reposition_cards()
+func _on_child_entered_tree(node):
+	need_reposition = true
 
 
-func remove_card(card):
-	remove_child(card)
-	_reposition_cards()
+func _on_child_exiting_tree(node):
+	need_reposition = true
