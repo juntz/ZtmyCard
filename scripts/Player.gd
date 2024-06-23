@@ -38,6 +38,7 @@ func card_clicked(card):
 		if !$BattleField.card_set:
 			$Hand.remove_card(card)
 			$BattleField.set_card(card)
+			$ReadyButton.disabled = false
 			return
 		
 		if $SetField.is_more_card_available():
@@ -48,6 +49,7 @@ func card_clicked(card):
 	if card.get_parent() == $BattleField:
 		$BattleField.unset_card()
 		$Hand.add_card(card)
+		$ReadyButton.disabled = true
 		return
 		
 	if card.get_parent() == $SetField:
@@ -100,13 +102,23 @@ func get_attack_point(is_night: bool):
 
 
 func ready_battle():
+	for card in get_set_cards():
+		card.show_card()
+		
 	for card in get_set_field_cards():
 		if card.type == Card.CardType.CHARACTER:
 			$BattleField.drop_card()
 			$SetField.remove_card(card)
 			$BattleField.set_card(card)
 			return
-	
+
+
+func clean_up_battle():
+	for card in get_set_field_cards():
+		$SetField.remove_card(card)
+		card.position = Vector2()
+		$Abyss.add_child(card)
+
 
 func _on_draw_button_pressed():
 	draw()

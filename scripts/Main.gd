@@ -12,16 +12,19 @@ func _ready():
 func _process(delta):
 	var players = _get_players()
 	if players.all(func(p): return p.battle_ready):
+		_fix_cards()
 		_ready_battle()
 		_update_chronos()
 		_battle()
-		_fix_cards()
+		_clean_up_battle()
 		for player in players:
 			player.battle_ready = false
 
 
 func _get_players():
-	return get_children().filter(func(node): return node is Player)
+	return get_children().filter(
+			func(node): return node is Player
+		)
 
 
 func _fix_cards():
@@ -47,8 +50,7 @@ func _battle():
 	
 func _update_chronos():
 	for player in _get_players():
-		chronos += player.get_battle_field_card().clock
-		chronos += player.get_set_field_cards().map(
+		chronos += player.get_set_cards().map(
 			func(c): return c.clock
 		).reduce(
 			func(a, b): return a + b,
@@ -61,6 +63,11 @@ func _update_chronos():
 func _ready_battle():
 	for player in _get_players():
 		player.ready_battle()
+
+
+func _clean_up_battle():
+	for player in _get_players():
+		player.clean_up_battle()
 
 
 func is_night():
