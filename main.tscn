@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://nc7kybcnbhmp"]
 
 [ext_resource type="Texture2D" uid="uid://njltp1wf0f7y" path="res://resources/mat.png" id="1_jxmyf"]
-[ext_resource type="Script" path="res://scripts/Main.gd" id="1_m1pte"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_m1pte"]
 [ext_resource type="Texture2D" uid="uid://btpthtmmbkli7" path="res://resources/background.jpg" id="2_h8bom"]
 [ext_resource type="PackedScene" uid="uid://bd377sxk4fxdy" path="res://player.tscn" id="2_x3eei"]
-[ext_resource type="Script" path="res://scripts/Background.gd" id="3_ydkjl"]
-[ext_resource type="Texture2D" uid="uid://d12qy5cuvf0mv" path="res://resources/orangeCircle.png" id="5_d542b"]
-[ext_resource type="Script" path="res://scripts/Chronos.gd" id="6_2ficq"]
+[ext_resource type="Script" path="res://scripts/background.gd" id="3_ydkjl"]
+[ext_resource type="Texture2D" uid="uid://d12qy5cuvf0mv" path="res://resources/orange_circle.png" id="5_d542b"]
+[ext_resource type="Script" path="res://scripts/chronos.gd" id="6_2ficq"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_m1pte")

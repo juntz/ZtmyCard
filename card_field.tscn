@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dc1r6nhojsojg"]
+
+[ext_resource type="Script" path="res://scripts/hand.gd" id="1_1efhg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ylydq"]
+size = Vector2(157, 124)
+
+[node name="Hand" type="Area2D"]
+position = Vector2(726, 565)
+script = ExtResource("1_1efhg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(78.5, 0)
+shape = SubResource("RectangleShape2D_ylydq")
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]

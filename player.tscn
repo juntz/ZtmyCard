@@ -1,13 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://bd377sxk4fxdy"]
+[gd_scene load_steps=16 format=3 uid="uid://bd377sxk4fxdy"]
 
-[ext_resource type="Script" path="res://scripts/Player.gd" id="1_onpsp"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_onpsp"]
 [ext_resource type="PackedScene" uid="uid://q1boos0cq5c3" path="res://card.tscn" id="2_pgcg1"]
-[ext_resource type="Script" path="res://scripts/SetField.gd" id="3_bn8j2"]
-[ext_resource type="Script" path="res://scripts/BattleField.gd" id="3_dllld"]
-[ext_resource type="Script" path="res://scripts/Hand.gd" id="3_fs750"]
-[ext_resource type="Script" path="res://scripts/DeckZone.gd" id="5_schke"]
-[ext_resource type="Texture2D" uid="uid://wbp82ufiload" path="res://resources/orangeTriangle.png" id="6_2fb2j"]
-[ext_resource type="Script" path="res://scripts/Hp.gd" id="6_lx0n0"]
+[ext_resource type="Script" path="res://scripts/set_field.gd" id="3_bn8j2"]
+[ext_resource type="Script" path="res://scripts/battle_field.gd" id="3_dllld"]
+[ext_resource type="Script" path="res://scripts/deck_zone.gd" id="5_schke"]
+[ext_resource type="Texture2D" uid="uid://wbp82ufiload" path="res://resources/orange_triangle.png" id="6_2fb2j"]
+[ext_resource type="PackedScene" uid="uid://dc1r6nhojsojg" path="res://card_field.tscn" id="6_flpfl"]
+[ext_resource type="Script" path="res://scripts/hp_bar.gd" id="6_lx0n0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mx6v0"]
 size = Vector2(280, 125)
@@ -23,9 +23,6 @@ size = Vector2(88, 122)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_li1dn"]
 size = Vector2(88, 120)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ylydq"]
-size = Vector2(157, 124)
 
 [sub_resource type="Curve2D" id="Curve2D_0n4v4"]
 _data = {
@@ -74,13 +71,7 @@ position = Vector2(42, 439)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Abyss"]
 shape = SubResource("RectangleShape2D_li1dn")
 
-[node name="Hand" type="Area2D" parent="."]
-position = Vector2(726, 565)
-script = ExtResource("3_fs750")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand"]
-position = Vector2(78.5, 0)
-shape = SubResource("RectangleShape2D_ylydq")
+[node name="Hand" parent="." instance=ExtResource("6_flpfl")]
 
 [node name="HpBar" type="Path2D" parent="."]
 position = Vector2(619, 331)
@@ -138,7 +129,5 @@ texture = SubResource("CompressedTexture2D_v6f7b")
 
 [connection signal="child_entered_tree" from="SetField" to="SetField" method="_on_child_entered_tree"]
 [connection signal="child_exiting_tree" from="SetField" to="SetField" method="_on_child_exiting_tree"]
-[connection signal="child_entered_tree" from="Hand" to="Hand" method="_on_child_entered_tree"]
-[connection signal="child_exiting_tree" from="Hand" to="Hand" method="_on_child_exiting_tree"]
 [connection signal="pressed" from="DrawButton" to="." method="_on_draw_button_pressed"]
 [connection signal="pressed" from="ReadyButton" to="." method="_on_ready_button_pressed"]

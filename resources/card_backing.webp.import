@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d12qy5cuvf0mv"
-path="res://.godot/imported/orangeCircle.png-5882c6aec9349ff36904b069e53c57a9.ctex"
+uid="uid://dl62dt4bpgv8w"
+path="res://.godot/imported/card_backing.webp-e0acbff471b60baff48e36364a48b77c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/orangeCircle.png"
-dest_files=["res://.godot/imported/orangeCircle.png-5882c6aec9349ff36904b069e53c57a9.ctex"]
+source_file="res://resources/card_backing.webp"
+dest_files=["res://.godot/imported/card_backing.webp-e0acbff471b60baff48e36364a48b77c.ctex"]
 
 [params]
 
