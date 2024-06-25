@@ -1,7 +1,14 @@
+class_name CardField
 extends Area2D
 
-var cards_offset = 95
+@export
+var cards_offset = Vector2(25, 0)
 var need_reposition = false
+
+
+func cards() -> Array[Node]:
+	return get_children().filter(func(node): return node is Card)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,29 +22,12 @@ func _process(delta):
 		need_reposition = false
 
 
-func get_cards():
-	return get_children().filter(func(node): return node is Card)
-
-
 func _reposition_cards():
-	var cards = get_cards()
+	var cards = get_children().filter(func(node): return node is Card)
+	
 	for i in range(cards.size()):
-		cards[i].fly_to(Vector2(cards_offset * (i - 1), 0))
+		cards[i].fly_to(cards_offset * i)
 		cards[i].set_order(i)
-
-
-func is_more_card_available():
-	return true
-
-
-func add_card(card: Card):
-	add_child(card)
-	_reposition_cards()
-
-
-func remove_card(card: Card):
-	remove_child(card)
-	_reposition_cards()
 
 
 func _on_child_entered_tree(node):

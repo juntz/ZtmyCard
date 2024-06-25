@@ -13,8 +13,39 @@ var flying_time = 0.1
 var target_pos: Vector2
 var flipping = false
 var flipping_speed = 0.1
-
 var info: Dictionary
+
+
+func set_info(info):
+	self.info = info
+	_load_card_image("cards/img/zutomayocard_1st_" + str(info["number"]) + ".png")
+	
+
+func set_order(i: int):
+	order = i
+	z_index = i
+
+
+func set_hover(hover: bool):
+	if hover:
+		scale *= hover_scale
+		z_index = top_z_index
+	else:
+		scale /= hover_scale
+		z_index = order
+		
+		
+func is_closed():
+	return $CardBack.visible
+
+
+func show_card():
+	flipping = true
+
+
+func fly_to(pos: Vector2):
+	flying = true
+	target_pos = pos
 
 
 # Called when the node enters the scene tree for the first time.
@@ -56,48 +87,17 @@ func _load_card_image(path):
 	$CardImage.texture = texture
 
 
-func set_info(info):
-	self.info = info
-	_load_card_image("cards/img/zutomayocard_1st_" + str(info["number"]) + ".png")
-	
-
-func set_order(i: int):
-	order = i
-	z_index = i
-
-
-func set_hover(hover: bool):
-	if hover:
-		scale *= hover_scale
-		z_index = top_z_index
-	else:
-		scale /= hover_scale
-		z_index = order
-		
-		
-func is_closed():
-	return $CardBack.visible
-
-
-func show_card():
-	flipping = true
-
-
-func fly_to(pos: Vector2):
-	flying = true
-	target_pos = pos
-
-
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed:
-		player.card_clicked(self)
+		if selectable:
+			player.card_clicked(self)
 
 
 func _on_mouse_entered():
-	if selectable:
+	if !is_closed():
 		player.set_card_hover(self)
 
 
 func _on_mouse_exited():
-	if selectable:
+	if !is_closed():
 		player.unset_card_hover(self)

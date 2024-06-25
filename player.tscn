@@ -1,28 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://bd377sxk4fxdy"]
+[gd_scene load_steps=10 format=3 uid="uid://bd377sxk4fxdy"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_onpsp"]
 [ext_resource type="PackedScene" uid="uid://q1boos0cq5c3" path="res://card.tscn" id="2_pgcg1"]
-[ext_resource type="Script" path="res://scripts/set_field.gd" id="3_bn8j2"]
-[ext_resource type="Script" path="res://scripts/battle_field.gd" id="3_dllld"]
 [ext_resource type="Script" path="res://scripts/deck_zone.gd" id="5_schke"]
 [ext_resource type="Texture2D" uid="uid://wbp82ufiload" path="res://resources/orange_triangle.png" id="6_2fb2j"]
 [ext_resource type="PackedScene" uid="uid://dc1r6nhojsojg" path="res://card_field.tscn" id="6_flpfl"]
 [ext_resource type="Script" path="res://scripts/hp_bar.gd" id="6_lx0n0"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mx6v0"]
-size = Vector2(280, 125)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmwo1"]
-size = Vector2(234, 125)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_23nga"]
-size = Vector2(158, 140)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cmyf4"]
 size = Vector2(88, 122)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_li1dn"]
-size = Vector2(88, 120)
 
 [sub_resource type="Curve2D" id="Curve2D_0n4v4"]
 _data = {
@@ -37,25 +23,19 @@ position = Vector2(262, -8)
 script = ExtResource("1_onpsp")
 card_scene = ExtResource("2_pgcg1")
 
-[node name="SetField" type="Area2D" parent="."]
-position = Vector2(323, 585)
-script = ExtResource("3_bn8j2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SetField"]
-shape = SubResource("RectangleShape2D_mx6v0")
-
-[node name="BattleField" type="Area2D" parent="."]
+[node name="BattleField" parent="." instance=ExtResource("6_flpfl")]
 position = Vector2(317, 397)
-script = ExtResource("3_dllld")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleField"]
-shape = SubResource("RectangleShape2D_gmwo1")
+[node name="SetField" parent="." instance=ExtResource("6_flpfl")]
+position = Vector2(226, 584)
+cards_offset = Vector2(95, 0)
 
-[node name="PowerCharger" type="Area2D" parent="."]
-position = Vector2(75, 585)
+[node name="Abyss" parent="." instance=ExtResource("6_flpfl")]
+position = Vector2(42, 439)
+cards_offset = Vector2(0.5, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PowerCharger"]
-shape = SubResource("RectangleShape2D_23nga")
+[node name="PowerCharger" parent="." instance=ExtResource("6_flpfl")]
+position = Vector2(42, 585)
 
 [node name="DeckZone" type="Area2D" parent="."]
 position = Vector2(535, 580)
@@ -65,13 +45,8 @@ card_scene = ExtResource("2_pgcg1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeckZone"]
 shape = SubResource("RectangleShape2D_cmyf4")
 
-[node name="Abyss" type="Area2D" parent="."]
-position = Vector2(42, 439)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Abyss"]
-shape = SubResource("RectangleShape2D_li1dn")
-
 [node name="Hand" parent="." instance=ExtResource("6_flpfl")]
+position = Vector2(708, 585)
 
 [node name="HpBar" type="Path2D" parent="."]
 position = Vector2(619, 331)
@@ -122,12 +97,9 @@ disabled = true
 text = "BATTLE"
 
 [node name="CardInfo" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(771, 169)
-scale = Vector2(0.27, 0.27)
+position = Vector2(772, 159)
+scale = Vector2(0.3, 0.3)
 texture = SubResource("CompressedTexture2D_v6f7b")
 
-[connection signal="child_entered_tree" from="SetField" to="SetField" method="_on_child_entered_tree"]
-[connection signal="child_exiting_tree" from="SetField" to="SetField" method="_on_child_exiting_tree"]
 [connection signal="pressed" from="DrawButton" to="." method="_on_draw_button_pressed"]
 [connection signal="pressed" from="ReadyButton" to="." method="_on_ready_button_pressed"]

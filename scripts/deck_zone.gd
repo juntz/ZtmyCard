@@ -26,5 +26,5 @@ func _process(delta):
 	pass
 
 
-func get_cards():
+func cards():
 	return get_children().filter(func(node): return node is Card)
