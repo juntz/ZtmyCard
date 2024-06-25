@@ -73,7 +73,7 @@ func _update_chronos():
 	var total_clocks = 0
 	for player in _get_players():
 		total_clocks += player.get_set_cards().map(
-			func(c): return c.clock
+			func(c): return int(c.info["clock"])
 		).reduce(
 			func(a, b): return a + b,
 			0

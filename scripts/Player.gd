@@ -30,13 +30,12 @@ func _process(delta):
 
 
 func _draw_card():
-	var card = card_scene.instantiate()
+	var card = $DeckZone.get_cards()[-1]
 	card.player = self
+	card.selectable = true
 	if controllable:
 		card.show_card()
-	#else:
-		#card.selectable = false
-	$Hand.add_child(card)
+	card.reparent($Hand)
 
 
 func draw():
@@ -54,7 +53,7 @@ func card_clicked(card: Card):
 		return
 	
 	if card.get_parent() == $Hand:
-		if !$BattleField.card_set:
+		if !$BattleField.card_set && (card.info["type"] == "character"):
 			$BattleField.set_card(card)
 			$ReadyButton.disabled = false
 		elif $SetField.is_more_card_available():
@@ -122,12 +121,13 @@ func get_set_cards():
 
 func get_attack_point(is_night: bool):
 	var card = $BattleField.card_set
-	return card.night_attack_point if is_night else card.day_attack_point
+	var field_name = "night" if is_night else "day"
+	return card.info["attackPoint"][field_name]
 
 
 func ready_battle():
 	for card in get_set_field_cards():
-		if card.type == Card.CardType.CHARACTER:
+		if card.info["type"] == "character":
 			$BattleField.drop_card()
 			$BattleField.set_card(card)
 			return

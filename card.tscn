@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://q1boos0cq5c3"]
 
 [ext_resource type="Script" path="res://scripts/Card.gd" id="1_6pocp"]
-[ext_resource type="Texture2D" uid="uid://cdaao8q5lyd6t" path="res://resources/cardSample.webp" id="1_r7q5w"]
 [ext_resource type="Texture2D" uid="uid://cc57ub34dl8hl" path="res://resources/cardShadow.png" id="2_5jbvd"]
 [ext_resource type="Texture2D" uid="uid://dl62dt4bpgv8w" path="res://resources/cardBack.webp" id="3_0c4ln"]
+[ext_resource type="Texture2D" uid="uid://11mywxu8l3si" path="res://resources/cardSample.png" id="3_x2jbv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cmwe8"]
 size = Vector2(92, 128)
@@ -17,7 +17,7 @@ texture = ExtResource("2_5jbvd")
 
 [node name="CardImage" type="Sprite2D" parent="."]
 scale = Vector2(0.13, 0.13)
-texture = ExtResource("1_r7q5w")
+texture = ExtResource("3_x2jbv")
 
 [node name="CardBack" type="Sprite2D" parent="."]
 scale = Vector2(0.13, 0.13)

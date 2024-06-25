@@ -1,13 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://bd377sxk4fxdy"]
+[gd_scene load_steps=17 format=3 uid="uid://bd377sxk4fxdy"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_onpsp"]
 [ext_resource type="PackedScene" uid="uid://q1boos0cq5c3" path="res://card.tscn" id="2_pgcg1"]
 [ext_resource type="Script" path="res://scripts/SetField.gd" id="3_bn8j2"]
 [ext_resource type="Script" path="res://scripts/BattleField.gd" id="3_dllld"]
 [ext_resource type="Script" path="res://scripts/Hand.gd" id="3_fs750"]
+[ext_resource type="Script" path="res://scripts/DeckZone.gd" id="5_schke"]
 [ext_resource type="Texture2D" uid="uid://wbp82ufiload" path="res://resources/orangeTriangle.png" id="6_2fb2j"]
 [ext_resource type="Script" path="res://scripts/Hp.gd" id="6_lx0n0"]
-[ext_resource type="Texture2D" uid="uid://cdaao8q5lyd6t" path="res://resources/cardSample.webp" id="7_n5mhn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mx6v0"]
 size = Vector2(280, 125)
@@ -32,6 +32,8 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 295, 0, 0, 0, 0, 0, 0)
 }
 point_count = 2
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v6f7b"]
 
 [node name="Player" type="Node2D"]
 position = Vector2(262, -8)
@@ -60,6 +62,8 @@ shape = SubResource("RectangleShape2D_23nga")
 
 [node name="DeckZone" type="Area2D" parent="."]
 position = Vector2(535, 580)
+script = ExtResource("5_schke")
+card_scene = ExtResource("2_pgcg1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeckZone"]
 shape = SubResource("RectangleShape2D_cmyf4")
@@ -130,7 +134,7 @@ text = "BATTLE"
 visible = false
 position = Vector2(771, 169)
 scale = Vector2(0.27, 0.27)
-texture = ExtResource("7_n5mhn")
+texture = SubResource("CompressedTexture2D_v6f7b")
 
 [connection signal="child_entered_tree" from="SetField" to="SetField" method="_on_child_entered_tree"]
 [connection signal="child_exiting_tree" from="SetField" to="SetField" method="_on_child_exiting_tree"]

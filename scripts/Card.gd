@@ -7,44 +7,31 @@ var player : Player
 var order = 0
 var hover_scale = 1.1
 var top_z_index = 100
-var selectable = true
-var target_image_width = 90.0
+var selectable = false
 var flying = false
-var flying_speed = 50
+var flying_time = 0.1
 var target_pos: Vector2
 var flipping = false
 var flipping_speed = 0.1
 
-var type = CardType.CHARACTER
-var card_number: int
-var card_name: String
-var clock: int = 2
-var night_attack_point: int = 130
-var day_attack_point: int = 50
-var power: int = 0
-var power_cost: int = 0
+var info: Dictionary
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#var texture = load("res://resources/cards/img/1/2.webp")
-	#$CardImage.texture = texture
-	#var scale = target_image_width / texture.get_width()
-	#$CardImage.scale = Vector2(scale, scale)
-	var rng = RandomNumberGenerator.new()
-	night_attack_point = rng.randi_range(1, 10) * 10
-	day_attack_point = rng.randi_range(1, 10) * 10
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if flying:
 		var pos_delta = target_pos - position
-		if pos_delta.length() < flying_speed:
+		var flying_speed = pos_delta.length() / flying_time
+		if pos_delta.length() < 1:
 			position = target_pos
 			flying = false
 		else:
-			position += pos_delta.normalized() * flying_speed
+			position += pos_delta.normalized() * flying_speed * delta
 			
 	if flipping:
 		if $CardBack.visible:
@@ -57,6 +44,22 @@ func _process(delta):
 				scale.x = 1
 				flipping = false
 
+
+func _load_card_image(path):
+	if !FileAccess.file_exists(path):
+		printerr("Cannot find the card image: " + path)
+		return
+	
+	var image = Image.load_from_file(path)
+	var texture = ImageTexture.create_from_image(image)
+	texture.set_size_override(Vector2(700, 978))
+	$CardImage.texture = texture
+
+
+func set_info(info):
+	self.info = info
+	_load_card_image("cards/img/zutomayocard_1st_" + str(info["number"]) + ".png")
+	
 
 func set_order(i: int):
 	order = i
