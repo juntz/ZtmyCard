@@ -5,6 +5,8 @@ enum Phase{DRAW, SET, OPEN, READY, CLOCK, BATTLE, END}
 var chronos = 5
 var phase = Phase.END
 var hold_phase = false
+# true if win
+var battle_results = {}
 
 
 # Called when the node enters the scene tree for the first time.
@@ -40,10 +42,10 @@ func _process_phase_transition():
 	elif phase == Phase.BATTLE:
 		_battle()
 	elif phase == Phase.END:
-		_clean_up_battle()
+		_end_battle()
 
 
-func _get_players():
+func _get_players() -> Array[Node]:
 	return get_children().filter(
 			func(node): return node is Player
 		)
@@ -64,9 +66,11 @@ func _battle():
 	)
 	for player in players:
 		var damage = total_attack_point - 2 * player.get_attack_point(is_night())
-		if damage < 0:
-			damage = 0
-		player.hit(damage)
+		if damage <= 0:
+			battle_results[player] = true
+		else:
+			battle_results[player] = false
+			player.hit(damage)
 	
 	
 func _update_chronos():
@@ -89,9 +93,9 @@ func _ready_battle():
 		player.ready_battle()
 
 
-func _clean_up_battle():
+func _end_battle():
 	for player in _get_players():
-		player.clean_up_battle()
+		player.end_battle(battle_results[player])
 
 
 func is_night():

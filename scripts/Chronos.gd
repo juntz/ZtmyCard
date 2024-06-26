@@ -37,5 +37,6 @@ func _process(delta):
 
 func turn(time: int):
 	$"..".hold_phase = true
-	step_left = time
-	rotation_left = rotation_step
+	step_left = time - 1
+	if time > 0:
+		rotation_left = rotation_step

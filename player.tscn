@@ -1,14 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bd377sxk4fxdy"]
+[gd_scene load_steps=9 format=3 uid="uid://bd377sxk4fxdy"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_onpsp"]
 [ext_resource type="PackedScene" uid="uid://q1boos0cq5c3" path="res://card.tscn" id="2_pgcg1"]
-[ext_resource type="Script" path="res://scripts/deck_zone.gd" id="5_schke"]
 [ext_resource type="Texture2D" uid="uid://wbp82ufiload" path="res://resources/orange_triangle.png" id="6_2fb2j"]
 [ext_resource type="PackedScene" uid="uid://dc1r6nhojsojg" path="res://card_field.tscn" id="6_flpfl"]
 [ext_resource type="Script" path="res://scripts/hp_bar.gd" id="6_lx0n0"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cmyf4"]
-size = Vector2(88, 122)
+[ext_resource type="Texture2D" uid="uid://cc57ub34dl8hl" path="res://resources/card_shadow.png" id="7_p4beu"]
 
 [sub_resource type="Curve2D" id="Curve2D_0n4v4"]
 _data = {
@@ -35,15 +32,12 @@ position = Vector2(42, 439)
 cards_offset = Vector2(0.5, 0)
 
 [node name="PowerCharger" parent="." instance=ExtResource("6_flpfl")]
-position = Vector2(42, 585)
+position = Vector2(108, 585)
+cards_offset = Vector2(-10, 0)
 
-[node name="DeckZone" type="Area2D" parent="."]
-position = Vector2(535, 580)
-script = ExtResource("5_schke")
-card_scene = ExtResource("2_pgcg1")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DeckZone"]
-shape = SubResource("RectangleShape2D_cmyf4")
+[node name="DeckZone" parent="." instance=ExtResource("6_flpfl")]
+position = Vector2(534, 579)
+cards_offset = Vector2(0.5, 0.5)
 
 [node name="Hand" parent="." instance=ExtResource("6_flpfl")]
 position = Vector2(708, 585)
@@ -72,6 +66,33 @@ rotation = -3.14159
 scale = Vector2(0.03, 0.03)
 texture = ExtResource("6_2fb2j")
 
+[node name="ReadyButton" type="Button" parent="."]
+offset_left = 730.0
+offset_top = 426.0
+offset_right = 826.0
+offset_bottom = 467.0
+text = "BATTLE"
+
+[node name="SelectionZone" type="Node2D" parent="."]
+position = Vector2(119, 365)
+
+[node name="CardShadow" type="Sprite2D" parent="SelectionZone"]
+modulate = Color(1, 1, 1, 0.419608)
+position = Vector2(207.5, -33.5)
+rotation = 1.5708
+scale = Vector2(1.04, 1.25286)
+texture = ExtResource("7_p4beu")
+
+[node name="SelectionField" parent="SelectionZone" instance=ExtResource("6_flpfl")]
+cards_offset = Vector2(100, 0)
+
+[node name="SelectionDoneButton" type="Button" parent="SelectionZone"]
+offset_left = 159.0
+offset_top = 103.0
+offset_right = 238.0
+offset_bottom = 138.0
+text = "DONE"
+
 [node name="HpLabel" type="Label" parent="."]
 visible = false
 offset_left = 800.0
@@ -88,18 +109,29 @@ offset_right = 864.0
 offset_bottom = 420.0
 text = "Draw"
 
-[node name="ReadyButton" type="Button" parent="."]
-offset_left = 730.0
-offset_top = 426.0
-offset_right = 826.0
-offset_bottom = 467.0
-disabled = true
-text = "BATTLE"
-
-[node name="CardInfo" type="Sprite2D" parent="."]
+[node name="CardInfoContainer" type="Node2D" parent="."]
 position = Vector2(772, 159)
+
+[node name="CardInfo" type="Sprite2D" parent="CardInfoContainer"]
 scale = Vector2(0.3, 0.3)
 texture = SubResource("CompressedTexture2D_v6f7b")
 
-[connection signal="pressed" from="DrawButton" to="." method="_on_draw_button_pressed"]
+[node name="UnpoweredMask" type="Node2D" parent="CardInfoContainer"]
+
+[node name="CardShadow" type="Sprite2D" parent="CardInfoContainer/UnpoweredMask"]
+modulate = Color(1, 1, 1, 0.47451)
+z_index = 1
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_p4beu")
+
+[node name="UnpoweredLabel" type="Label" parent="CardInfoContainer/UnpoweredMask"]
+z_index = 2
+offset_left = -49.0
+offset_top = -41.0
+offset_right = 53.0
+offset_bottom = -18.0
+text = "UNPOWERED"
+
 [connection signal="pressed" from="ReadyButton" to="." method="_on_ready_button_pressed"]
+[connection signal="pressed" from="SelectionZone/SelectionDoneButton" to="." method="_on_selection_done_button_pressed"]
+[connection signal="pressed" from="DrawButton" to="." method="_on_draw_button_pressed"]

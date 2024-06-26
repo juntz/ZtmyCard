@@ -26,12 +26,16 @@ position = Vector2(579, 326)
 scale = Vector2(0.2684, 0.2684)
 texture = ExtResource("1_jxmyf")
 
-[node name="MainPlayer" parent="." instance=ExtResource("2_x3eei")]
-controllable = true
-
-[node name="SubPlayer" parent="." instance=ExtResource("2_x3eei")]
+[node name="Opponent" parent="." instance=ExtResource("2_x3eei")]
 position = Vector2(896, 657)
 rotation = 3.14159
+controllable = true
+
+[node name="CardInfoContainer" parent="Opponent" index="11"]
+position = Vector2(-138.001, 506)
+rotation = 3.14159
+
+[node name="Player" parent="." instance=ExtResource("2_x3eei")]
 controllable = true
 
 [node name="TimeLabel" type="Label" parent="."]
@@ -51,3 +55,5 @@ z_index = -1
 position = Vector2(0, -150)
 scale = Vector2(0.13, 0.13)
 texture = ExtResource("5_d542b")
+
+[editable path="Opponent"]

@@ -10,6 +10,15 @@ func cards() -> Array[Node]:
 	return get_children().filter(func(node): return node is Card)
 
 
+func shuffle():
+	var cards = cards()
+	for card in cards:
+		remove_child(card)
+	cards.shuffle()
+	for card in cards:
+		add_child(card)
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

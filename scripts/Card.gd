@@ -43,6 +43,10 @@ func show_card():
 	flipping = true
 
 
+func close_card():
+	$CardBack.visible = true
+
+
 func fly_to(pos: Vector2):
 	flying = true
 	target_pos = pos
