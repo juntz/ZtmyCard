@@ -26,17 +26,25 @@ position = Vector2(579, 326)
 scale = Vector2(0.2684, 0.2684)
 texture = ExtResource("1_jxmyf")
 
-[node name="Opponent" parent="." instance=ExtResource("2_x3eei")]
+[node name="Opponent" parent="." node_paths=PackedStringArray("opponent") instance=ExtResource("2_x3eei")]
 position = Vector2(896, 657)
 rotation = 3.14159
 controllable = true
+opponent = NodePath("../Player")
 
 [node name="CardInfoContainer" parent="Opponent" index="11"]
 position = Vector2(-138.001, 506)
 rotation = 3.14159
 
-[node name="Player" parent="." instance=ExtResource("2_x3eei")]
+[node name="AttackPoints" parent="Opponent" index="12" node_paths=PackedStringArray("main")]
+main = NodePath("../..")
+
+[node name="Player" parent="." node_paths=PackedStringArray("opponent") instance=ExtResource("2_x3eei")]
 controllable = true
+opponent = NodePath("../Opponent")
+
+[node name="AttackPoints" parent="Player" index="12" node_paths=PackedStringArray("main")]
+main = NodePath("../..")
 
 [node name="TimeLabel" type="Label" parent="."]
 visible = false
@@ -57,3 +65,4 @@ scale = Vector2(0.13, 0.13)
 texture = ExtResource("5_d542b")
 
 [editable path="Opponent"]
+[editable path="Player"]

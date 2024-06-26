@@ -3,6 +3,7 @@ extends Node2D
 
 @export var card_scene: PackedScene
 @export var controllable: bool
+@export var opponent: Player
 var card_hover: Card
 var card_hover_candidates = []
 var ready_status = {
@@ -11,11 +12,15 @@ var ready_status = {
 	Main.Phase.OPEN: false,
 	Main.Phase.READY: false,
 	Main.Phase.CLOCK: false,
+	Main.Phase.ENCHANT: false,
 	Main.Phase.BATTLE: false,
 	Main.Phase.END: false
 }
 var draw_require_count = 0
 var setable_card_count = 0
+var attack_point_modifier = null
+var attack_scale = 1.3
+var damage = 0
 
 
 func draw():
@@ -53,8 +58,12 @@ func card_clicked(card: Card):
 	draw_require_count -= 1
 
 
-func get_set_cards():
-	return get_battle_field_card() + get_set_field_cards()
+func check_powered(card: Card):
+	return card.info["powerCost"] <= get_charged_power()
+
+
+func field_cards():
+	return $BattleField.cards() + set_field_cards()
 
 
 func get_attack_point(is_night: bool) -> int:
@@ -62,11 +71,26 @@ func get_attack_point(is_night: bool) -> int:
 		return 0
 	
 	var card = $BattleField.cards()[0]
-	if card.info["powerCost"] > get_charged_power():
+	if !check_powered(card):
 		return 0
 	
 	var field_name = "night" if is_night else "day"
-	return int(card.info["attackPoint"][field_name])
+	var base_attack_point = int(card.info["attackPoint"][field_name])
+	if attack_point_modifier:
+		return attack_point_modifier.call(base_attack_point)
+	return base_attack_point
+
+
+func get_clock() -> int:
+	return field_cards().filter(
+		func(c): return check_powered(c)
+	).map(
+		func(c): return int(c.info["clock"])
+	).reduce(
+		func(a, b): return a + b,
+		0
+	)
+		
 
 
 func get_charged_power():
@@ -78,19 +102,34 @@ func get_charged_power():
 	)
 
 
-func ready_battle():
-	for card in get_set_field_cards():
-		if card.info["type"] == "character":
-			var battle_field_cards = $BattleField.cards()
-			if battle_field_cards.size() <= 0:
-				return
+func apply_enchant():
+	for card in set_field_cards():
+		if card.info["type"] != "enchant":
+			continue
+		
+		var effect = card.info["effect"]
+		if !effect.has("type"):
+			continue
 			
-			_drop_card(battle_field_cards[0])
-			card.reparent($BattleField)
+		if effect["type"] == "modifyAttackPoint":
+			_modify_attack_point(effect["fields"])
+
+
+func ready_battle():
+	for card in set_field_cards():
+		if card.info["type"] != "character":
+			continue
+			
+		var battle_field_cards = $BattleField.cards()
+		if battle_field_cards.size() <= 0:
+			return
+		
+		_drop_card(battle_field_cards[0])
+		card.reparent($BattleField)
 
 
 func open_cards():
-	for card in get_set_cards():
+	for card in field_cards():
 		card.selectable = false
 		card.show_card()
 	await get_tree().create_timer(1).timeout
@@ -98,16 +137,23 @@ func open_cards():
 
 
 func end_battle(is_win: bool):
-	for card in get_set_field_cards():
+	_hit()
+	attack_point_modifier = null
+	for card in set_field_cards():
 		_drop_card(card)
 	ready_status[Main.Phase.DRAW] = true
 	setable_card_count = 1 if is_win else 2
 
 
+func attack(damage):
+	var card = battle_field_card()
+	card.scale = Vector2(attack_scale, attack_scale)
+	card.reparent($AttackPoints)
+
+
 func hit(damage):
-	$HpBar.hp -= damage
-	if $HpBar.hp < 0:
-		$HpBar.hp = 0
+	self.damage = damage
+	ready_status[Main.Phase.END] = true
 
 
 func set_card_hover(card):
@@ -137,11 +183,14 @@ func unset_card_hover(card):
 		set_card_hover(card_hover_candidate)
 
 
-func get_battle_field_card():
-	return $BattleField.cards()
+func battle_field_card():
+	var cards = $BattleField.cards()
+	if cards.size() > 0:
+		return cards[0]
+	return null
 	
 
-func get_set_field_cards():
+func set_field_cards():
 	return $SetField.cards()
 
 
@@ -158,7 +207,20 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	ready_status[Main.Phase.CLOCK] = get_set_cards().all(func(c): return !c.flipping)
+	ready_status[Main.Phase.CLOCK] = field_cards().all(func(c): return !c.flipping)
+
+
+func _modify_attack_point(fields: Dictionary):
+	if fields.has("condition"):
+		var condition = fields["condition"]
+		if condition.has("attribute"):
+			if condition["target"] == "player":
+				if battle_field_card().info["attribute"] != condition["attribute"]:
+					return
+			else:
+				if opponent.battle_field_card().info["attribute"] != condition["attribute"]:
+					return
+	attack_point_modifier = func(n): return n + int(fields["add"])
 
 
 func _init_deck():
@@ -205,7 +267,19 @@ func _set_card_hover(card: Card):
 		else:
 			$CardInfoContainer/UnpoweredMask.visible = false
 		$CardInfoContainer.visible = true
+
+
+func _hit():
+	$HpBar.hp -= damage
+	if $HpBar.hp < 0:
+		$HpBar.hp = 0
+
 	
+func _on_attack_end(card):
+	card.reparent($BattleField)
+	card.scale = Vector2(1, 1)
+	ready_status[Main.Phase.END] = true
+
 
 func _on_draw_button_pressed():
 	draw()
@@ -213,8 +287,8 @@ func _on_draw_button_pressed():
 
 func _on_ready_button_pressed():
 	ready_status[Main.Phase.OPEN] = true
+	ready_status[Main.Phase.ENCHANT] = true
 	ready_status[Main.Phase.BATTLE] = true
-	ready_status[Main.Phase.END] = true
 
 
 func _on_selection_done_button_pressed():

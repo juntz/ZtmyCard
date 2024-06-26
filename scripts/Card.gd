@@ -3,6 +3,8 @@ extends Area2D
 
 enum CardType {CHARACTER, ENCHANT}
 
+signal transition_end(card: Card)
+
 var player : Player
 var order = 0
 var hover_scale = 1.1
@@ -10,6 +12,9 @@ var top_z_index = 100
 var selectable = false
 var flying = false
 var flying_time = 0.1
+var min_speed = 5
+var slow_stop = true
+var flying_length
 var target_pos: Vector2
 var flipping = false
 var flipping_speed = 0.1
@@ -47,9 +52,11 @@ func close_card():
 	$CardBack.visible = true
 
 
-func fly_to(pos: Vector2):
+func fly_to(pos: Vector2, slow_stop = true):
 	flying = true
 	target_pos = pos
+	self.slow_stop = slow_stop
+	flying_length = (target_pos - position).length()
 
 
 # Called when the node enters the scene tree for the first time.
@@ -61,10 +68,11 @@ func _ready():
 func _process(delta):
 	if flying:
 		var pos_delta = target_pos - position
-		var flying_speed = pos_delta.length() / flying_time
-		if pos_delta.length() < 1:
+		var flying_speed = (pos_delta.length() if slow_stop else flying_length - pos_delta.length()) / flying_time + min_speed
+		if pos_delta.length() < flying_speed * delta:
 			position = target_pos
 			flying = false
+			transition_end.emit(self)
 		else:
 			position += pos_delta.normalized() * flying_speed * delta
 			
@@ -78,6 +86,7 @@ func _process(delta):
 			if scale.x >= 1:
 				scale.x = 1
 				flipping = false
+				transition_end.emit(self)
 
 
 func _load_card_image(path):

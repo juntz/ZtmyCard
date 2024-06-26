@@ -1,7 +1,12 @@
 class_name Main
 extends Node2D
 
-enum Phase{DRAW, SET, OPEN, READY, CLOCK, BATTLE, END}
+enum Phase{DRAW, SET, OPEN, READY, CLOCK, ENCHANT, BATTLE, END}
+
+@export var shake_amount = 5
+@export var shake_time = 0.3
+var shaking = false
+var prev_chronos = 5
 var chronos = 5
 var phase = Phase.END
 var hold_phase = false
@@ -26,6 +31,12 @@ func _process(delta):
 		phase = next_phase
 		print("Current phase: " + Phase.keys()[phase])
 		_process_phase_transition()
+		
+	if shaking:
+		var rng = RandomNumberGenerator.new()
+		var x = rng.randf_range(- shake_amount, shake_amount)
+		var y = rng.randf_range(- shake_amount, shake_amount)
+		position = Vector2(x, y)
 
 
 func _process_phase_transition():
@@ -39,6 +50,8 @@ func _process_phase_transition():
 		_ready_battle()
 	elif phase == Phase.CLOCK:
 		_update_chronos()
+	elif phase == Phase.ENCHANT:
+		_apply_enchant()
 	elif phase == Phase.BATTLE:
 		_battle()
 	elif phase == Phase.END:
@@ -66,26 +79,28 @@ func _battle():
 	)
 	for player in players:
 		var damage = total_attack_point - 2 * player.get_attack_point(is_night())
-		if damage <= 0:
-			battle_results[player] = true
+		battle_results[player] = true
+		if damage < 0:
+			player.attack(damage)
 		else:
 			battle_results[player] = false
 			player.hit(damage)
 	
 	
 func _update_chronos():
+	prev_chronos = chronos
 	var total_clocks = 0
 	for player in _get_players():
-		total_clocks += player.get_set_cards().map(
-			func(c): return int(c.info["clock"])
-		).reduce(
-			func(a, b): return a + b,
-			0
-		)
+		total_clocks += player.get_clock()
 	chronos += total_clocks
 	chronos %= 18
 	print("Chronos: " + str(chronos) + (" (Night)" if is_night() else " (Day)"))
 	$Chronos.turn(total_clocks)
+
+
+func _apply_enchant():
+	for player in _get_players():
+		player.apply_enchant()
 
 
 func _ready_battle():
@@ -100,3 +115,18 @@ func _end_battle():
 
 func is_night():
 	return chronos < 9
+
+
+func shake():
+	shaking = true
+	var timer = Timer.new()
+	add_child(timer)
+	timer.wait_time = shake_time
+	timer.one_shot = true
+	timer.start()
+	timer.connect("timeout", _on_timer_timeout)
+
+
+func _on_timer_timeout():
+	shaking = false
+	position = Vector2()
