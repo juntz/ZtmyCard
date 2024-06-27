@@ -3,8 +3,8 @@ extends Node2D
 
 enum Phase{DRAW, SET, OPEN, READY, CLOCK, ENCHANT, BATTLE, END}
 
-@export var shake_amount = 5
 @export var shake_time = 0.3
+var shake_amount = 5.0
 var shaking = false
 var prev_chronos = 5
 var chronos = 5
@@ -117,7 +117,8 @@ func is_night():
 	return chronos < 9
 
 
-func shake():
+func shake(amount: float):
+	shake_amount = amount
 	shaking = true
 	var timer = Timer.new()
 	add_child(timer)

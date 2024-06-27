@@ -146,8 +146,10 @@ func end_battle(is_win: bool):
 
 
 func attack(damage):
+	self.damage = damage
 	var card = battle_field_card()
 	card.scale = Vector2(attack_scale, attack_scale)
+	card.set_order(50)
 	card.reparent($AttackPoints)
 
 
@@ -270,6 +272,9 @@ func _set_card_hover(card: Card):
 
 
 func _hit():
+	if damage < 0:
+		return
+	
 	$HpBar.hp -= damage
 	if $HpBar.hp < 0:
 		$HpBar.hp = 0
@@ -278,6 +283,7 @@ func _hit():
 func _on_attack_end(card):
 	card.reparent($BattleField)
 	card.scale = Vector2(1, 1)
+	card.set_order(1)
 	ready_status[Main.Phase.END] = true
 
 

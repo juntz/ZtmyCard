@@ -26,7 +26,7 @@ func _process(delta):
 
 func _on_card_transition_end(card):
 	if card.get_parent() == target:
-		main.shake()
+		main.shake(abs($"../../Player".damage) / 10)
 	
 	card.reparent(points[step])
 	step += 1
