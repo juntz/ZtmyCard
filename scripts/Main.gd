@@ -113,6 +113,10 @@ func _end_battle():
 		player.end_battle(battle_results[player])
 
 
+func is_prev_night():
+	return prev_chronos < 9
+
+
 func is_night():
 	return chronos < 9
 

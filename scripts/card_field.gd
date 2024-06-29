@@ -3,6 +3,7 @@ extends Area2D
 
 @export var cards_offset = Vector2(25, 0)
 @export var fly_ease_out = true
+@export var base_z_index = 0
 var need_reposition = false
 
 
@@ -36,7 +37,7 @@ func _reposition_cards():
 	
 	for i in range(cards.size()):
 		cards[i].fly_to(cards_offset * i, fly_ease_out)
-		cards[i].set_order(i)
+		cards[i].set_order(base_z_index + i)
 
 
 func _on_child_entered_tree(node):

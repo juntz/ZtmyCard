@@ -25,16 +25,18 @@ func _process(delta):
 
 
 func _on_card_transition_end(card):
-	if card.get_parent() == target:
-		main.shake(abs($"../../Player".damage) / 10)
-	
-	card.reparent(points[step])
-	step += 1
-	if step == points.size():
+	if step >= points.size():
 		card.transition_end.disconnect(_on_card_transition_end)
 		#card.scale = Vector2(1, 1)
 		attack_end.emit(card)
 		step = 0
+		return
+	
+	if card.get_parent() == target:
+		main.shake(abs($"../../Player".damage) / 20.0)
+	
+	card.reparent(points[step])
+	step += 1
 
 
 func _on_child_entered_tree(node):

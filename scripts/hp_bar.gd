@@ -15,8 +15,10 @@ func _ready():
 func _process(delta):
 	if is_moving():
 		$HpPathFollow/HpIndicator.scale = Vector2(moving_scale, moving_scale)
+		$HpPathFollow/DamageLabel.visible = true
 	else:
 		$HpPathFollow/HpIndicator.scale = Vector2(1, 1)
+		$HpPathFollow/DamageLabel.visible = false
 		
 	var progress_delta = _get_progress_delta()
 	var progress_amount = progression_speed * delta

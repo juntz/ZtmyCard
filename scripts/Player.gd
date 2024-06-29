@@ -4,6 +4,7 @@ extends Node2D
 @export var card_scene: PackedScene
 @export var controllable: bool
 @export var opponent: Player
+@export var main: Main
 var card_hover: Card
 var card_hover_candidates = []
 var ready_status = {
@@ -23,11 +24,46 @@ var attack_scale = 1.3
 var damage = 0
 
 
+func hp() -> int:
+	return $HpBar.hp
+
+
 func draw():
 	for i in range(draw_require_count):
 		_draw_card($Hand)
 	draw_require_count = 0
 	ready_status[Main.Phase.SET] = true
+
+
+func battle_ready():
+	ready_status[Main.Phase.OPEN] = true
+	ready_status[Main.Phase.ENCHANT] = true
+	ready_status[Main.Phase.BATTLE] = true
+
+
+func select_card(card: Card):
+	if card.get_parent() == $Hand:
+		if $BattleField.cards().size() <= 0 && (card.info["type"] == "character"):
+			card.reparent($BattleField)
+			draw_require_count += 1
+		elif $SetField.cards().size() < setable_card_count:
+			card.reparent($SetField)
+			draw_require_count += 1
+		else:
+			return false
+		return true
+	
+	if card.get_parent() == $SelectionZone/SelectionField:
+		card.selectable = false
+		card.close_card()
+		unset_card_hover(card)
+		card.reparent($Abyss)
+		draw_require_count += 1
+		return true
+	
+	card.reparent($Hand)
+	draw_require_count -= 1
+	return true
 
 
 func card_clicked(card: Card):
@@ -37,25 +73,7 @@ func card_clicked(card: Card):
 	if !card.selectable:
 		return
 	
-	if card.get_parent() == $Hand:
-		if $BattleField.cards().size() <= 0 && (card.info["type"] == "character"):
-			card.reparent($BattleField)
-			draw_require_count += 1
-		elif $SetField.cards().size() < setable_card_count:
-			card.reparent($SetField)
-			draw_require_count += 1
-		return
-		
-	if card.get_parent() == $SelectionZone/SelectionField:
-		card.selectable = false
-		card.close_card()
-		unset_card_hover(card)
-		card.reparent($Abyss)
-		draw_require_count += 1
-		return
-	
-	card.reparent($Hand)
-	draw_require_count -= 1
+	select_card(card)
 
 
 func check_powered(card: Card):
@@ -64,6 +82,10 @@ func check_powered(card: Card):
 
 func field_cards():
 	return $BattleField.cards() + set_field_cards()
+
+
+func hand_cards():
+	return $Hand.cards()
 
 
 func get_attack_point(is_night: bool) -> int:
@@ -149,12 +171,12 @@ func attack(damage):
 	self.damage = damage
 	var card = battle_field_card()
 	card.scale = Vector2(attack_scale, attack_scale)
-	card.set_order(50)
 	card.reparent($AttackPoints)
 
 
 func hit(damage):
 	self.damage = damage
+	$HpBar/HpPathFollow/DamageLabel.text = "-" + str(damage)
 	ready_status[Main.Phase.END] = true
 
 
@@ -202,6 +224,9 @@ func _ready():
 	_init_deck()
 	if !controllable:
 		$ReadyButton.visible = false
+		$SelectionZone.visible = false
+		draw_require_count = 5
+		ready_status[Main.Phase.DRAW] = true
 	else:
 		for i in range(5):
 			_draw_card($SelectionZone/SelectionField)
@@ -212,17 +237,64 @@ func _process(delta):
 	ready_status[Main.Phase.CLOCK] = field_cards().all(func(c): return !c.flipping)
 
 
+func _check_card_condition(condition: Dictionary) -> bool:
+	if condition.has("attribute"):
+		if condition["target"] == "player":
+			if !battle_field_card():
+				return false
+			if battle_field_card().info["attribute"] != condition["attribute"]:
+				return false
+		else:
+			if !opponent.battle_field_card():
+				return false
+			if opponent.battle_field_card().info["attribute"] != condition["attribute"]:
+				return false
+	
+	if condition.has("powerCost"):
+		if !opponent.battle_field_card():
+			return false
+		var powerCostCondition = condition["powerCost"]
+		var opponentPowerCost = opponent.battle_field_card().info["powerCost"]
+		if powerCostCondition.has("greaterThanOrEqual"):
+			if opponentPowerCost < powerCostCondition["greaterThanOrEqual"]:
+				return false
+		if powerCostCondition.has("lessThanOrEqual"):
+			if opponentPowerCost > powerCostCondition["lessThanOrEqual"]:
+				return false
+	
+	if condition.has("hpLessOrEqual"):
+		if $HpBar.hp > condition["hpLessOrEqual"]:
+			return false
+	if condition.has("time"):
+		if condition["time"] == "night" && !main.is_night():
+			return false
+		if condition["time"] == "day" && main.is_night():
+			return false
+	
+	if condition.has("timeChanged"):
+		if condition["timeChanged"] == "dayToNight" && !(!main.is_prev_night() && main.is_night()):
+			return false
+		if condition["timeChanged"] == "nightToDay" && !(main.is_prev_night() && !main.is_night()):
+			return false
+	
+	if condition.has("abyss"):
+		if _abyss_attribute_count() < 4:
+			return false
+				
+	return true
+
+
 func _modify_attack_point(fields: Dictionary):
 	if fields.has("condition"):
-		var condition = fields["condition"]
-		if condition.has("attribute"):
-			if condition["target"] == "player":
-				if battle_field_card().info["attribute"] != condition["attribute"]:
-					return
-			else:
-				if opponent.battle_field_card().info["attribute"] != condition["attribute"]:
-					return
-	attack_point_modifier = func(n): return n + int(fields["add"])
+		if _check_card_condition(fields["condition"]):
+			attack_point_modifier = func(n): return n + int(fields["add"])
+
+
+func _abyss_attribute_count():
+	var attributes = {}
+	for card in $Abyss.cards():
+		attributes[card.info["attribute"]] = null
+	return attributes.keys().size()
 
 
 func _init_deck():
@@ -269,6 +341,12 @@ func _set_card_hover(card: Card):
 		else:
 			$CardInfoContainer/UnpoweredMask.visible = false
 		$CardInfoContainer.visible = true
+		if card.info.has("effect"):
+			var desc = card.info["effect"]["description"];
+			if desc.has("ko"):
+				$CardInfoContainer/CardInfoLabel.text = desc["ko"]
+		else:
+			$CardInfoContainer/CardInfoLabel.text = ""
 
 
 func _hit():
@@ -283,7 +361,6 @@ func _hit():
 func _on_attack_end(card):
 	card.reparent($BattleField)
 	card.scale = Vector2(1, 1)
-	card.set_order(1)
 	ready_status[Main.Phase.END] = true
 
 
@@ -292,9 +369,7 @@ func _on_draw_button_pressed():
 
 
 func _on_ready_button_pressed():
-	ready_status[Main.Phase.OPEN] = true
-	ready_status[Main.Phase.ENCHANT] = true
-	ready_status[Main.Phase.BATTLE] = true
+	battle_ready()
 
 
 func _on_selection_done_button_pressed():
