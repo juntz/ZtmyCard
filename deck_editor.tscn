@@ -1,3 +1,26 @@
-[gd_scene format=3 uid="uid://dtwpbto8qosfl"]
+[gd_scene load_steps=5 format=3 uid="uid://dhyqlveownkli"]
+
+[ext_resource type="PackedScene" path="res://card_field.tscn" id="1_7wufp"]
+[ext_resource type="Script" path="res://scripts/deck_editor.gd" id="1_17ww2"]
+[ext_resource type="PackedScene" uid="uid://q1boos0cq5c3" path="res://card.tscn" id="2_jc880"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yho6h"]
+size = Vector2(828, 486)
 
 [node name="DeckEditor" type="Node2D"]
+position = Vector2(57, 42)
+script = ExtResource("1_17ww2")
+card_scene = ExtResource("2_jc880")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CardField" parent="Area2D" instance=ExtResource("1_7wufp")]
+position = Vector2(70, 84)
+cards_offset = Vector2(100, 2.08165e-12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(425, 250)
+shape = SubResource("RectangleShape2D_yho6h")

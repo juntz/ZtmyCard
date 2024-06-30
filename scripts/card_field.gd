@@ -2,8 +2,10 @@ class_name CardField
 extends Area2D
 
 @export var cards_offset = Vector2(25, 0)
+@export var card_line_offset = Vector2(0, 150)
 @export var fly_ease_out = true
 @export var base_z_index = 0
+@export var card_count_per_line = 5
 var need_reposition = false
 
 
@@ -36,7 +38,9 @@ func _reposition_cards():
 	var cards = get_children().filter(func(node): return node is Card)
 	
 	for i in range(cards.size()):
-		cards[i].fly_to(cards_offset * i, fly_ease_out)
+		var col = i / card_count_per_line
+		var row = i % card_count_per_line
+		cards[i].fly_to(card_line_offset * col + cards_offset * row, fly_ease_out)
 		cards[i].set_order(base_z_index + i)
 
 
