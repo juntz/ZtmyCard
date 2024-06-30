@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1qmq3vh2sku4"]
+
+[ext_resource type="Texture2D" uid="uid://bcekqgj0g5edh" path="res://resources/logo__tbb.png" id="1_sx5t7"]
+[ext_resource type="Texture2D" uid="uid://cc57ub34dl8hl" path="res://resources/card_shadow.png" id="2_lvm5q"]
+[ext_resource type="PackedScene" uid="uid://b3h70ykhontb2" path="res://scene_change_button.tscn" id="3_3ywkd"]
+[ext_resource type="PackedScene" uid="uid://dtwpbto8qosfl" path="res://deck_editor.tscn" id="4_3kw8j"]
+[ext_resource type="PackedScene" uid="uid://nc7kybcnbhmp" path="res://main.tscn" id="4_8s6gp"]
+[ext_resource type="Script" path="res://scripts/title_mask.gd" id="6_ybexg"]
+
+[node name="Title" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(582, 334)
+rotation = 1.5708
+scale = Vector2(1.02828, 1.25774)
+texture = ExtResource("2_lvm5q")
+
+[node name="LogoTbb" type="Sprite2D" parent="."]
+position = Vector2(578, 204)
+scale = Vector2(0.84, 0.84)
+texture = ExtResource("1_sx5t7")
+
+[node name="SinglePlayerButton" parent="." instance=ExtResource("3_3ywkd")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 485.0
+offset_top = 416.0
+offset_right = 626.32
+offset_bottom = 447.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SINGLE PLAYER"
+target_scene = ExtResource("4_8s6gp")
+
+[node name="DeckEditorButton" parent="." instance=ExtResource("3_3ywkd")]
+text = "DECK EDITOR
+"
+target_scene = ExtResource("4_3kw8j")
+
+[node name="TitleMask" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(582, 334)
+rotation = 1.5708
+scale = Vector2(1.02828, 1.25774)
+texture = ExtResource("2_lvm5q")
+script = ExtResource("6_ybexg")

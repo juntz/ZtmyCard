@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3h70ykhontb2"]
+
+[ext_resource type="Script" path="res://scripts/scene_change_button.gd" id="1_06p62"]
+
+[node name="Button" type="Button"]
+offset_left = 497.0
+offset_top = 488.0
+offset_right = 623.0
+offset_bottom = 519.0
+scale = Vector2(1.355, 1.355)
+text = "Change
+"
+script = ExtResource("1_06p62")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
