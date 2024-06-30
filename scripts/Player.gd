@@ -5,8 +5,6 @@ extends Node2D
 @export var controllable: bool
 @export var opponent: Player
 @export var main: Main
-var card_hover: Card
-var card_hover_candidates = []
 var ready_status = {
 	Main.Phase.DRAW: false,
 	Main.Phase.SET: false,
@@ -56,7 +54,6 @@ func select_card(card: Card):
 	if card.get_parent() == $SelectionZone/SelectionField:
 		card.selectable = false
 		card.close_card()
-		unset_card_hover(card)
 		card.reparent($Abyss)
 		draw_require_count += 1
 		return true
@@ -64,16 +61,6 @@ func select_card(card: Card):
 	card.reparent($Hand)
 	draw_require_count -= 1
 	return true
-
-
-func card_clicked(card: Card):
-	if card != card_hover:
-		return
-		
-	if !card.selectable:
-		return
-	
-	select_card(card)
 
 
 func check_powered(card: Card):
@@ -112,7 +99,6 @@ func get_clock() -> int:
 		func(a, b): return a + b,
 		0
 	)
-		
 
 
 func get_charged_power():
@@ -178,33 +164,6 @@ func hit(damage):
 	self.damage = damage
 	$HpBar/HpPathFollow/DamageLabel.text = "-" + str(damage)
 	ready_status[Main.Phase.END] = true
-
-
-func set_card_hover(card):
-	if !card_hover_candidates.has(card):
-		card_hover_candidates.append(card)
-	
-	if card.is_closed():
-		return
-	
-	if !card_hover:
-		_set_card_hover(card)
-		return
-		
-	if card.order > card_hover.order:
-		card_hover.set_hover(false)
-		_set_card_hover(card)
-		
-
-func unset_card_hover(card):
-	card_hover_candidates.erase(card)
-	if card == card_hover:
-		card.set_hover(false)
-		card_hover = null
-		$CardInfoContainer.visible = false
-		
-	for card_hover_candidate in card_hover_candidates:
-		set_card_hover(card_hover_candidate)
 
 
 func battle_field_card():
@@ -323,30 +282,14 @@ func _draw_card(dest: Node):
 	if deck_cards.size() <= 0:
 		return
 	
-	var card = deck_cards[-1]
-	card.player = self
+	var card: Card = deck_cards[-1]
+	card.card_entered.connect(_on_card_entered)
+	card.card_exited.connect(_on_card_exited)
+	card.card_clicked.connect(_on_card_clicked)
 	card.selectable = true
 	if controllable:
 		card.show_card()
 	card.reparent(dest)
-
-
-func _set_card_hover(card: Card):
-	card_hover = card
-	card.set_hover(true)
-	if !card.is_closed():
-		$CardInfoContainer/CardInfo.texture = card.get_child(1).texture
-		if card.info["powerCost"] > get_charged_power():
-			$CardInfoContainer/UnpoweredMask.visible = true
-		else:
-			$CardInfoContainer/UnpoweredMask.visible = false
-		$CardInfoContainer.visible = true
-		if card.info.has("effect"):
-			var desc = card.info["effect"]["description"];
-			if desc.has("ko"):
-				$CardInfoContainer/CardInfoLabel.text = desc["ko"]
-		else:
-			$CardInfoContainer/CardInfoLabel.text = ""
 
 
 func _hit():
@@ -364,10 +307,6 @@ func _on_attack_end(card):
 	ready_status[Main.Phase.END] = true
 
 
-func _on_draw_button_pressed():
-	draw()
-
-
 func _on_ready_button_pressed():
 	battle_ready()
 
@@ -380,3 +319,29 @@ func _on_selection_done_button_pressed():
 	$DeckZone.shuffle()
 	$SelectionZone.visible = false
 	ready_status[Main.Phase.DRAW] = true
+
+
+func _on_card_entered(card: Card):
+	$CardInfoContainer.visible = true
+	$CardInfoContainer.current_card = card
+	$CardInfoContainer/CardInfo.texture = card.get_child(1).texture
+	if card.info["powerCost"] > get_charged_power():
+		$CardInfoContainer/UnpoweredMask.visible = true
+	else:
+		$CardInfoContainer/UnpoweredMask.visible = false
+	$CardInfoContainer.visible = true
+	if card.info.has("effect"):
+		var desc = card.info["effect"]["description"];
+		if desc.has("ko"):
+			$CardInfoContainer/CardInfoLabel.text = desc["ko"]
+	else:
+		$CardInfoContainer/CardInfoLabel.text = ""
+
+
+func _on_card_exited(card: Card):
+	if $CardInfoContainer.current_card == card:
+		$CardInfoContainer.visible = false
+
+
+func _on_card_clicked(card: Card):
+	select_card(card)

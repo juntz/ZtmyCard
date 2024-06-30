@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bd377sxk4fxdy"]
+[gd_scene load_steps=11 format=3 uid="uid://bd377sxk4fxdy"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_onpsp"]
 [ext_resource type="PackedScene" uid="uid://q1boos0cq5c3" path="res://card.tscn" id="2_pgcg1"]
 [ext_resource type="Texture2D" uid="uid://wbp82ufiload" path="res://resources/orange_triangle.png" id="6_2fb2j"]
-[ext_resource type="PackedScene" path="res://card_field.tscn" id="6_flpfl"]
+[ext_resource type="PackedScene" uid="uid://dc1r6nhojsojg" path="res://card_field.tscn" id="6_flpfl"]
 [ext_resource type="Script" path="res://scripts/hp_bar.gd" id="6_lx0n0"]
+[ext_resource type="Script" path="res://scripts/card_info_container.gd" id="7_35p5j"]
 [ext_resource type="Script" path="res://scripts/attack_points.gd" id="7_ksjyq"]
 [ext_resource type="Texture2D" uid="uid://cc57ub34dl8hl" path="res://resources/card_shadow.png" id="7_p4beu"]
 
@@ -39,6 +40,7 @@ cards_offset = Vector2(-10, 0)
 [node name="DeckZone" parent="." instance=ExtResource("6_flpfl")]
 position = Vector2(534, 579)
 cards_offset = Vector2(0.5, 0.5)
+card_count_per_line = 20
 
 [node name="Hand" parent="." instance=ExtResource("6_flpfl")]
 position = Vector2(708, 585)
@@ -116,16 +118,9 @@ offset_right = 858.0
 offset_bottom = 486.0
 text = "HP: 100"
 
-[node name="DrawButton" type="Button" parent="."]
-visible = false
-offset_left = 814.0
-offset_top = 389.0
-offset_right = 864.0
-offset_bottom = 420.0
-text = "Draw"
-
 [node name="CardInfoContainer" type="Node2D" parent="."]
 position = Vector2(772, 159)
+script = ExtResource("7_35p5j")
 
 [node name="CardInfo" type="Sprite2D" parent="CardInfoContainer"]
 scale = Vector2(0.3, 0.3)
@@ -171,6 +166,5 @@ base_z_index = 99
 
 [connection signal="pressed" from="ReadyButton" to="." method="_on_ready_button_pressed"]
 [connection signal="pressed" from="SelectionZone/SelectionDoneButton" to="." method="_on_selection_done_button_pressed"]
-[connection signal="pressed" from="DrawButton" to="." method="_on_draw_button_pressed"]
 [connection signal="attack_end" from="AttackPoints" to="." method="_on_attack_end"]
 [connection signal="child_entered_tree" from="AttackPoints" to="AttackPoints" method="_on_child_entered_tree"]

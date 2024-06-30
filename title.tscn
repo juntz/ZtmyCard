@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bcekqgj0g5edh" path="res://resources/logo__tbb.png" id="1_sx5t7"]
 [ext_resource type="Texture2D" uid="uid://cc57ub34dl8hl" path="res://resources/card_shadow.png" id="2_lvm5q"]
 [ext_resource type="PackedScene" uid="uid://b3h70ykhontb2" path="res://scene_change_button.tscn" id="3_3ywkd"]
-[ext_resource type="PackedScene" uid="uid://dtwpbto8qosfl" path="res://deck_editor.tscn" id="4_3kw8j"]
+[ext_resource type="PackedScene" uid="uid://dhyqlveownkli" path="res://deck_editor.tscn" id="4_3kw8j"]
 [ext_resource type="PackedScene" uid="uid://nc7kybcnbhmp" path="res://main.tscn" id="4_8s6gp"]
 [ext_resource type="Script" path="res://scripts/title_mask.gd" id="6_ybexg"]
 

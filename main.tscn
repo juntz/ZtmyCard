@@ -30,6 +30,7 @@ texture = ExtResource("1_jxmyf")
 [node name="Opponent" parent="." node_paths=PackedStringArray("opponent", "main") instance=ExtResource("2_x3eei")]
 position = Vector2(896, 657)
 rotation = 3.14159
+controllable = false
 opponent = NodePath("../Player")
 main = NodePath("..")
 
