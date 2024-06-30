@@ -93,6 +93,7 @@ position = Vector2(119, 365)
 
 [node name="CardShadow" type="Sprite2D" parent="SelectionZone"]
 modulate = Color(1, 1, 1, 0.419608)
+z_index = 49
 position = Vector2(207.5, -33.5)
 rotation = 1.5708
 scale = Vector2(1.04, 1.25286)
@@ -102,6 +103,7 @@ texture = ExtResource("7_p4beu")
 position = Vector2(0, -35)
 cards_offset = Vector2(100, 0)
 fly_ease_out = false
+base_z_index = 50
 
 [node name="SelectionDoneButton" type="Button" parent="SelectionZone"]
 offset_left = 159.0

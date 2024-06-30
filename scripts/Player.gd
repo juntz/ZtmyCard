@@ -53,7 +53,7 @@ func select_card(card: Card):
 	
 	if card.get_parent() == $SelectionZone/SelectionField:
 		card.selectable = false
-		card.close_card()
+		card.unset_hover()
 		card.reparent($Abyss)
 		draw_require_count += 1
 		return true
