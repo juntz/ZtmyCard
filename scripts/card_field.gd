@@ -5,7 +5,7 @@ extends Area2D
 @export var card_line_offset = Vector2(0, 150)
 @export var fly_ease_out = true
 @export var base_z_index = 0
-@export var card_count_per_line = 5
+@export var card_count_per_line = 20
 var need_reposition = false
 
 

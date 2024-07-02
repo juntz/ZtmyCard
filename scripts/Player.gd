@@ -260,11 +260,24 @@ func _init_deck():
 	var f = FileAccess.open("cards/cards.json", FileAccess.READ)
 	var json = JSON.parse_string(f.get_as_text())
 	var cardInfos = json["cards"]
-	cardInfos.shuffle()
-	cardInfos = cardInfos.slice(0, 20)
 	f.close()
 	
-	for cardInfo in cardInfos:
+	var deck_card_info = []
+	
+	var deck_file_path = "user://deck.json"
+	if FileAccess.file_exists(deck_file_path) && controllable:
+		var deck_file = FileAccess.open(deck_file_path, FileAccess.READ)
+		var deck_json = JSON.parse_string(deck_file.get_as_text())
+		var card_numbers = deck_json["cards"]
+		deck_file.close()
+		
+		for card_number in card_numbers:
+			deck_card_info.append(cardInfos[card_number - 1])
+	else:
+		deck_card_info = cardInfos.slice(0, 20)
+		
+	deck_card_info.shuffle()
+	for cardInfo in deck_card_info:
 		var card = card_scene.instantiate()
 		card.set_info(cardInfo)
 		$DeckZone.add_child(card)
@@ -315,6 +328,8 @@ func _on_selection_done_button_pressed():
 	for card in $SelectionZone/SelectionField.cards():
 		card.reparent($Hand)
 	for card in $Abyss.cards():
+		card.close_card()
+		card.selectable = false
 		card.reparent($DeckZone)
 	$DeckZone.shuffle()
 	$SelectionZone.visible = false

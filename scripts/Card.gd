@@ -8,12 +8,13 @@ signal card_exited(card: Card)
 signal card_clicked(card: Card)
 signal transition_end(card: Card)
 
+var card_scene: PackedScene = preload("res://card.tscn")
 var order = 0
 var hover_scale = 1.1
-var top_z_index = 100
+var top_z_index = 1000
 var selectable = false
 var flying = false
-var flying_time = 0.1
+var flying_slope = 0.1
 var min_speed = 5
 var slow_stop = true
 var flying_length
@@ -23,6 +24,13 @@ var flipping_speed = 0.1
 var info: Dictionary
 var hover = false
 var mouse_is_in = false
+
+
+func clone() -> Card:
+	var card = card_scene.instantiate()
+	card.set_info(info)
+	card.global_position = global_position
+	return card
 
 
 func set_info(info):
@@ -79,7 +87,7 @@ func _ready():
 func _process(delta):
 	if flying:
 		var pos_delta = target_pos - position
-		var flying_speed = (pos_delta.length() if slow_stop else flying_length - pos_delta.length()) / flying_time + min_speed
+		var flying_speed = (pos_delta.length() if slow_stop else flying_length - pos_delta.length()) / flying_slope + min_speed
 		if pos_delta.length() < flying_speed * delta:
 			position = target_pos
 			flying = false
@@ -113,11 +121,12 @@ func _load_card_image(path):
 
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed:
-		if selectable && hover:
-			card_clicked.emit(self)
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if selectable && hover:
+				card_clicked.emit(self)
 
 
-func check_hover():
+func _check_hover():
 	var all_cards = get_overlapping_areas().filter(
 		func (x): return x is Card
 	)
@@ -142,7 +151,7 @@ func _on_mouse_entered():
 	if is_closed():
 		return
 	
-	check_hover()
+	_check_hover()
 
 
 func _on_mouse_exited():
@@ -150,4 +159,4 @@ func _on_mouse_exited():
 	if is_closed():
 		return
 	
-	check_hover()
+	_check_hover()
