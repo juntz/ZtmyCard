@@ -16,7 +16,7 @@ var battle_results = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if multiplayer.multiplayer_peer == null:
+	if multiplayer.get_peers().size() <= 0:
 		$AiController.acitvate()
 	
 	for player in _get_players():

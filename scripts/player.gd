@@ -37,7 +37,6 @@ func draw():
 func battle_ready():
 	ready_status[Main.Phase.OPEN] = true
 	ready_status[Main.Phase.ENCHANT] = true
-	ready_status[Main.Phase.BATTLE] = true
 	if controllable:
 		$"../MultiplayerController".battle_ready.rpc()
 
@@ -57,11 +56,18 @@ func select_card(card: Card):
 		return true
 	
 	if card.get_parent() == $SelectionZone/SelectionField:
-		card.selectable = false
-		card.unset_hover()
-		card.reparent($Abyss)
-		draw_require_count += 1
-		return true
+		if main.phase == Main.Phase.ENCHANT:
+			card.selectable = false
+			card.reparent($SetField)
+			apply_enchant()
+			$SelectionZone.visible = false
+			return true
+		else:
+			card.selectable = false
+			card.unset_hover()
+			card.reparent($Abyss)
+			draw_require_count += 1
+			return true
 		
 	if controllable:
 		if card.get_parent() == $BattleField:
@@ -130,6 +136,17 @@ func apply_enchant():
 		if !effect.has("type"):
 			continue
 			
+		if effect["type"] == "useFromAbyss":
+			var abyssCards = $Abyss.cards()
+			if abyssCards.size() <= 0:
+				break
+			for abyssCard in abyssCards:
+				abyssCard.selectable = true
+				abyssCard.reparent($SelectionZone/SelectionField)
+			$SelectionZone.visible = true
+			card.reparent($Abyss)
+			return
+			
 		if effect["type"] == "modifyAttackPoint":
 			_modify_attack_point(effect["fields"])
 		elif effect["type"] == "swapDayAndNightAttackPoint":
@@ -137,6 +154,8 @@ func apply_enchant():
 				swap_day_and_night_attack_point = true
 			else:
 				opponent.swap_day_and_night_attack_point = true
+				
+	ready_status[Main.Phase.BATTLE] = true
 
 
 func ready_battle():
@@ -351,6 +370,7 @@ func _on_selection_done_button_pressed():
 		card.selectable = false
 		card.reparent($DeckZone)
 	$DeckZone.shuffle()
+	$SelectionZone/SelectionDoneButton.visible = false
 	$SelectionZone.visible = false
 	ready_status[Main.Phase.DRAW] = true
 
