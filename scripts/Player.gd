@@ -37,10 +37,14 @@ func battle_ready():
 	ready_status[Main.Phase.OPEN] = true
 	ready_status[Main.Phase.ENCHANT] = true
 	ready_status[Main.Phase.BATTLE] = true
+	if controllable:
+		$"../MultiplayerController".battle_ready.rpc()
 
 
 func select_card(card: Card):
 	if card.get_parent() == $Hand:
+		if controllable:
+			$"../MultiplayerController".select_hand_card.rpc(0, card.info)
 		if $BattleField.cards().size() <= 0 && (card.info["type"] == "character"):
 			card.reparent($BattleField)
 			draw_require_count += 1
@@ -57,6 +61,12 @@ func select_card(card: Card):
 		card.reparent($Abyss)
 		draw_require_count += 1
 		return true
+		
+	if controllable:
+		if card.get_parent() == $BattleField:
+			$"../MultiplayerController".select_battle_field_card.rpc()
+		if card.get_parent() == $SetField:
+			$"../MultiplayerController".select_set_field_card.rpc(0)
 	
 	card.reparent($Hand)
 	draw_require_count -= 1
@@ -189,6 +199,8 @@ func _ready():
 	else:
 		for i in range(5):
 			_draw_card($SelectionZone/SelectionField)
+			
+	multiplayer
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

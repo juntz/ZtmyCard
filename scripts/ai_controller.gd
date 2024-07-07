@@ -5,6 +5,10 @@ extends Node
 @export var card_delay = 1.0
 
 
+func acitvate():
+	$Timer.start()
+
+
 func _on_timer_timeout():
 	if player.hp() <= 0:
 		$Timer.stop()

@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1qmq3vh2sku4"]
+[gd_scene load_steps=8 format=3 uid="uid://d1qmq3vh2sku4"]
 
 [ext_resource type="Texture2D" uid="uid://bcekqgj0g5edh" path="res://resources/logo__tbb.png" id="1_sx5t7"]
 [ext_resource type="Texture2D" uid="uid://cc57ub34dl8hl" path="res://resources/card_shadow.png" id="2_lvm5q"]
 [ext_resource type="PackedScene" uid="uid://b3h70ykhontb2" path="res://scene_change_button.tscn" id="3_3ywkd"]
 [ext_resource type="PackedScene" uid="uid://nc7kybcnbhmp" path="res://main.tscn" id="4_3kw8j"]
 [ext_resource type="PackedScene" uid="uid://dhyqlveownkli" path="res://deck_editor.tscn" id="5_mr858"]
+[ext_resource type="PackedScene" uid="uid://mrii7u5dckb5" path="res://lobby.tscn" id="5_t2s3p"]
 [ext_resource type="Script" path="res://scripts/title_mask.gd" id="6_ybexg"]
 
 [node name="Title" type="Node2D"]
@@ -36,11 +37,27 @@ auto_translate = false
 text = "SINGLE PLAYER"
 target_scene = ExtResource("4_3kw8j")
 
+[node name="MultiplayerButton" parent="." instance=ExtResource("3_3ywkd")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 483.0
+offset_top = 471.0
+offset_right = 624.32
+offset_bottom = 502.0
+grow_horizontal = 2
+grow_vertical = 2
+auto_translate = false
+text = "MULTIPLAYER"
+target_scene = ExtResource("5_t2s3p")
+
 [node name="DeckEditorButton" parent="." instance=ExtResource("3_3ywkd")]
-offset_left = 492.0
-offset_top = 482.0
-offset_right = 628.0
-offset_bottom = 513.0
+offset_left = 488.0
+offset_top = 524.0
+offset_right = 624.0
+offset_bottom = 555.0
 text = "DECK EDITOR"
 target_scene = ExtResource("5_mr858")
 

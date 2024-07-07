@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://mrii7u5dckb5"]
+
+[ext_resource type="Script" path="res://scripts/server_button.gd" id="1_p4rab"]
+[ext_resource type="Script" path="res://scripts/client_button.gd" id="2_62yn7"]
+[ext_resource type="PackedScene" uid="uid://nc7kybcnbhmp" path="res://main.tscn" id="2_g15tn"]
+
+[node name="Lobby" type="Node2D"]
+
+[node name="ServerButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 341.0
+offset_top = 330.0
+offset_right = 445.0
+offset_bottom = 361.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Open The Server"
+script = ExtResource("1_p4rab")
+target_scene = ExtResource("2_g15tn")
+metadata/_edit_use_anchors_ = true
+
+[node name="ClientButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 715.0
+offset_top = 330.0
+offset_right = 857.0
+offset_bottom = 361.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Connect as Client"
+script = ExtResource("2_62yn7")
+target_scene = ExtResource("2_g15tn")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="ServerButton" to="ServerButton" method="_on_pressed"]
+[connection signal="pressed" from="ClientButton" to="ClientButton" method="_on_pressed"]
