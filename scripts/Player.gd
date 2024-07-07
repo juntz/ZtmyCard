@@ -20,6 +20,7 @@ var setable_card_count = 0
 var attack_point_modifier = null
 var attack_scale = 1.3
 var damage = 0
+var swap_day_and_night_attack_point = false
 
 
 func hp() -> int:
@@ -93,7 +94,7 @@ func get_attack_point(is_night: bool) -> int:
 	if !check_powered(card):
 		return 0
 	
-	var field_name = "night" if is_night else "day"
+	var field_name = "night" if is_night != swap_day_and_night_attack_point else "day"
 	var base_attack_point = int(card.info["attackPoint"][field_name])
 	if attack_point_modifier:
 		return attack_point_modifier.call(base_attack_point)
@@ -131,6 +132,11 @@ func apply_enchant():
 			
 		if effect["type"] == "modifyAttackPoint":
 			_modify_attack_point(effect["fields"])
+		elif effect["type"] == "swapDayAndNightAttackPoint":
+			if effect["fields"]["target"] == "player":
+				swap_day_and_night_attack_point = true
+			else:
+				opponent.swap_day_and_night_attack_point = true
 
 
 func ready_battle():
@@ -161,6 +167,7 @@ func end_battle(is_win: bool):
 		_drop_card(card)
 	ready_status[Main.Phase.DRAW] = true
 	setable_card_count = 1 if is_win else 2
+	swap_day_and_night_attack_point = false
 
 
 func attack(damage):
