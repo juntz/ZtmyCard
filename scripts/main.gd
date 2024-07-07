@@ -143,6 +143,12 @@ func revert_chronos():
 	chronos = prev_chronos
 
 
+func turn_chronos(time: int):
+	chronos += time
+	chronos %= 18
+	$Chronos.turn(time)
+
+
 func _on_timer_timeout():
 	shaking = false
 	position = Vector2()

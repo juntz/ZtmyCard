@@ -40,7 +40,7 @@ func turn(time: int):
 	$"..".hold_phase = true
 	if time > 0:
 		step_left = time - 1
-		rotation_left = rotation_step
+		rotation_left += rotation_step
 	else:
 		step_left = 0
-		rotation_left = time * rotation_step
+		rotation_left += time * rotation_step

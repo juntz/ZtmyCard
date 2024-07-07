@@ -142,6 +142,11 @@ func apply_enchant():
 			main.revert_chronos()
 			continue
 			
+		if type == "modifyTime":
+			main.revert_chronos()
+			main.turn_chronos(-opponent.battle_field_card().info["clock"])
+			continue
+			
 		if type == "useFromAbyss":
 			var abyssCards = $Abyss.cards()
 			if abyssCards.size() <= 0:
