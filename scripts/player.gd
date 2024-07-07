@@ -19,6 +19,7 @@ var draw_require_count = 0
 var setable_card_count = 0
 var attack_point_modifier = null
 var attack_scale = 1.3
+var damage_reduce = 0
 var damage = 0
 var swap_day_and_night_attack_point = false
 
@@ -158,9 +159,14 @@ func apply_enchant():
 			card.reparent($Abyss)
 			return
 			
+		if type == "reduceDamage":
+			damage_reduce = int(effect["fields"]["amount"])
+			
 		if type == "modifyAttackPoint":
 			_modify_attack_point(effect["fields"])
-		elif type == "swapDayAndNightAttackPoint":
+			continue
+			
+		if type == "swapDayAndNightAttackPoint":
 			if effect["fields"]["target"] == "player":
 				swap_day_and_night_attack_point = true
 			else:
@@ -198,6 +204,7 @@ func end_battle(is_win: bool):
 	ready_status[Main.Phase.DRAW] = true
 	setable_card_count = 1 if is_win else 2
 	swap_day_and_night_attack_point = false
+	damage_reduce = 0
 
 
 func attack(damage):
@@ -208,6 +215,9 @@ func attack(damage):
 
 
 func hit(damage):
+	damage -= damage_reduce
+	if damage < 0:
+		damage = 0
 	self.damage = damage
 	$HpBar/HpPathFollow/DamageLabel.text = "-" + str(damage)
 	ready_status[Main.Phase.END] = true
