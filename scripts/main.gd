@@ -133,6 +133,14 @@ func shake(amount: float):
 	timer.one_shot = true
 	timer.start()
 	timer.connect("timeout", _on_timer_timeout)
+	
+	
+func revert_chronos():
+	var time = prev_chronos - chronos
+	if time > 0:
+		time = (time % 18) - 18
+	$Chronos.turn(time)
+	chronos = prev_chronos
 
 
 func _on_timer_timeout():

@@ -21,7 +21,7 @@ func _process(delta):
 		return
 	
 	var rotate_amount = rotation_speed * delta
-	if rotation_left < rotate_amount:
+	if abs(rotation_left) < rotate_amount:
 		rotate(rotation_left)
 		rotation_left = 0
 		if step_left > 0:
@@ -31,12 +31,16 @@ func _process(delta):
 		else:
 			$"..".hold_phase = false
 	else:
-		rotate(rotate_amount)
-		rotation_left -= rotate_amount
+		var ture_rotate_amount = rotate_amount if rotation_left > 0 else -rotate_amount
+		rotate(ture_rotate_amount)
+		rotation_left -= ture_rotate_amount
 
 
 func turn(time: int):
 	$"..".hold_phase = true
-	step_left = time - 1
 	if time > 0:
+		step_left = time - 1
 		rotation_left = rotation_step
+	else:
+		step_left = 0
+		rotation_left = time * rotation_step

@@ -135,8 +135,14 @@ func apply_enchant():
 		var effect = card.info["effect"]
 		if !effect.has("type"):
 			continue
+		
+		var type = effect["type"]
+		
+		if type == "disableClock":
+			main.revert_chronos()
+			continue
 			
-		if effect["type"] == "useFromAbyss":
+		if type == "useFromAbyss":
 			var abyssCards = $Abyss.cards()
 			if abyssCards.size() <= 0:
 				break
@@ -147,9 +153,9 @@ func apply_enchant():
 			card.reparent($Abyss)
 			return
 			
-		if effect["type"] == "modifyAttackPoint":
+		if type == "modifyAttackPoint":
 			_modify_attack_point(effect["fields"])
-		elif effect["type"] == "swapDayAndNightAttackPoint":
+		elif type == "swapDayAndNightAttackPoint":
 			if effect["fields"]["target"] == "player":
 				swap_day_and_night_attack_point = true
 			else:
