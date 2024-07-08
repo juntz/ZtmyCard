@@ -286,6 +286,9 @@ func _process(delta):
 
 
 func _check_card_condition(condition: Dictionary) -> bool:
+	if condition.has("or"):
+		return condition["or"].map(_check_card_condition).reduce(func(a, b): return a || b, false)
+	
 	if condition.has("attribute"):
 		if condition["target"] == "player":
 			if !battle_field_card():
