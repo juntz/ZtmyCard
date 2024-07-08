@@ -162,6 +162,9 @@ func apply_enchant():
 		if type == "reduceDamage":
 			damage_reduce = int(effect["fields"]["amount"])
 			
+		if type == "modifyHp":
+			_modify_hp(effect["fields"])
+			
 		if type == "modifyAttackPoint":
 			_modify_attack_point(effect["fields"])
 			continue
@@ -204,7 +207,6 @@ func end_battle(is_win: bool):
 	ready_status[Main.Phase.DRAW] = true
 	setable_card_count = 1 if is_win else 2
 	swap_day_and_night_attack_point = false
-	damage_reduce = 0
 
 
 func attack(damage):
@@ -216,11 +218,19 @@ func attack(damage):
 
 func hit(damage):
 	damage -= damage_reduce
+	damage_reduce = 0
 	if damage < 0:
 		damage = 0
 	self.damage = damage
 	$HpBar/HpPathFollow/DamageLabel.text = "-" + str(damage)
 	ready_status[Main.Phase.END] = true
+
+
+func heal(amount):
+	$HpBar/HpPathFollow/DamageLabel.text = "+" + str(amount)
+	$HpBar.hp += damage
+	if $HpBar.hp > 100:
+		$HpBar.hp = 100
 
 
 func battle_field_card():
@@ -300,6 +310,14 @@ func _check_card_condition(condition: Dictionary) -> bool:
 			return false
 				
 	return true
+
+
+func _modify_hp(fields: Dictionary):
+	if fields.has("condition"):
+		if !_check_card_condition(fields["condition"]):
+			return
+	
+	heal(int(fields["add"]))
 
 
 func _modify_attack_point(fields: Dictionary):
