@@ -35,7 +35,8 @@ func _on_card_transition_end(card):
 	if card.get_parent() == target:
 		main.shake(abs($"../../Player".damage) / 20.0)
 	
-	card.reparent(points[step])
+	if card.get_parent() != points[step]:
+		card.reparent(points[step])
 	step += 1
 
 

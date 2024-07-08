@@ -143,6 +143,10 @@ func apply_enchant():
 		
 		var type = effect["type"]
 		
+		if type == "draw":
+			_draw_card($Hand)
+			continue
+		
 		if type == "disableClock":
 			main.revert_chronos()
 			continue
