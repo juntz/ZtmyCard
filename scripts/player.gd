@@ -228,7 +228,7 @@ func hit(damage):
 
 func heal(amount):
 	$HpBar/HpPathFollow/DamageLabel.text = "+" + str(amount)
-	$HpBar.hp += damage
+	$HpBar.hp += amount
 	if $HpBar.hp > 100:
 		$HpBar.hp = 100
 
