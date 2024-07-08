@@ -22,6 +22,8 @@ var attack_scale = 1.3
 var damage_reduce = 0
 var damage = 0
 var swap_day_and_night_attack_point = false
+var selection_field_target
+var selection_field_parent
 
 
 func hp() -> int:
@@ -59,7 +61,9 @@ func select_card(card: Card):
 	if card.get_parent() == $SelectionZone/SelectionField:
 		if main.phase == Main.Phase.ENCHANT:
 			card.selectable = false
-			card.reparent($SetField)
+			card.reparent(selection_field_target)
+			for unselected_card in $SelectionZone/SelectionField.cards():
+				unselected_card.reparent(selection_field_parent)
 			apply_enchant()
 			$SelectionZone.visible = false
 			return true
@@ -155,6 +159,8 @@ func apply_enchant():
 			for abyssCard in abyssCards:
 				abyssCard.selectable = true
 				abyssCard.reparent($SelectionZone/SelectionField)
+			selection_field_parent = $Abyss
+			selection_field_target = $SetField
 			$SelectionZone.visible = true
 			card.reparent($Abyss)
 			return
@@ -168,6 +174,20 @@ func apply_enchant():
 		if type == "modifyAttackPoint":
 			_modify_attack_point(effect["fields"])
 			continue
+			
+		if type == "swapHandAndAbyss":
+			var abyssCards = $Abyss.cards()
+			if abyssCards.size() <= 0:
+				break
+			
+			for handCard in hand_cards():
+				handCard.reparent($SelectionZone/SelectionField)
+			abyssCards[-1].reparent($Hand)
+			selection_field_parent = $Hand
+			selection_field_target = $Abyss
+			$SelectionZone.visible = true
+			card.reparent($Abyss)
+			return
 			
 		if type == "swapDayAndNightAttackPoint":
 			if effect["fields"]["target"] == "player":
