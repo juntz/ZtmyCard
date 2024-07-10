@@ -34,11 +34,11 @@ rotation = 3.14159
 opponent = NodePath("../Player")
 main = NodePath("..")
 
-[node name="CardInfoContainer" parent="Opponent" index="10"]
+[node name="CardInfoContainer" parent="Opponent" index="11"]
 position = Vector2(-138.001, 506)
 rotation = 3.14159
 
-[node name="AttackPoints" parent="Opponent" index="11" node_paths=PackedStringArray("main")]
+[node name="AttackPoints" parent="Opponent" index="12" node_paths=PackedStringArray("main")]
 main = NodePath("../..")
 
 [node name="Player" parent="." node_paths=PackedStringArray("opponent", "main") instance=ExtResource("2_x3eei")]
@@ -46,7 +46,7 @@ controllable = true
 opponent = NodePath("../Opponent")
 main = NodePath("..")
 
-[node name="AttackPoints" parent="Player" index="11" node_paths=PackedStringArray("main")]
+[node name="AttackPoints" parent="Player" index="12" node_paths=PackedStringArray("main")]
 main = NodePath("../..")
 
 [node name="TimeLabel" type="Label" parent="."]

@@ -12,6 +12,7 @@ var phase = Phase.END
 var hold_phase = false
 # true if win
 var battle_results = {}
+var shake_timer
 
 
 # Called when the node enters the scene tree for the first time.
@@ -21,6 +22,12 @@ func _ready():
 	
 	for player in _get_players():
 		player.draw()
+		
+	shake_timer = Timer.new()
+	add_child(shake_timer)
+	shake_timer.wait_time = shake_time
+	shake_timer.one_shot = true
+	shake_timer.connect("timeout", _on_shake_timer_timeout)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -127,12 +134,7 @@ func is_night():
 func shake(amount: float):
 	shake_amount = amount
 	shaking = true
-	var timer = Timer.new()
-	add_child(timer)
-	timer.wait_time = shake_time
-	timer.one_shot = true
-	timer.start()
-	timer.connect("timeout", _on_timer_timeout)
+	shake_timer.start()
 	
 	
 func revert_chronos():
@@ -149,6 +151,6 @@ func turn_chronos(time: int):
 	$Chronos.turn(time)
 
 
-func _on_timer_timeout():
+func _on_shake_timer_timeout():
 	shaking = false
 	position = Vector2()

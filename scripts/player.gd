@@ -24,10 +24,32 @@ var damage = 0
 var swap_day_and_night_attack_point = false
 var selection_field_target
 var selection_field_parent
+@onready var battle_field = $BattleField
+@onready var set_field = $SetField
+@onready var abyss = $Abyss
+@onready var deck_zone = $DeckZone
+@onready var hand = $Hand
+var enchant_processor: EnchantProcessor
 
 
 func hp() -> int:
 	return $HpBar.hp
+
+
+func apply_enchant():
+	enchant_processor.enchant_end.connect(_on_enchant_end)
+	_on_enchant_end()
+
+
+func _on_enchant_end():
+	var cards = $SetField.cards()
+	if cards.size() > 0:
+		var card = cards[0]
+		card.reparent($EnchantZone)
+		enchant_processor.apply_enchant(card)
+	else:
+		enchant_processor.enchant_end.disconnect(_on_enchant_end)
+		ready_status[Main.Phase.BATTLE] = true
 
 
 func draw():
@@ -45,6 +67,16 @@ func battle_ready():
 
 
 func select_card(card: Card):
+	if card.get_parent() == $SelectionZone/SelectionField:
+		card.selectable = false
+		card.unset_hover()
+		card.reparent($Abyss)
+		draw_require_count += 1
+		return true
+		
+	if main.phase != Main.Phase.SET:
+		return false
+	
 	if card.get_parent() == $Hand:
 		if controllable:
 			$"../MultiplayerController".select_hand_card.rpc(0, card.info)
@@ -57,22 +89,6 @@ func select_card(card: Card):
 		else:
 			return false
 		return true
-	
-	if card.get_parent() == $SelectionZone/SelectionField:
-		if main.phase == Main.Phase.ENCHANT:
-			card.selectable = false
-			card.reparent(selection_field_target)
-			for unselected_card in $SelectionZone/SelectionField.cards():
-				unselected_card.reparent(selection_field_parent)
-			apply_enchant()
-			$SelectionZone.visible = false
-			return true
-		else:
-			card.selectable = false
-			card.unset_hover()
-			card.reparent($Abyss)
-			draw_require_count += 1
-			return true
 		
 	if controllable:
 		if card.get_parent() == $BattleField:
@@ -132,76 +148,6 @@ func get_charged_power():
 	)
 
 
-func apply_enchant():
-	for card in set_field_cards():
-		if card.info["type"] != "enchant":
-			continue
-		
-		var effect = card.info["effect"]
-		if !effect.has("type"):
-			continue
-		
-		var type = effect["type"]
-		
-		if type == "draw":
-			_draw_card($Hand)
-			continue
-		
-		if type == "disableClock":
-			main.revert_chronos()
-			continue
-			
-		if type == "modifyTime":
-			main.revert_chronos()
-			main.turn_chronos(-opponent.battle_field_card().info["clock"])
-			continue
-			
-		if type == "useFromAbyss":
-			var abyssCards = $Abyss.cards()
-			if abyssCards.size() <= 0:
-				break
-			for abyssCard in abyssCards:
-				abyssCard.selectable = true
-				abyssCard.reparent($SelectionZone/SelectionField)
-			selection_field_parent = $Abyss
-			selection_field_target = $SetField
-			$SelectionZone.visible = true
-			card.reparent($Abyss)
-			return
-			
-		if type == "reduceDamage":
-			damage_reduce = int(effect["fields"]["amount"])
-			
-		if type == "modifyHp":
-			_modify_hp(effect["fields"])
-			
-		if type == "modifyAttackPoint":
-			_modify_attack_point(effect["fields"])
-			continue
-			
-		if type == "swapHandAndAbyss":
-			var abyssCards = $Abyss.cards()
-			if abyssCards.size() <= 0:
-				break
-			
-			for handCard in hand_cards():
-				handCard.reparent($SelectionZone/SelectionField)
-			abyssCards[-1].reparent($Hand)
-			selection_field_parent = $Hand
-			selection_field_target = $Abyss
-			$SelectionZone.visible = true
-			card.reparent($Abyss)
-			return
-			
-		if type == "swapDayAndNightAttackPoint":
-			if effect["fields"]["target"] == "player":
-				swap_day_and_night_attack_point = true
-			else:
-				opponent.swap_day_and_night_attack_point = true
-				
-	ready_status[Main.Phase.BATTLE] = true
-
-
 func ready_battle():
 	for card in set_field_cards():
 		if card.info["type"] != "character":
@@ -231,6 +177,14 @@ func end_battle(is_win: bool):
 	ready_status[Main.Phase.DRAW] = true
 	setable_card_count = 1 if is_win else 2
 	swap_day_and_night_attack_point = false
+	for card in $EnchantZone.cards():
+		card.reparent($Abyss)
+
+
+func send_cards_to_selection_field(cards, target_field, return_field):
+	selection_field_parent = return_field
+	selection_field_target = target_field
+	$SelectionZone.start_selection(cards, _on_card_clicked)
 
 
 func attack(damage):
@@ -280,8 +234,9 @@ func _ready():
 	else:
 		for i in range(5):
 			_draw_card($SelectionZone/SelectionField)
-			
-	multiplayer
+	$SelectionZone.card_selected.connect(_on_card_selected)
+	enchant_processor = EnchantProcessor.new(main, self, opponent)
+	add_child(enchant_processor)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -289,71 +244,7 @@ func _process(delta):
 	ready_status[Main.Phase.CLOCK] = field_cards().all(func(c): return !c.flipping)
 
 
-func _check_card_condition(condition: Dictionary) -> bool:
-	if condition.has("or"):
-		return condition["or"].map(_check_card_condition).reduce(func(a, b): return a || b, false)
-	
-	if condition.has("attribute"):
-		if condition["target"] == "player":
-			if !battle_field_card():
-				return false
-			if battle_field_card().info["attribute"] != condition["attribute"]:
-				return false
-		else:
-			if !opponent.battle_field_card():
-				return false
-			if opponent.battle_field_card().info["attribute"] != condition["attribute"]:
-				return false
-	
-	if condition.has("powerCost"):
-		if !opponent.battle_field_card():
-			return false
-		var powerCostCondition = condition["powerCost"]
-		var opponentPowerCost = opponent.battle_field_card().info["powerCost"]
-		if powerCostCondition.has("greaterThanOrEqual"):
-			if opponentPowerCost < powerCostCondition["greaterThanOrEqual"]:
-				return false
-		if powerCostCondition.has("lessThanOrEqual"):
-			if opponentPowerCost > powerCostCondition["lessThanOrEqual"]:
-				return false
-	
-	if condition.has("hpLessOrEqual"):
-		if $HpBar.hp > condition["hpLessOrEqual"]:
-			return false
-	if condition.has("time"):
-		if condition["time"] == "night" && !main.is_night():
-			return false
-		if condition["time"] == "day" && main.is_night():
-			return false
-	
-	if condition.has("timeChanged"):
-		if condition["timeChanged"] == "dayToNight" && !(!main.is_prev_night() && main.is_night()):
-			return false
-		if condition["timeChanged"] == "nightToDay" && !(main.is_prev_night() && !main.is_night()):
-			return false
-	
-	if condition.has("abyss"):
-		if _abyss_attribute_count() < 4:
-			return false
-				
-	return true
-
-
-func _modify_hp(fields: Dictionary):
-	if fields.has("condition"):
-		if !_check_card_condition(fields["condition"]):
-			return
-	
-	heal(int(fields["add"]))
-
-
-func _modify_attack_point(fields: Dictionary):
-	if fields.has("condition"):
-		if _check_card_condition(fields["condition"]):
-			attack_point_modifier = func(n): return n + int(fields["add"])
-
-
-func _abyss_attribute_count():
+func abyss_attribute_count():
 	var attributes = {}
 	for card in $Abyss.cards():
 		attributes[card.info["attribute"]] = null
@@ -441,6 +332,12 @@ func _on_selection_done_button_pressed():
 	ready_status[Main.Phase.DRAW] = true
 
 
+func _on_card_selected(selected, unselected):
+	selected.reparent(selection_field_target)
+	for card in unselected:
+		card.reparent(selection_field_parent)
+
+
 func _on_card_entered(card: Card):
 	$CardInfoContainer.visible = true
 	$CardInfoContainer.current_card = card
@@ -464,4 +361,5 @@ func _on_card_exited(card: Card):
 
 
 func _on_card_clicked(card: Card):
-	select_card(card)
+	if !select_card(card):
+		card.shake()

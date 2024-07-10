@@ -24,6 +24,9 @@ var flipping_speed = 0.1
 var info: Dictionary
 var hover = false
 var mouse_is_in = false
+var shaking = false
+var shake_amount = 2
+var orginal_pos: Vector2
 
 
 func clone() -> Card:
@@ -67,6 +70,11 @@ func show_card():
 	flipping = true
 
 
+func shake():
+	shaking = true
+	$ShakeTimer.start()
+
+
 func close_card():
 	$CardBack.visible = true
 
@@ -85,6 +93,13 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if shaking:
+		var rng = RandomNumberGenerator.new()
+		var x = rng.randf_range(- shake_amount, shake_amount)
+		var y = rng.randf_range(- shake_amount, shake_amount)
+		$CardImage.position = Vector2(x, y)
+		$CardShadow.position = Vector2(x, y)
+	
 	if flying:
 		var pos_delta = target_pos - position
 		var flying_speed = (pos_delta.length() if slow_stop else flying_length - pos_delta.length()) / flying_slope + min_speed
@@ -160,3 +175,9 @@ func _on_mouse_exited():
 		return
 	
 	_check_hover()
+
+
+func _on_shake_timer_timeout():
+	shaking = false
+	$CardImage.position = Vector2()
+	$CardShadow.position = Vector2()
