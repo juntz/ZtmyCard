@@ -178,7 +178,10 @@ func end_battle(is_win: bool):
 	setable_card_count = 1 if is_win else 2
 	swap_day_and_night_attack_point = false
 	for card in $EnchantZone.cards():
-		card.reparent($Abyss)
+		if card.info["sendToPower"] > 0:
+			card.reparent($PowerCharger)
+		else:
+			card.reparent($Abyss)
 
 
 func send_cards_to_selection_field(cards, target_field, return_field):

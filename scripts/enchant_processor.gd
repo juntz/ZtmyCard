@@ -50,7 +50,8 @@ func apply_enchant(card: Card):
 	var fields = null
 	if effect.has("fields"):
 		fields = effect["fields"]
-	Callable(self, type).call(fields)
+	if player.check_powered(card):
+		Callable(self, type).call(fields)
 	timer.start(ENCHANT_DELAY_SEC)
 
 
@@ -175,6 +176,8 @@ func _check_card_condition(condition: Dictionary) -> bool:
 
 
 func _end_enchant():
+	if !player.check_powered(enchanting_card):
+		enchanting_card.shake()
 	enchanting_card.scale /= ENCAHNTING_SCALE
 	enchant_end.emit()
 
