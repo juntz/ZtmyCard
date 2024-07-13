@@ -30,6 +30,7 @@ var selection_field_parent
 @onready var deck_zone = $DeckZone
 @onready var hand = $Hand
 var enchant_processor: EnchantProcessor
+var is_first_turn = true
 
 
 func hp() -> int:
@@ -129,7 +130,12 @@ func get_attack_point(is_night: bool) -> int:
 
 
 func get_clock() -> int:
-	return field_cards().filter(
+	if is_first_turn:
+		if battle_field_card():
+			is_first_turn = false
+			return int(field_cards().info["clock"])
+		return 0
+	return set_field_cards().filter(
 		func(c): return check_powered(c)
 	).map(
 		func(c): return int(c.info["clock"])
