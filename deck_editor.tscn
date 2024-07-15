@@ -66,15 +66,17 @@ shape = SubResource("RectangleShape2D_3p71a")
 
 [node name="CardInfoContainer" parent="." instance=ExtResource("6_yrkhv")]
 z_index = 1000
-position = Vector2(882, 156)
+position = Vector2(835, 156)
 scale = Vector2(1.165, 1.165)
 
 [node name="ExitButton" type="Button" parent="."]
-offset_left = 961.0
-offset_top = 7.0
-offset_right = 1061.0
-offset_bottom = 38.0
-text = "SAVE & EXIT"
+offset_left = 997.0
+offset_top = -2.0
+offset_right = 1062.0
+offset_bottom = 75.0
+text = "SAVE
+&
+EXIT"
 script = ExtResource("7_bpa5l")
 
 [connection signal="input_event" from="CardGroupContainer" to="CardGroupContainer" method="_on_input_event"]
