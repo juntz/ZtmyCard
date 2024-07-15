@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dc1r6nhojsojg"]
+[gd_scene load_steps=3 format=3 uid="uid://cjqvqwm2xpq4t"]
 
 [ext_resource type="Script" path="res://scripts/card_field.gd" id="1_2hyyr"]
 
@@ -13,3 +13,4 @@ shape = SubResource("RectangleShape2D_ylydq")
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]
