@@ -130,12 +130,15 @@ func get_attack_point(is_night: bool) -> int:
 
 
 func get_clock() -> int:
+	var cards
 	if is_first_turn:
-		if battle_field_card():
-			is_first_turn = false
-			return int(field_cards().info["clock"])
-		return 0
-	return set_field_cards().filter(
+		if !battle_field_card():
+			return 0
+		is_first_turn = false
+		cards = field_cards()
+	else:
+		cards = set_field_cards()
+	return cards.filter(
 		func(c): return check_powered(c)
 	).map(
 		func(c): return int(c.info["clock"])
