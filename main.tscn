@@ -7,8 +7,8 @@
 [ext_resource type="Script" path="res://scripts/background.gd" id="3_ydkjl"]
 [ext_resource type="Texture2D" uid="uid://d12qy5cuvf0mv" path="res://resources/orange_circle.png" id="5_d542b"]
 [ext_resource type="Script" path="res://scripts/chronos.gd" id="6_2ficq"]
-[ext_resource type="Script" path="res://scripts/multiplayer_controller.gd" id="8_6t4p5"]
 [ext_resource type="Script" path="res://scripts/ai_controller.gd" id="8_s7o3k"]
+[ext_resource type="Script" path="res://scripts/game_master.gd" id="10_0l7ah"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_m1pte")
@@ -28,11 +28,12 @@ position = Vector2(579, 326)
 scale = Vector2(0.2684, 0.2684)
 texture = ExtResource("1_jxmyf")
 
-[node name="Opponent" parent="." node_paths=PackedStringArray("opponent", "main") instance=ExtResource("2_x3eei")]
+[node name="Opponent" parent="." node_paths=PackedStringArray("opponent", "main", "game_master") instance=ExtResource("2_x3eei")]
 position = Vector2(896, 657)
 rotation = 3.14159
 opponent = NodePath("../Player")
 main = NodePath("..")
+game_master = NodePath("../GameMaster")
 
 [node name="CardInfoContainer" parent="Opponent" index="11"]
 position = Vector2(-138.001, 506)
@@ -41,10 +42,11 @@ rotation = 3.14159
 [node name="AttackPoints" parent="Opponent" index="12" node_paths=PackedStringArray("main")]
 main = NodePath("../..")
 
-[node name="Player" parent="." node_paths=PackedStringArray("opponent", "main") instance=ExtResource("2_x3eei")]
+[node name="Player" parent="." node_paths=PackedStringArray("opponent", "main", "game_master") instance=ExtResource("2_x3eei")]
 controllable = true
 opponent = NodePath("../Opponent")
 main = NodePath("..")
+game_master = NodePath("../GameMaster")
 
 [node name="AttackPoints" parent="Player" index="12" node_paths=PackedStringArray("main")]
 main = NodePath("../..")
@@ -67,10 +69,6 @@ position = Vector2(0, -150)
 scale = Vector2(0.13, 0.13)
 texture = ExtResource("5_d542b")
 
-[node name="MultiplayerController" type="Node" parent="." node_paths=PackedStringArray("player")]
-script = ExtResource("8_6t4p5")
-player = NodePath("../Opponent")
-
 [node name="AiController" type="Node" parent="." node_paths=PackedStringArray("main", "player")]
 script = ExtResource("8_s7o3k")
 main = NodePath("..")
@@ -78,6 +76,9 @@ player = NodePath("../Opponent")
 
 [node name="Timer" type="Timer" parent="AiController"]
 wait_time = 2.0
+
+[node name="GameMaster" type="Node" parent="."]
+script = ExtResource("10_0l7ah")
 
 [connection signal="timeout" from="AiController/Timer" to="AiController" method="_on_timer_timeout"]
 

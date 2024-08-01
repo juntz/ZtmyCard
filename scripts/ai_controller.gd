@@ -12,12 +12,6 @@ func acitvate():
 func _on_timer_timeout():
 	if player.hp() <= 0:
 		$Timer.stop()
-	
-	if main.phase != Main.Phase.SET:
-		return
-		
-	if player.ready_status[Main.Phase.BATTLE]:
-		return
 		
 	var hand_card_count = player.hand_cards().size()
 	for card in player.hand_cards():

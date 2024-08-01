@@ -1,6 +1,8 @@
 class_name CardField
 extends Area2D
 
+enum Field{BATTLE, SET, ABYSS, POWER_CHARGER, DECK, HAND, ENCHANT}
+
 @export var cards_offset = Vector2(25, 0)
 @export var card_line_offset = Vector2(0, 150)
 @export var fly_ease_out = true

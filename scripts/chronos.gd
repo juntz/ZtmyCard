@@ -1,13 +1,16 @@
+class_name Chronos
 extends Node2D
 
-var total_step = 18
+const TOTAL_STEP = 18
+
 var step_left = 0
 var rotation_left = 0
 var rotation_speed = 5
-var rotation_step = 2 * PI / total_step
+var rotation_step = 2 * PI / TOTAL_STEP
 var pause_left = 0
 var pause_delay = 0.3
-
+var time = 5
+var prev_time = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,19 +31,33 @@ func _process(delta):
 			step_left -= 1
 			pause_left = pause_delay
 			rotation_left = rotation_step
-		else:
-			$"..".hold_phase = false
 	else:
 		var ture_rotate_amount = rotate_amount if rotation_left > 0 else -rotate_amount
 		rotate(ture_rotate_amount)
 		rotation_left -= ture_rotate_amount
 
 
-func turn(time: int):
-	$"..".hold_phase = true
-	if time > 0:
-		step_left = time - 1
+@rpc("any_peer", "call_local")
+func turn(time_span: int):
+	prev_time = time
+	time = (time + time_span) % TOTAL_STEP
+	if time_span > 0:
+		step_left = time_span - 1
 		rotation_left += rotation_step
 	else:
 		step_left = 0
-		rotation_left += time * rotation_step
+		rotation_left += time_span * rotation_step
+
+
+@rpc("any_peer", "call_local")
+func revert():
+	var time_span = prev_time - time
+	turn(time_span)
+
+
+func is_prev_night():
+	return prev_time < 9
+
+
+func is_night():
+	return time < 9

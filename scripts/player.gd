@@ -5,16 +5,7 @@ extends Node2D
 @export var controllable: bool
 @export var opponent: Player
 @export var main: Main
-var ready_status = {
-	Main.Phase.DRAW: false,
-	Main.Phase.SET: false,
-	Main.Phase.OPEN: false,
-	Main.Phase.READY: false,
-	Main.Phase.CLOCK: false,
-	Main.Phase.ENCHANT: false,
-	Main.Phase.BATTLE: false,
-	Main.Phase.END: false
-}
+@export var game_master: GameMaster
 var draw_require_count = 0
 var setable_card_count = 0
 var attack_point_modifier = null
@@ -30,6 +21,17 @@ var selection_field_parent
 @onready var deck_zone = $DeckZone
 @onready var hand = $Hand
 var enchant_processor: EnchantProcessor
+var card_fields = {}
+
+
+@rpc("any_peer")
+func move_card(field, idx, to):
+	pass
+
+
+@rpc("any_peer")
+func show_card(field, idx, info):
+	pass
 
 
 func hp() -> int:
@@ -49,19 +51,15 @@ func _on_enchant_end():
 		enchant_processor.apply_enchant(card)
 	else:
 		enchant_processor.enchant_end.disconnect(_on_enchant_end)
-		ready_status[Main.Phase.BATTLE] = true
 
 
 func draw():
 	for i in range(draw_require_count):
 		_draw_card($Hand)
 	draw_require_count = 0
-	ready_status[Main.Phase.SET] = true
 
 
 func battle_ready():
-	ready_status[Main.Phase.OPEN] = true
-	ready_status[Main.Phase.ENCHANT] = true
 	if controllable:
 		$"../MultiplayerController".battle_ready.rpc()
 
@@ -73,13 +71,10 @@ func select_card(card: Card):
 		card.reparent($Abyss)
 		draw_require_count += 1
 		return true
-		
-	if main.phase != Main.Phase.SET:
-		return false
 	
 	if card.get_parent() == $Hand:
 		if controllable:
-			$"../MultiplayerController".select_hand_card.rpc(0, card.info)
+			pass
 		if $BattleField.cards().size() <= 0 && (card.info["type"] == "character"):
 			card.reparent($BattleField)
 			draw_require_count += 1
@@ -92,9 +87,9 @@ func select_card(card: Card):
 		
 	if controllable:
 		if card.get_parent() == $BattleField:
-			$"../MultiplayerController".select_battle_field_card.rpc()
+			pass
 		if card.get_parent() == $SetField:
-			$"../MultiplayerController".select_set_field_card.rpc(0)
+			pass
 	
 	card.reparent($Hand)
 	draw_require_count -= 1
@@ -148,33 +143,11 @@ func get_charged_power():
 	)
 
 
-func ready_battle():
-	for card in set_field_cards():
-		if card.info["type"] != "character":
-			continue
-			
-		var battle_field_cards = $BattleField.cards()
-		if battle_field_cards.size() <= 0:
-			return
-		
-		_drop_card(battle_field_cards[0])
-		card.reparent($BattleField)
-
-
-func open_cards():
-	for card in field_cards():
-		card.selectable = false
-		card.show_card()
-	await get_tree().create_timer(1).timeout
-	ready_status[Main.Phase.READY] = true
-
-
 func end_battle(is_win: bool):
 	_hit()
 	attack_point_modifier = null
 	for card in set_field_cards():
 		_drop_card(card)
-	ready_status[Main.Phase.DRAW] = true
 	setable_card_count = 1 if is_win else 2
 	swap_day_and_night_attack_point = false
 	for card in $EnchantZone.cards():
@@ -204,7 +177,6 @@ func hit(damage):
 		damage = 0
 	self.damage = damage
 	$HpBar/HpPathFollow/DamageLabel.text = "-" + str(damage)
-	ready_status[Main.Phase.END] = true
 
 
 func heal(amount):
@@ -227,13 +199,20 @@ func set_field_cards():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	card_fields[CardField.Field.BATTLE] = $BattleField
+	card_fields[CardField.Field.SET] = $SetField
+	card_fields[CardField.Field.ABYSS] = $Abyss
+	card_fields[CardField.Field.POWER_CHARGER] = $PowerCharger
+	card_fields[CardField.Field.DECK] = $DeckZone
+	card_fields[CardField.Field.HAND] = $Hand
+	card_fields[CardField.Field.ENCHANT] = $EnchantZone
+	
 	$CardInfoContainer.visible = false
 	_init_deck()
 	if !controllable:
 		$ReadyButton.visible = false
 		$SelectionZone.visible = false
 		draw_require_count = 5
-		ready_status[Main.Phase.DRAW] = true
 	else:
 		for i in range(5):
 			_draw_card($SelectionZone/SelectionField)
@@ -244,7 +223,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	ready_status[Main.Phase.CLOCK] = field_cards().all(func(c): return !c.flipping)
+	pass
 
 
 func abyss_attribute_count():
@@ -315,7 +294,6 @@ func _hit():
 func _on_attack_end(card):
 	card.reparent($BattleField)
 	card.scale = Vector2(1, 1)
-	ready_status[Main.Phase.END] = true
 
 
 func _on_ready_button_pressed():
@@ -332,7 +310,6 @@ func _on_selection_done_button_pressed():
 	$DeckZone.shuffle()
 	$SelectionZone/SelectionDoneButton.visible = false
 	$SelectionZone.visible = false
-	ready_status[Main.Phase.DRAW] = true
 
 
 func _on_card_selected(selected, unselected):
@@ -363,6 +340,18 @@ func _on_card_exited(card: Card):
 		$CardInfoContainer.visible = false
 
 
+func _find_card_field(card: Card):
+	for field in card_fields.keys():
+		if card_fields[field].cards().has(card):
+			return field
+
+
+func _find_card_index(card: Card, field):
+	return card_fields[field].cards().find(card)
+
+
 func _on_card_clicked(card: Card):
-	if !select_card(card):
-		card.shake()
+	var field = _find_card_field(card)
+	var idx = _find_card_index(card, field)
+	
+	game_master.select_card.rpc(field, idx)
