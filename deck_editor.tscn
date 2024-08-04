@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=3 uid="uid://dhyqlveownkli"]
 
-[ext_resource type="PackedScene" uid="uid://dc1r6nhojsojg" path="res://card_field.tscn" id="1_7wufp"]
+[ext_resource type="PackedScene" uid="uid://cjqvqwm2xpq4t" path="res://card_field.tscn" id="1_7wufp"]
 [ext_resource type="Script" path="res://scripts/deck_editor.gd" id="1_17ww2"]
 [ext_resource type="PackedScene" uid="uid://q1boos0cq5c3" path="res://card.tscn" id="2_jc880"]
 [ext_resource type="Script" path="res://scripts/card_group_container.gd" id="3_m1s7r"]
 [ext_resource type="Texture2D" uid="uid://btpthtmmbkli7" path="res://resources/background.jpg" id="3_px0t5"]
 [ext_resource type="Script" path="res://scripts/background.gd" id="4_pyoa7"]
 [ext_resource type="Texture2D" uid="uid://cc57ub34dl8hl" path="res://resources/card_shadow.png" id="5_e8bxn"]
-[ext_resource type="PackedScene" uid="uid://cobeil5r75r7b" path="res://card_info_container.tscn" id="6_yrkhv"]
+[ext_resource type="PackedScene" path="res://card_info_container.tscn" id="6_yrkhv"]
 [ext_resource type="Script" path="res://scripts/deck_editor_exit_button.gd" id="7_bpa5l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yho6h"]
@@ -38,6 +38,7 @@ position = Vector2(87, 77)
 scale = Vector2(1.3, 1.3)
 cards_offset = Vector2(100, 2.08165e-12)
 card_count_per_line = 5
+scrollable = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CardGroupContainer"]
 position = Vector2(323, 203)
@@ -65,15 +66,17 @@ shape = SubResource("RectangleShape2D_3p71a")
 
 [node name="CardInfoContainer" parent="." instance=ExtResource("6_yrkhv")]
 z_index = 1000
-position = Vector2(882, 156)
+position = Vector2(835, 156)
 scale = Vector2(1.165, 1.165)
 
 [node name="ExitButton" type="Button" parent="."]
-offset_left = 961.0
-offset_top = 7.0
-offset_right = 1061.0
-offset_bottom = 38.0
-text = "SAVE & EXIT"
+offset_left = 997.0
+offset_top = -2.0
+offset_right = 1062.0
+offset_bottom = 75.0
+text = "SAVE
+&
+EXIT"
 script = ExtResource("7_bpa5l")
 
 [connection signal="input_event" from="CardGroupContainer" to="CardGroupContainer" method="_on_input_event"]

@@ -22,6 +22,7 @@ var selection_field_parent
 @onready var hand = $Hand
 var enchant_processor: EnchantProcessor
 var card_fields = {}
+var is_first_turn = true
 
 
 @rpc("any_peer")
@@ -124,7 +125,15 @@ func get_attack_point(is_night: bool) -> int:
 
 
 func get_clock() -> int:
-	return field_cards().filter(
+	var cards
+	if is_first_turn:
+		if !battle_field_card():
+			return 0
+		is_first_turn = false
+		cards = field_cards()
+	else:
+		cards = set_field_cards()
+	return cards.filter(
 		func(c): return check_powered(c)
 	).map(
 		func(c): return int(c.info["clock"])

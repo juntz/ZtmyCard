@@ -74,6 +74,8 @@ func _on_card_entered(card: Card):
 		var desc = card.info["effect"]["description"];
 		if desc.has(locale):
 			$CardInfoContainer/CardInfoLabel.text = desc[locale]
+		elif desc.has("ko"):
+			$CardInfoContainer/CardInfoLabel.text = desc["ko"]
 	else:
 		$CardInfoContainer/CardInfoLabel.text = ""
 
