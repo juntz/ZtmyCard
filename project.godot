@@ -14,6 +14,10 @@ config/name="ZtmyCardGd"
 run/main_scene="res://title.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 
+[autoload]
+
+GlobalUI="*res://scripts/global_ui.gd"
+
 [display]
 
 window/stretch/mode="canvas_items"
