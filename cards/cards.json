@@ -1,0 +1,2222 @@
+﻿{
+    "cards":
+    [
+        {
+            "attackPoint": {
+                "day": 50,
+                "night": 130
+            },
+            "attribute": "darkness",
+            "clock": 5,
+            "name": {
+                "ja": "にらちゃん(お勉強しといてよ)"
+            },
+            "number": 1,
+            "powerCost": 5,
+            "rarity": "UR",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 130,
+                "night": 130
+            },
+            "attribute": "flame",
+            "clock": 6,
+            "name": {
+                "ja": "にらちゃん(正義)",
+                "en": "NIRA-CHAN (Seigi)",
+                "ko": "니라(정의)"
+            },
+            "number": 2,
+            "powerCost": 7,
+            "rarity": "UR",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 130,
+                "night": 50
+            },
+            "attribute": "electric",
+            "clock": 5,
+            "name": {
+                "ja": "にらちゃん(勘ぐれい)",
+                "en": "NIRA-CHAN (Hunch Gray)",
+                "ko": "니라(감 그레이)"
+            },
+            "number": 3,
+            "powerCost": 5,
+            "rarity": "UR",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 20,
+                "night": 120
+            },
+            "attribute": "wind",
+            "clock": 2,
+            "name": {
+                "ja": "にらちゃん(Ham)",
+                "en": "NIRA-CHAN (Ham)",
+                "ko": "니라(Ham)"
+            },
+            "number": 4,
+            "powerCost": 3,
+            "rarity": "UR",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attribute": "darkness",
+            "clock": 0,
+            "effect": {
+                "description": {
+                    "ja": "相手の攻撃力を昼夜逆転する\n※相手のエンチャント発動のち有効",
+                    "en": "Reverses the opponent's attack power day and night. *Effective after the opponent's enchantment is activated.",
+                    "ko": "상대의 주간 공격력과 야간 공격력을 반대로 한다. ※상대의 인챈트 발동 이후에 적용."
+                },
+                "type": "swapDayAndNightAttackPoint",
+                "fields": {
+                    "target": "opponent"
+                }
+            },
+            "name": {
+                "ja": "しゃくま男(ヒューマノイド)",
+                "en": "SHAKUMA-MEN (Humanoid)",
+                "ko": "샤쿠마남(휴머노이드)"
+            },
+            "number": 5,
+            "powerCost": 4,
+            "rarity": "UR",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "flame",
+            "clock": 0,
+            "effect": {
+                "description": {
+                    "ja": "アビスのカードの中から自由に1枚選び、このターンで使う",
+                    "en": "Choose any one of the Abyss cards and use it in this turn",
+                    "ko": "어비스에 있는 카드 중 1장을 골라 이번 턴에 사용한다."
+                },
+                "type": "useFromAbyss"
+            },
+            "name": {
+                "ja": "木っ手男・インク猫(正義)",
+                "en": "KITTE-MEN・INC-NEKO (Seigi)",
+                "ko": "킷테남・잉크네코(정의)"
+            },
+            "number": 6,
+            "powerCost": 2,
+            "rarity": "UR",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "electric",
+            "clock": 0,
+            "effect": {
+                "description": {
+                    "ja": "アビスに4種類の属性があると攻撃力+50",
+                    "en": "Attack +50 if the Abyss's card has four different attributes.",
+                    "ko": "어비스에 4종류의 속성이 존재할 경우 공격력+50"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "abyss": "fourAttribute"
+                    },
+                    "add": 50
+                }
+            },
+            "name": {
+                "ja": "灰版電機工業(株)研究所(Ham)",
+                "en": "Laboratory of Ashban Electric Inc. (Ham)",
+                "ko": "(주)회판전기공업 연구소(Ham)"
+            },
+            "number": 7,
+            "powerCost": 1,
+            "rarity": "UR",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "wind",
+            "clock": 0,
+            "effect": {
+                "description": {
+                    "ja": "時計を無効\nこのターンの始まりの時間に戻る",
+                    "en": "Clock disabled. Return to the time at the beginning of this turn.",
+                    "ko": "시계를 무효로 하고 시간을 턴 시작 시로 되돌린다."
+                },
+                "type": "disableClock"
+            },
+            "name": {
+                "ja": "方位時計(勘ぐれい)",
+                "en": "Compass Clock (Hunch Gray)",
+                "ko": "방위시계(감 그레이)"
+            },
+            "number": 8,
+            "powerCost": 3,
+            "rarity": "UR",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attackPoint": {
+                "day": 10,
+                "night": 50
+            },
+            "attribute": "darkness",
+            "clock": 1,
+            "name": {
+                "ja": "にらちゃん(お勉強しといてよ)",
+                "en": "NIRA-CHAN (STUDY ME)"
+            },
+            "number": 9,
+            "powerCost": 0,
+            "rarity": "SR",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 20,
+                "night": 60
+            },
+            "attribute": "darkness",
+            "clock": 0,
+            "name": {
+                "ja": "にらちゃん(胸の煙)",
+                "en": "NIRA-CHAN (One's Mind)"
+            },
+            "number": 10,
+            "powerCost": 1,
+            "rarity": "SR",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 20,
+                "night": 100
+            },
+            "attribute": "darkness",
+            "clock": 5,
+            "name": {
+                "ja": "にらちゃん(ばかじゃないのに)",
+                "en": "NIRA-CHAN (Stay Foolish)"
+            },
+            "number": 11,
+            "powerCost": 3,
+            "rarity": "SR",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 60,
+                "night": 100
+            },
+            "attribute": "darkness",
+            "clock": 1,
+            "name": {
+                "ja": "にらちゃん［アニメーター］(猫リセット)",
+                "en": "NIRA-CHAN[Job:Animator] (Neko Reset)"
+            },
+            "number": 12,
+            "powerCost": 4,
+            "rarity": "SR",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 40,
+                "night": 40
+            },
+            "attribute": "flame",
+            "clock": 2,
+            "name": {
+                "ja": "アフロ☆サムライ(MILABO)"
+            },
+            "number": 13,
+            "powerCost": 1,
+            "rarity": "SR",
+            "sendToPower": 2,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 40,
+                "night": 40
+            },
+            "attribute": "flame",
+            "clock": 1,
+            "name": {
+                "ja": "にらちゃん(JK BOMBER)"
+            },
+            "number": 14,
+            "powerCost": 1,
+            "rarity": "SR",
+            "sendToPower": 2,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 80,
+                "night": 80
+            },
+            "attribute": "flame",
+            "clock": 3,
+            "name": {
+                "ja": "にらちゃん(マイノリティ脈絡)"
+            },
+            "number": 15,
+            "powerCost": 4,
+            "rarity": "SR",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 80,
+                "night": 80
+            },
+            "attribute": "flame",
+            "clock": 1,
+            "name": {
+                "ja": "にらちゃん(秒針を噛む)"
+            },
+            "number": 16,
+            "powerCost": 5,
+            "rarity": "SR",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 50,
+                "night": 10
+            },
+            "attribute": "electric",
+            "clock": 5,
+            "name": {
+                "ja": "にらちゃん(ハゼ馳せる果てるまで)"
+            },
+            "number": 17,
+            "powerCost": 0,
+            "rarity": "SR",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 60,
+                "night": 20
+            },
+            "attribute": "electric",
+            "clock": 0,
+            "name": {
+                "ja": "にらちゃん(あいつら全員同窓会)"
+            },
+            "number": 18,
+            "powerCost": 1,
+            "rarity": "SR",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 100,
+                "night": 20
+            },
+            "attribute": "electric",
+            "clock": 5,
+            "name": {
+                "ja": "にらちゃん(ミラーチューン)"
+            },
+            "number": 19,
+            "powerCost": 3,
+            "rarity": "SR",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 100,
+                "night": 60
+            },
+            "attribute": "electric",
+            "clock": 1,
+            "name": {
+                "ja": "ZUTOMAYO SQUARE"
+            },
+            "number": 20,
+            "powerCost": 4,
+            "rarity": "SR",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 10,
+                "night": 90
+            },
+            "attribute": "wind",
+            "clock": 3,
+            "name": {
+                "ja": "うにぐり増殖中"
+            },
+            "number": 21,
+            "powerCost": 1,
+            "rarity": "SR",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 50,
+                "night": 50
+            },
+            "attribute": "wind",
+            "clock": 3,
+            "name": {
+                "ja": "にらちゃん(ヒューマノイド)"
+            },
+            "number": 22,
+            "powerCost": 2,
+            "rarity": "SR",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 30,
+                "night": 90
+            },
+            "attribute": "wind",
+            "clock": 3,
+            "name": {
+                "ja": "にらちゃん(勘ぐれい)"
+            },
+            "number": 23,
+            "powerCost": 2,
+            "rarity": "SR",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 100,
+                "night": 20
+            },
+            "attribute": "wind",
+            "clock": 2,
+            "name": {
+                "ja": "にらちゃん(正しくなれない)"
+            },
+            "number": 24,
+            "powerCost": 2,
+            "rarity": "SR",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attribute": "darkness",
+            "clock": 2,
+            "effect": {
+                "description": {
+                    "ja": "相手のキャラクターカードの属性が風なら攻撃力+50",
+                    "en": "Attack +50 if the attribute of the opponent's character card is wind.",
+                    "ko": "상대 캐릭터 카드의 속성이 바람일 경우 공격력+50"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "target": "opponent",
+                        "attribute": "wind"
+                    },
+                    "add": 50
+                }
+            },
+            "name": {
+                "ja": "顕現するハサミ"
+            },
+            "number": 25,
+            "powerCost": 3,
+            "rarity": "SR",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "darkness",
+            "clock": 0,
+            "effect": {
+                "description": {
+                    "ja": "このターンのはじまりの時間から相手の時計分、時間が戻る",
+                    "en": "Time goes back by opponent's clock minutes from the beginning of this turn.",
+                    "ko": "이 턴이 시작할때의 시간부터 상대의 시계만큼 시간을 되돌린다."
+                },
+                "type": "modifyTime",
+                "fields": {
+                    "amount": "-opponent.clock"
+                }
+            },
+            "name": {
+                "ja": "開幕宣言"
+            },
+            "number": 26,
+            "powerCost": 3,
+            "rarity": "SR",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "flame",
+            "clock": 0,
+            "effect": {
+                "description": {
+                    "ja": "相手のキャラクターカードの属性が電気なら攻撃力+50",
+                    "ko": "상대 캐릭터 카드의 속성이 전기일 경우 공격력+50"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "target": "opponent",
+                        "attribute": "electric"
+                    },
+                    "add": 50
+                }
+            },
+            "name": {
+                "ja": "ミラーシューター"
+            },
+            "number": 27,
+            "powerCost": 3,
+            "rarity": "SR",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "flame",
+            "clock": 0,
+            "effect": {
+                "description": {
+                    "ja": "自分がダメージを受けたとき40ダメージを軽減する",
+                    "ko": "자신이 데미지를 받았을 시 40데미지 경감"
+                },
+                "type": "reduceDamage",
+                "fields": {
+                    "amount": 40
+                }
+            },
+            "name": {
+                "ja": "お勉強会"
+            },
+            "number": 28,
+            "powerCost": 3,
+            "rarity": "SR",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "electric",
+            "clock": 2,
+            "effect": {
+                "description": {
+                    "ja": "相手のキャラクターカードの属性が闇なら攻撃力+50",
+                    "ko": "상대 캐릭터 카드의 속성이 어둠일 경우 공격력+50"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "target": "opponent",
+                        "attribute": "darkness"
+                    },
+                    "add": 50
+                }
+            },
+            "name": {
+                "ja": "稲妻のレンジ"
+            },
+            "number": 29,
+            "powerCost": 3,
+            "rarity": "SR",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "electric",
+            "clock": 1,
+            "effect": {
+                "description": {
+                    "ja": "自分の攻撃力+30",
+                    "ko": "자신의 공격력+30"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "add": 30
+                }
+            },
+            "name": {
+                "ja": "爆弾みたいな球体"
+            },
+            "number": 30,
+            "powerCost": 3,
+            "rarity": "SR",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "wind",
+            "clock": 1,
+            "effect": {
+                "description": {
+                    "ja": "相手のキャラクターカードの属性が炎なら攻撃力+50",
+                    "ko":"상대 캐릭터 카드의 속성이 화염일 경우 공격력+50"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "target": "opponent",
+                        "attribute": "flame"
+                    },
+                    "add": 50
+                }
+            },
+            "name": {
+                "ja": "洗車中"
+            },
+            "number": 31,
+            "powerCost": 3,
+            "rarity": "SR",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "wind",
+            "clock": 3,
+            "effect": {
+                "description": {
+                    "ja": "自分のHPが30以下なら攻撃力+50",
+                    "ko": "자신의 HP가 30이하일 경우 공격력+50"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "hpLessOrEqual": 30
+                    },
+                    "add": 50
+                }
+            },
+            "name": {
+                "ja": "インク猫ケルベロス"
+            },
+            "number": 32,
+            "powerCost": 4,
+            "rarity": "SR",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attackPoint": {
+                "day": 30,
+                "night": 50
+            },
+            "attribute": "darkness",
+            "clock": 3,
+            "name": {
+                "ja": "にらちゃん(居眠り遠征隊)"
+            },
+            "number": 33,
+            "powerCost": 1,
+            "rarity": "R",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 30,
+                "night": 70
+            },
+            "attribute": "darkness",
+            "clock": 1,
+            "name": {
+                "ja": "眩しいDNA隊"
+            },
+            "number": 34,
+            "powerCost": 1,
+            "rarity": "R",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 30,
+                "night": 70
+            },
+            "attribute": "darkness",
+            "clock": 2,
+            "name": {
+                "ja": "グレイヌ(胸の煙)"
+            },
+            "number": 35,
+            "powerCost": 2,
+            "rarity": "R",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 40,
+                "night": 80
+            },
+            "attribute": "darkness",
+            "clock": 1,
+            "name": {
+                "ja": "しゃくま男･･･？"
+            },
+            "number": 36,
+            "powerCost": 2,
+            "rarity": "R",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 40,
+                "night": 100
+            },
+            "attribute": "darkness",
+            "clock": 3,
+            "name": {
+                "ja": "うにぐりスーパースター"
+            },
+            "number": 37,
+            "powerCost": 3,
+            "rarity": "R",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 40,
+                "night": 40
+            },
+            "attribute": "flame",
+            "clock": 3,
+            "name": {
+                "ja": "にらちゃん(あいつら全員同窓会)"
+            },
+            "number": 38,
+            "powerCost": 1,
+            "rarity": "R",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 50,
+                "night": 50
+            },
+            "attribute": "flame",
+            "clock": 2,
+            "name": {
+                "ja": "グレイ(Ham)"
+            },
+            "number": 39,
+            "powerCost": 2,
+            "rarity": "R",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 60,
+                "night": 60
+            },
+            "attribute": "flame",
+            "clock": 3,
+            "name": {
+                "ja": "にらちゃん(ミラーチューン)"
+            },
+            "number": 40,
+            "powerCost": 3,
+            "rarity": "R",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 70,
+                "night": 70
+            },
+            "attribute": "flame",
+            "clock": 1,
+            "name": {
+                "ja": "にらちゃん・ナナシ(暗く黒く)"
+            },
+            "number": 41,
+            "powerCost": 3,
+            "rarity": "R",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 70,
+                "night": 70
+            },
+            "attribute": "flame",
+            "clock": 2,
+            "name": {
+                "ja": "うにぐりくん・みみかゆし"
+            },
+            "number": 42,
+            "powerCost": 4,
+            "rarity": "R",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 50,
+                "night": 30
+            },
+            "attribute": "electric",
+            "clock": 3,
+            "name": {
+                "ja": "配達員(猫リセット)"
+            },
+            "number": 43,
+            "powerCost": 1,
+            "rarity": "R",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 70,
+                "night": 30
+            },
+            "attribute": "electric",
+            "clock": 1,
+            "name": {
+                "ja": "NAGA・アフロ☆サムライ(MILABO)"
+            },
+            "number": 44,
+            "powerCost": 1,
+            "rarity": "R",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 70,
+                "night": 30
+            },
+            "attribute": "electric",
+            "clock": 2,
+            "name": {
+                "ja": "にらちゃん(ハゼ馳せる果てるまで)"
+            },
+            "number": 45,
+            "powerCost": 2,
+            "rarity": "R",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 80,
+                "night": 40
+            },
+            "attribute": "electric",
+            "clock": 1,
+            "name": {
+                "ja": "正義のミカタ"
+            },
+            "number": 46,
+            "powerCost": 2,
+            "rarity": "R",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 100,
+                "night": 40
+            },
+            "attribute": "electric",
+            "clock": 3,
+            "name": {
+                "ja": "にらチャイナ(お勉強しといてよ)"
+            },
+            "number": 47,
+            "powerCost": 3,
+            "rarity": "R",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 60,
+                "night": 20
+            },
+            "attribute": "wind",
+            "clock": 1,
+            "name": {
+                "ja": "にらちゃん(MILABO)"
+            },
+            "number": 48,
+            "powerCost": 0,
+            "rarity": "R",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 10,
+                "night": 70
+            },
+            "attribute": "wind",
+            "clock": 2,
+            "name": {
+                "ja": "にらちゃん(脳裏上のクラッカー)"
+            },
+            "number": 49,
+            "powerCost": 0,
+            "rarity": "R",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 20,
+                "night": 60
+            },
+            "attribute": "wind",
+            "clock": 3,
+            "name": {
+                "ja": "栽培うにぐり"
+            },
+            "number": 50,
+            "powerCost": 1,
+            "rarity": "R",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 70,
+                "night": 10
+            },
+            "attribute": "wind",
+            "clock": 1,
+            "name": {
+                "ja": "にらちゃん(勘ぐれい)"
+            },
+            "number": 51,
+            "powerCost": 1,
+            "rarity": "R",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 80,
+                "night": 20
+            },
+            "attribute": "wind",
+            "clock": 1,
+            "name": {
+                "ja": "にらちゃん逃走中(勘冴えて悔しいわ)"
+            },
+            "number": 52,
+            "powerCost": 1,
+            "rarity": "R",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attribute": "darkness",
+            "clock": 3,
+            "effect": {
+                "description": {
+                    "ja": "夜なら攻撃力+30",
+                    "ko": "밤이면 공격력+30"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "time": "night"
+                    },
+                    "add": 30
+                }
+            },
+            "name": {
+                "ja": "脳裏上の勘覧車"
+            },
+            "number": 53,
+            "powerCost": 1,
+            "rarity": "R",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "darkness",
+            "clock": 1,
+            "effect": {
+                "description": {
+                    "ja": "相手のキャラクターカードの属性が風なら攻撃力+30",
+                    "ko": "상대 캐릭터 카드의 속성이 바람일 경우 공격력+30"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "target": "opponent",
+                        "attribute": "wind"
+                    },
+                    "add": 30
+                }
+            },
+            "name": {
+                "ja": "チョキ・チョキ"
+            },
+            "number": 54,
+            "powerCost": 2,
+            "rarity": "R",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "darkness",
+            "clock": 1,
+            "effect": {
+                "description": {
+                    "ja": "自分のHPが50以下なら攻撃力+20",
+                    "ko": "자신의 HP가 50이하일 경우 공격력+20"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "hpLessOrEqual": 50
+                    },
+                    "add": 20
+                }
+            },
+            "name": {
+                "ja": "助っ人演奏隊"
+            },
+            "number": 55,
+            "powerCost": 1,
+            "rarity": "R",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "flame",
+            "clock": 3,
+            "effect": {
+                "description": {
+                    "ja": "相手のキャラクターカードの属性が電気なら攻撃力+30",
+                    "ko": "상대 캐릭터 카드의 속성이 전기일 경우 공격력+30"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "target": "opponent",
+                        "attribute": "electric"
+                    },
+                    "add": 30
+                }
+            },
+            "name": {
+                "ja": "夕焼け風鏡"
+            },
+            "number": 56,
+            "powerCost": 2,
+            "rarity": "R",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "flame",
+            "clock": 3,
+            "effect": {
+                "description": {
+                    "ja": "自分がダメージを受けたとき30ダメージを軽減する",
+                    "ko": "자신이 데미지를 받았을 시 30데미지 경감"
+                },
+                "type": "reduceDamage",
+                "fields": {
+                    "amount": 30
+                }
+            },
+            "name": {
+                "ja": "うにぐりパン"
+            },
+            "number": 57,
+            "powerCost": 1,
+            "rarity": "R",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "flame",
+            "clock": 0,
+            "effect": {
+                "description": {
+                    "ja": "相手のキャラクターカードのパワーコストが✧2以上なら攻撃力+20",
+                    "ko": "상대 캐릭터 카드의 파워 코스트가 ✧2이상이라면 공격력+20"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "target": "opponent",
+                        "powerCost": {
+                            "greaterThanOrEqual": 2
+                        }
+                    },
+                    "add": 20
+                }
+            },
+            "name": {
+                "ja": "爆撃ストライプ"
+            },
+            "number": 58,
+            "powerCost": 2,
+            "rarity": "R",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "electric",
+            "clock": 3,
+            "effect": {
+                "description": {
+                    "ja": "昼なら攻撃力+30",
+                    "ko": "낮이면 공격력+30"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "time": "day"
+                    },
+                    "add": 30
+                }
+            },
+            "name": {
+                "ja": "レモン香るうにぐりソテー"
+            },
+            "number": 59,
+            "powerCost": 1,
+            "rarity": "R",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "electric",
+            "clock": 3,
+            "effect": {
+                "description": {
+                    "ja": "相手のキャラクターカードの属性が闇なら攻撃力+30",
+                    "ko": "상대 캐릭터 카드의 속성이 어둠일 경우 공격력+30"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "target": "opponent",
+                        "attribute": "darkness"
+                    },
+                    "add": 30
+                }
+            },
+            "name": {
+                "ja": "電撃鍵"
+            },
+            "number": 60,
+            "powerCost": 2,
+            "rarity": "R",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "electric",
+            "clock": 1,
+            "effect": {
+                "description": {
+                    "ja": "昼から夜に変わると攻撃力+30",
+                    "ko": "낮에서 밤으로 바뀌었으면 공격력+30"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "timeChanged": "dayToNight"
+                    },
+                    "add": 30
+                }
+            },
+            "name": {
+                "ja": "ZUTOMAYO CITY"
+            },
+            "number": 61,
+            "powerCost": 1,
+            "rarity": "R",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "wind",
+            "clock": 2,
+            "effect": {
+                "description": {
+                    "ja": "相手のキャラクターカードの属性が炎なら攻撃力+30",
+                    "ko": "상대 캐릭터 카드의 속성이 화염일 경우 공격력+30"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "target": "opponent",
+                        "attribute": "flame"
+                    },
+                    "add": 30
+                }
+            },
+            "name": {
+                "ja": "たけのこご飯"
+            },
+            "number": 62,
+            "powerCost": 2,
+            "rarity": "R",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "wind",
+            "clock": 1,
+            "effect": {
+                "description": {
+                    "ja": "自分の基礎攻撃力を昼夜逆転する",
+                    "ko": "자신 캐릭터 기초 공격력의 밤낮을 뒤바꾼다."
+                },
+                "type": "swapDayAndNightAttackPoint",
+                "fields": {
+                    "target": "player"
+                }
+            },
+            "name": {
+                "ja": "ふわふわの猫"
+            },
+            "number": 63,
+            "powerCost": 2,
+            "rarity": "R",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "wind",
+            "clock": 2,
+            "effect": {
+                "description": {
+                    "ja": "相手のキャラクターカードのパワーコストが︎✧2以上なら攻撃力+30",
+                    "ko": "상대 캐릭터 카드의 파워 코스트가 ✧2이상이라면 공격력+30"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "target": "opponent",
+                        "powerCost": {
+                            "greaterThanOrEqual": 2
+                        }
+                    },
+                    "add": 30
+                }
+            },
+            "name": {
+                "ja": "ちょっぴり豪華な朝ごはん"
+            },
+            "number": 64,
+            "powerCost": 0,
+            "rarity": "R",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attackPoint": {
+                "day": 10,
+                "night": 50
+            },
+            "attribute": "darkness",
+            "clock": 2,
+            "name": {
+                "ja": "柿原 栗ムント(秒針を噛む)"
+            },
+            "number": 65,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 20,
+                "night": 40
+            },
+            "attribute": "darkness",
+            "clock": 1,
+            "name": {
+                "ja": "ハカセ(低血ボルト)"
+            },
+            "number": 66,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 30,
+                "night": 50
+            },
+            "attribute": "darkness",
+            "clock": 1,
+            "name": {
+                "ja": "ちりとり男(勘冴えて悔しいわ)"
+            },
+            "number": 67,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 20,
+                "night": 60
+            },
+            "attribute": "darkness",
+            "clock": 2,
+            "name": {
+                "ja": "宇宙人ストリングス(あいつら全員同窓会)"
+            },
+            "number": 68,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 30,
+                "night": 10
+            },
+            "attribute": "flame",
+            "clock": 1,
+            "name": {
+                "ja": "にらちゃん(秒針を噛む)"
+            },
+            "number": 69,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 2,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 10,
+                "night": 30
+            },
+            "attribute": "flame",
+            "clock": 2,
+            "name": {
+                "ja": "うにぐりくん(蹴っ飛ばした毛布)"
+            },
+            "number": 70,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 2,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 40,
+                "night": 20
+            },
+            "attribute": "flame",
+            "clock": 3,
+            "name": {
+                "ja": "にらちゃん(こんなこと騒動)"
+            },
+            "number": 71,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 20,
+                "night": 40
+            },
+            "attribute": "flame",
+            "clock": 1,
+            "name": {
+                "ja": "低血(低血ボルト)"
+            },
+            "number": 72,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 50,
+                "night": 10
+            },
+            "attribute": "electric",
+            "clock": 2,
+            "name": {
+                "ja": "うにぐりくん(こんなこと騒動)"
+            },
+            "number": 73,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 40,
+                "night": 20
+            },
+            "attribute": "electric",
+            "clock": 1,
+            "name": {
+                "ja": "ふらんけん(Dear.Mr「F」)"
+            },
+            "number": 74,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 50,
+                "night": 30
+            },
+            "attribute": "electric",
+            "clock": 1,
+            "name": {
+                "ja": "にらちゃん(袖のキルト)"
+            },
+            "number": 75,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 60,
+                "night": 20
+            },
+            "attribute": "electric",
+            "clock": 2,
+            "name": {
+                "ja": "うにぐりくん(袖のキルト)"
+            },
+            "number": 76,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 50,
+                "night": 10
+            },
+            "attribute": "wind",
+            "clock": 2,
+            "name": {
+                "ja": "にらちゃん(眩しいDNAだけ)"
+            },
+            "number": 77,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 10,
+                "night": 50
+            },
+            "attribute": "wind",
+            "clock": 3,
+            "name": {
+                "ja": "にらちゃん(蹴っ飛ばした毛布)"
+            },
+            "number": 78,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 40,
+                "night": 20
+            },
+            "attribute": "wind",
+            "clock": 1,
+            "name": {
+                "ja": "グレイ？(正しくなれない)"
+            },
+            "number": 79,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attackPoint": {
+                "day": 20,
+                "night": 40
+            },
+            "attribute": "wind",
+            "clock": 2,
+            "name": {
+                "ja": "ナナシ(暗く黒く)"
+            },
+            "number": 80,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "character"
+        },
+        {
+            "attribute": "darkness",
+            "clock": 0,
+            "effect": {
+                "description": {
+                    "ja": "自分のキャラクターカードの属性が闇ならHPを10回復",
+                    "ko": "자신 캐릭터 카드의 속성이 어둠일 경우 HP 10회복"
+                },
+                "type": "modifyHp",
+                "fields": {
+                    "condition": {
+                        "target": "player",
+                        "attribute": "darkness"
+                    },
+                    "add": 10
+                }
+            },
+            "name": {
+                "ja": "いちごケーキ"
+            },
+            "number": 81,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "darkness",
+            "clock": 0,
+            "effect": {
+                "description": {
+                    "ja": "自分のキャラクターカードの属性が闇なら攻撃力+20",
+                    "ko": "자신 캐릭터 카드의 속성이 어둠일 경우 공격력+20"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "target": "player",
+                        "attribute": "darkness"
+                    },
+                    "add": 20
+                }
+            },
+            "name": {
+                "ja": "遺影"
+            },
+            "number": 82,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "darkness",
+            "clock": 1,
+            "effect": {
+                "description": {
+                    "ja": "夜なら攻撃力+20",
+                    "ko": "밤이면 공격력+20"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "time": "night"
+                    },
+                    "add": 20
+                }
+            },
+            "name": {
+                "ja": "回廊"
+            },
+            "number": 83,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "darkness",
+            "clock": 1,
+            "effect": {
+                "description": {
+                    "ja": "夜から昼に変わると攻撃力+30",
+                    "ko": "밤에서 낮으로 바뀌었으면 공격력+30"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "timeChanged": "nightToDay"
+                    },
+                    "add": 30
+                }
+            },
+            "name": {
+                "ja": "クレーター"
+            },
+            "number": 84,
+            "powerCost": 1,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "darkness",
+            "clock": 2,
+            "effect": {
+                "description": {
+                    "ja": "自分がダメージを受けたとき20ダメージを軽減する",
+                    "ko": "자신이 데미지를 받았을 시 20데미지 경감"
+                },
+                "type": "reduceDamage",
+                "fields": {
+                    "amount": 20
+                }
+            },
+            "name": {
+                "ja": "散らかったソファ"
+            },
+            "number": 85,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "darkness",
+            "clock": 2,
+            "effect": {
+                "description": {
+                    "ja": "手札1枚とアビスの一番上のカード1枚を入れ替える",
+                    "ko": "손패의 카드 1장과 어비스 제일 위 카드 1장을 교환한다"
+                },
+                "type": "swapHandAndAbyss"
+            },
+            "name": {
+                "ja": "縁"
+            },
+            "number": 86,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "flame",
+            "clock": 2,
+            "effect": {
+                "description": {
+                    "ja": "自分のキャラクターカードの属性が炎ならHPを10回復",
+                    "ko": "자신 캐릭터 카드의 속성이 화염일 경우 HP 10회복"
+                },
+                "type": "modifyHp",
+                "fields": {
+                    "condition": {
+                        "target": "player",
+                        "attribute": "flame"
+                    },
+                    "add": 10
+                }
+            },
+            "name": {
+                "ja": "残り物"
+            },
+            "number": 87,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "flame",
+            "clock": 2,
+            "effect": {
+                "description": {
+                    "ja": "自分のキャラクターカードの属性が炎なら攻撃力+20",
+                    "ko": "자신 캐릭터 카드의 속성이 화염일 경우 공격력+20"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "target": "player",
+                        "attribute": "flame"
+                    },
+                    "add": 20
+                }
+            },
+            "name": {
+                "ja": "赤闇を照らす"
+            },
+            "number": 88,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "flame",
+            "clock": 5,
+            "effect": {
+                "description": {
+                    "ja": "自分の攻撃力+10",
+                    "ko": "자신의 공격력+10"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "add": 10
+                }
+            },
+            "name": {
+                "ja": "時計(秒針を噛む)"
+            },
+            "number": 89,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "flame",
+            "clock": 2,
+            "effect": {
+                "description": {
+                    "ja": "昼から夜に変わると攻撃力+20",
+                    "ko": "낮에서 밤으로 바뀌었으면 공격력+20"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "timeChanged": "dayToNight"
+                    },
+                    "add": 20
+                }
+            },
+            "name": {
+                "ja": "DNA鍋"
+            },
+            "number": 90,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "flame",
+            "clock": 2,
+            "effect": {
+                "description": {
+                    "ja": "相手のキャラクターカードカードの属性が炎・風なら攻撃力+20",
+                    "ko": "상대 캐릭터 카드의 속성이 화염 또는 바람일 경우 공격력+20"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "or": [
+                            {
+                                "target": "opponent",
+                                "attribute": "flame"
+                            },
+                            {
+                                "target": "opponent",
+                                "attribute": "wind"
+                            }
+                        ]
+                    },
+                    "add": 20
+                }
+            },
+            "name": {
+                "ja": "しゃっくりの招き猫店"
+            },
+            "number": 91,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "flame",
+            "clock": 3,
+            "effect": {
+                "description": {
+                    "ja": "デッキから1枚カードを引き、手札に加える ※このカードを使用後、手札の数はバトル終了まで1枚増える",
+                    "ko": "덱에서 카드를 1장 뽑아 자신의 손패에 추가한다 ※이 카드의 사용 후, 배틀 종료시까지 손패의 카드 수가 1장 늘어난다"
+                },
+                "type": "draw"
+            },
+            "name": {
+                "ja": "妙薬の調合"
+            },
+            "number": 92,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "electric",
+            "clock": 1,
+            "effect": {
+                "description": {
+                    "ja": "自分のキャラクターカードの属性が電気ならHPを10回復",
+                    "ko": "자신 캐릭터 카드의 속성이 전기일 경우 HP 10회복"
+                },
+                "type": "modifyHp",
+                "fields": {
+                    "condition": {
+                        "target": "player",
+                        "attribute": "electric"
+                    },
+                    "add": 10
+                }
+            },
+            "name": {
+                "ja": "ブラウン管テレビ\"強\""
+            },
+            "number": 93,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "electric",
+            "clock": 1,
+            "effect": {
+                "description": {
+                    "ja": "自分のキャラクターカードの属性が電気なら攻撃力+20",
+                    "ko": "자신 캐릭터 카드의 속성이 전기일 경우 공격력+20"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "target": "player",
+                        "attribute": "electric"
+                    },
+                    "add": 20
+                }
+            },
+            "name": {
+                "ja": "制御室"
+            },
+            "number": 94,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "electric",
+            "clock": 0,
+            "effect": {
+                "description": {
+                    "ja": "相手のキャラクターカードの属性が闇・電気なら攻撃力+20",
+                    "ko": "상대 캐릭터 카드의 속성이 어둠 또는 전기일 경우 공격력+20"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "or": [
+                            {
+                                "target": "opponent",
+                                "attribute": "darkness"
+                            },
+                            {
+                                "target": "opponent",
+                                "attribute": "electric"
+                            }
+                        ]
+                    },
+                    "add": 20
+                }
+            },
+            "name": {
+                "ja": "パラボラアンテナ"
+            },
+            "number": 95,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "electric",
+            "clock": 1,
+            "effect": {
+                "description": {
+                    "ja": "昼から夜に変わると攻撃力+10",
+                    "ko": "낮에서 밤으로 바뀌었으면 공격력+10"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "timeChanged": "dayToNight"
+                    },
+                    "add": 10
+                }
+            },
+            "name": {
+                "ja": "FPS"
+            },
+            "number": 96,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 2,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "electric",
+            "clock": 1,
+            "effect": {
+                "description": {
+                    "ja": "夜から昼に変わると攻撃力+20",
+                    "ko": "밤에서 낮으로 바뀌었으면 공격력+20"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "timeChanged": "nightToDay"
+                    },
+                    "add": 20
+                }
+            },
+            "name": {
+                "ja": "心メンテ"
+            },
+            "number": 97,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "electric",
+            "clock": 4,
+            "effect": {
+                "description": {
+                    "ja": "相手のキャラクターカードのパワーコストが︎✧0か︎✧1なら攻撃力+30",
+                    "ko": "상대 캐릭터 카드의 파워 코스트가 ✧0 또는 ✧1이라면 공격력+30"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "target": "opponent",
+                        "powerCost": {
+                            "lessThanOrEqual": 1
+                        }
+                    },
+                    "add": 30
+                }
+            },
+            "name": {
+                "ja": "スラムマート"
+            },
+            "number": 98,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "wind",
+            "clock": 3,
+            "effect": {
+                "description": {
+                    "ja": "自分のキャラクターカードの属性が風ならHPを10回復",
+                    "ko": "자신 캐릭터 카드의 속성이 바람일 경우 HP 10회복"
+                },
+                "type": "modifyHp",
+                "fields": {
+                    "condition": {
+                        "target": "player",
+                        "attribute": "wind"
+                    },
+                    "add": 10
+                }
+            },
+            "name": {
+                "ja": "落書き教室"
+            },
+            "number": 99,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "wind",
+            "clock": 3,
+            "effect": {
+                "description": {
+                    "ja": "自分のキャラクターカードの属性が風なら攻撃力+20",
+                    "ko": "자신 캐릭터 카드의 속성이 바람일 경우 공격력+20"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "target": "player",
+                        "attribute": "wind"
+                    },
+                    "add": 20
+                }
+            },
+            "name": {
+                "ja": "植物化"
+            },
+            "number": 100,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "wind",
+            "clock": 0,
+            "effect": {
+                "description": {
+                    "ja": "相手のキャラクターカードのパワーコストが︎✧0か︎✧1なら攻撃力+20",
+                    "ko": "상대 캐릭터 카드의 파워 코스트가 ✧0 또는 ✧1이라면 공격력+20"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "target": "opponent",
+                        "powerCost": {
+                            "lessThanOrEqual": 1
+                        }
+                    },
+                    "add": 30
+                }
+            },
+            "name": {
+                "ja": "正義の玉子"
+            },
+            "number": 101,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "wind",
+            "clock": 1,
+            "effect": {
+                "description": {
+                    "ja": "昼なら攻撃力+20",
+                    "ko": "낮이면 공격력+20"
+                },
+                "type": "modifyAttackPoint",
+                "fields": {
+                    "condition": {
+                        "time": "day"
+                    },
+                    "add": 20
+                }
+
+            },
+            "name": {
+                "ja": "乾き日和"
+            },
+            "number": 102,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "wind",
+            "clock": 1,
+            "effect": {
+                "description": {
+                    "ja": "相手のアビスのカードを1枚選んでデッキに戻させる",
+                    "ko": "상대 어비스에서 카드 1장을 골라 덱으로 돌려보낸다"
+                },
+                "type": "sendAbyssToDeck",
+                "fields": {
+                    "target": "opponent"
+                }
+            },
+            "name": {
+                "ja": "利権"
+            },
+            "number": 103,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 1,
+            "step": "第一弾",
+            "type": "enchant"
+        },
+        {
+            "attribute": "wind",
+            "clock": 3,
+            "effect": {
+                "description": {
+                    "ja": "相手のデッキの一番上のカードをパワーの有無に関わらずアビスに置く",
+                    "ko": "상대 덱 최상단 카드를 파워 유무의 관계없이 어비스로 보낸다"
+                },
+                "type": "sendDeckToAbyss",
+                "fields": {
+                    "target": "opponent"
+                }
+            },
+            "name": {
+                "ja": "古文書、呼"
+            },
+            "number": 104,
+            "powerCost": 0,
+            "rarity": "N",
+            "sendToPower": 0,
+            "step": "第一弾",
+            "type": "enchant"
+        }
+    ]
+}

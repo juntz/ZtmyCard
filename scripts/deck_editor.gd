@@ -40,9 +40,21 @@ func _process(delta):
 
 
 func _add_card_to_deck(card: Card):
-	if $DeckContainer/Deck.cards().size() >= max_card_count:
-		return
+	var cards = $DeckContainer/Deck.cards()
 	
+	if cards.size() >= max_card_count:
+		return
+		
+	var same_cards := 0
+	for c in cards : 
+		# TODO : 2nd/3rd 추가시에 문제 있음. / 카데고리로 추가 비교?
+		if card.info.number == c.info.number:
+			same_cards += 1
+
+	if same_cards >= 2:
+		GlobalUI.send_warning("같은 카드는 2장까지만 추가할 수 있습니다.")
+		return
+
 	var new_card = card.clone()
 	new_card.show_card()
 	new_card.selectable = true

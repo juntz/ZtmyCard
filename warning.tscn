@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cpoljbo0qkafm"]
+
+[node name="Warning" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 474.0
+offset_bottom = 33.0
+color = Color(0.273873, 0.273873, 0.273873, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 4.0
+offset_right = 214.0
+offset_bottom = 38.0
+text = "펑키한 직감으로 경고"
