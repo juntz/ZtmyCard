@@ -6,7 +6,8 @@ extends Node
 
 
 func acitvate():
-	$Timer.start()
+	#$Timer.start()
+	pass
 
 
 func _on_timer_timeout():
