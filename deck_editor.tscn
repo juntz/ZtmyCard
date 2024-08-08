@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://btpthtmmbkli7" path="res://resources/background.jpg" id="3_px0t5"]
 [ext_resource type="Script" path="res://scripts/background.gd" id="4_pyoa7"]
 [ext_resource type="Texture2D" uid="uid://cc57ub34dl8hl" path="res://resources/card_shadow.png" id="5_e8bxn"]
-[ext_resource type="PackedScene" path="res://card_info_container.tscn" id="6_yrkhv"]
+[ext_resource type="PackedScene" uid="uid://cobeil5r75r7b" path="res://card_info_container.tscn" id="6_yrkhv"]
 [ext_resource type="Script" path="res://scripts/deck_editor_exit_button.gd" id="7_bpa5l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yho6h"]
