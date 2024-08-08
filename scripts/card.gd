@@ -27,6 +27,7 @@ var mouse_is_in = false
 var shaking = false
 var shake_amount = 2
 var orginal_pos: Vector2
+var image_base_path = "./"
 
 
 func clone() -> Card:
@@ -38,7 +39,7 @@ func clone() -> Card:
 
 func set_info(info):
 	self.info = info
-	_load_card_image("cards/img/zutomayocard_1st_" + str(info["number"]) + ".png")
+	_load_card_image(image_base_path.path_join(str(info["imageFileName"])))
 	
 
 func set_order(i: int):

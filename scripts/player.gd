@@ -286,6 +286,7 @@ func _init_deck():
 	deck_card_info.shuffle()
 	for cardInfo in deck_card_info:
 		var card = card_scene.instantiate()
+		card.image_base_path = json["imageBasePath"]
 		card.set_info(cardInfo)
 		$DeckZone.add_child(card)
 
