@@ -1,6 +1,6 @@
 ﻿{
-    "cards":
-    [
+    "imageBasePath": "./cards/img/",
+    "cards": [
         {
             "attackPoint": {
                 "day": 50,
@@ -12,6 +12,7 @@
                 "ja": "にらちゃん(お勉強しといてよ)"
             },
             "number": 1,
+            "imageFileName": "zutomayocard_1st_1.png",
             "powerCost": 5,
             "rarity": "UR",
             "sendToPower": 0,
@@ -31,6 +32,7 @@
                 "ko": "니라(정의)"
             },
             "number": 2,
+            "imageFileName": "zutomayocard_1st_2.png",
             "powerCost": 7,
             "rarity": "UR",
             "sendToPower": 0,
@@ -50,6 +52,7 @@
                 "ko": "니라(감 그레이)"
             },
             "number": 3,
+            "imageFileName": "zutomayocard_1st_3.png",
             "powerCost": 5,
             "rarity": "UR",
             "sendToPower": 0,
@@ -69,6 +72,7 @@
                 "ko": "니라(Ham)"
             },
             "number": 4,
+            "imageFileName": "zutomayocard_1st_4.png",
             "powerCost": 3,
             "rarity": "UR",
             "sendToPower": 0,
@@ -95,6 +99,7 @@
                 "ko": "샤쿠마남(휴머노이드)"
             },
             "number": 5,
+            "imageFileName": "zutomayocard_1st_5.png",
             "powerCost": 4,
             "rarity": "UR",
             "sendToPower": 0,
@@ -118,6 +123,7 @@
                 "ko": "킷테남・잉크네코(정의)"
             },
             "number": 6,
+            "imageFileName": "zutomayocard_1st_6.png",
             "powerCost": 2,
             "rarity": "UR",
             "sendToPower": 0,
@@ -147,6 +153,7 @@
                 "ko": "(주)회판전기공업 연구소(Ham)"
             },
             "number": 7,
+            "imageFileName": "zutomayocard_1st_7.png",
             "powerCost": 1,
             "rarity": "UR",
             "sendToPower": 0,
@@ -170,6 +177,7 @@
                 "ko": "방위시계(감 그레이)"
             },
             "number": 8,
+            "imageFileName": "zutomayocard_1st_8.png",
             "powerCost": 3,
             "rarity": "UR",
             "sendToPower": 0,
@@ -188,6 +196,7 @@
                 "en": "NIRA-CHAN (STUDY ME)"
             },
             "number": 9,
+            "imageFileName": "zutomayocard_1st_9.png",
             "powerCost": 0,
             "rarity": "SR",
             "sendToPower": 1,
@@ -206,6 +215,7 @@
                 "en": "NIRA-CHAN (One's Mind)"
             },
             "number": 10,
+            "imageFileName": "zutomayocard_1st_10.png",
             "powerCost": 1,
             "rarity": "SR",
             "sendToPower": 1,
@@ -224,6 +234,7 @@
                 "en": "NIRA-CHAN (Stay Foolish)"
             },
             "number": 11,
+            "imageFileName": "zutomayocard_1st_11.png",
             "powerCost": 3,
             "rarity": "SR",
             "sendToPower": 1,
@@ -242,6 +253,7 @@
                 "en": "NIRA-CHAN[Job:Animator] (Neko Reset)"
             },
             "number": 12,
+            "imageFileName": "zutomayocard_1st_12.png",
             "powerCost": 4,
             "rarity": "SR",
             "sendToPower": 0,
@@ -259,6 +271,7 @@
                 "ja": "アフロ☆サムライ(MILABO)"
             },
             "number": 13,
+            "imageFileName": "zutomayocard_1st_13.png",
             "powerCost": 1,
             "rarity": "SR",
             "sendToPower": 2,
@@ -276,6 +289,7 @@
                 "ja": "にらちゃん(JK BOMBER)"
             },
             "number": 14,
+            "imageFileName": "zutomayocard_1st_14.png",
             "powerCost": 1,
             "rarity": "SR",
             "sendToPower": 2,
@@ -293,6 +307,7 @@
                 "ja": "にらちゃん(マイノリティ脈絡)"
             },
             "number": 15,
+            "imageFileName": "zutomayocard_1st_15.png",
             "powerCost": 4,
             "rarity": "SR",
             "sendToPower": 0,
@@ -310,6 +325,7 @@
                 "ja": "にらちゃん(秒針を噛む)"
             },
             "number": 16,
+            "imageFileName": "zutomayocard_1st_16.png",
             "powerCost": 5,
             "rarity": "SR",
             "sendToPower": 1,
@@ -327,6 +343,7 @@
                 "ja": "にらちゃん(ハゼ馳せる果てるまで)"
             },
             "number": 17,
+            "imageFileName": "zutomayocard_1st_17.png",
             "powerCost": 0,
             "rarity": "SR",
             "sendToPower": 1,
@@ -344,6 +361,7 @@
                 "ja": "にらちゃん(あいつら全員同窓会)"
             },
             "number": 18,
+            "imageFileName": "zutomayocard_1st_18.png",
             "powerCost": 1,
             "rarity": "SR",
             "sendToPower": 1,
@@ -361,6 +379,7 @@
                 "ja": "にらちゃん(ミラーチューン)"
             },
             "number": 19,
+            "imageFileName": "zutomayocard_1st_19.png",
             "powerCost": 3,
             "rarity": "SR",
             "sendToPower": 1,
@@ -378,6 +397,7 @@
                 "ja": "ZUTOMAYO SQUARE"
             },
             "number": 20,
+            "imageFileName": "zutomayocard_1st_20.png",
             "powerCost": 4,
             "rarity": "SR",
             "sendToPower": 0,
@@ -395,6 +415,7 @@
                 "ja": "うにぐり増殖中"
             },
             "number": 21,
+            "imageFileName": "zutomayocard_1st_21.png",
             "powerCost": 1,
             "rarity": "SR",
             "sendToPower": 0,
@@ -412,6 +433,7 @@
                 "ja": "にらちゃん(ヒューマノイド)"
             },
             "number": 22,
+            "imageFileName": "zutomayocard_1st_22.png",
             "powerCost": 2,
             "rarity": "SR",
             "sendToPower": 1,
@@ -429,6 +451,7 @@
                 "ja": "にらちゃん(勘ぐれい)"
             },
             "number": 23,
+            "imageFileName": "zutomayocard_1st_23.png",
             "powerCost": 2,
             "rarity": "SR",
             "sendToPower": 0,
@@ -446,6 +469,7 @@
                 "ja": "にらちゃん(正しくなれない)"
             },
             "number": 24,
+            "imageFileName": "zutomayocard_1st_24.png",
             "powerCost": 2,
             "rarity": "SR",
             "sendToPower": 0,
@@ -474,6 +498,7 @@
                 "ja": "顕現するハサミ"
             },
             "number": 25,
+            "imageFileName": "zutomayocard_1st_25.png",
             "powerCost": 3,
             "rarity": "SR",
             "sendToPower": 1,
@@ -498,6 +523,7 @@
                 "ja": "開幕宣言"
             },
             "number": 26,
+            "imageFileName": "zutomayocard_1st_26.png",
             "powerCost": 3,
             "rarity": "SR",
             "sendToPower": 0,
@@ -525,6 +551,7 @@
                 "ja": "ミラーシューター"
             },
             "number": 27,
+            "imageFileName": "zutomayocard_1st_27.png",
             "powerCost": 3,
             "rarity": "SR",
             "sendToPower": 1,
@@ -548,6 +575,7 @@
                 "ja": "お勉強会"
             },
             "number": 28,
+            "imageFileName": "zutomayocard_1st_28.png",
             "powerCost": 3,
             "rarity": "SR",
             "sendToPower": 1,
@@ -575,6 +603,7 @@
                 "ja": "稲妻のレンジ"
             },
             "number": 29,
+            "imageFileName": "zutomayocard_1st_29.png",
             "powerCost": 3,
             "rarity": "SR",
             "sendToPower": 1,
@@ -598,6 +627,7 @@
                 "ja": "爆弾みたいな球体"
             },
             "number": 30,
+            "imageFileName": "zutomayocard_1st_30.png",
             "powerCost": 3,
             "rarity": "SR",
             "sendToPower": 0,
@@ -610,7 +640,7 @@
             "effect": {
                 "description": {
                     "ja": "相手のキャラクターカードの属性が炎なら攻撃力+50",
-                    "ko":"상대 캐릭터 카드의 속성이 화염일 경우 공격력+50"
+                    "ko": "상대 캐릭터 카드의 속성이 화염일 경우 공격력+50"
                 },
                 "type": "modifyAttackPoint",
                 "fields": {
@@ -625,6 +655,7 @@
                 "ja": "洗車中"
             },
             "number": 31,
+            "imageFileName": "zutomayocard_1st_31.png",
             "powerCost": 3,
             "rarity": "SR",
             "sendToPower": 1,
@@ -651,6 +682,7 @@
                 "ja": "インク猫ケルベロス"
             },
             "number": 32,
+            "imageFileName": "zutomayocard_1st_32.png",
             "powerCost": 4,
             "rarity": "SR",
             "sendToPower": 0,
@@ -668,6 +700,7 @@
                 "ja": "にらちゃん(居眠り遠征隊)"
             },
             "number": 33,
+            "imageFileName": "zutomayocard_1st_33.png",
             "powerCost": 1,
             "rarity": "R",
             "sendToPower": 1,
@@ -685,6 +718,7 @@
                 "ja": "眩しいDNA隊"
             },
             "number": 34,
+            "imageFileName": "zutomayocard_1st_34.png",
             "powerCost": 1,
             "rarity": "R",
             "sendToPower": 0,
@@ -702,6 +736,7 @@
                 "ja": "グレイヌ(胸の煙)"
             },
             "number": 35,
+            "imageFileName": "zutomayocard_1st_35.png",
             "powerCost": 2,
             "rarity": "R",
             "sendToPower": 1,
@@ -719,6 +754,7 @@
                 "ja": "しゃくま男･･･？"
             },
             "number": 36,
+            "imageFileName": "zutomayocard_1st_36.png",
             "powerCost": 2,
             "rarity": "R",
             "sendToPower": 0,
@@ -736,6 +772,7 @@
                 "ja": "うにぐりスーパースター"
             },
             "number": 37,
+            "imageFileName": "zutomayocard_1st_37.png",
             "powerCost": 3,
             "rarity": "R",
             "sendToPower": 0,
@@ -753,6 +790,7 @@
                 "ja": "にらちゃん(あいつら全員同窓会)"
             },
             "number": 38,
+            "imageFileName": "zutomayocard_1st_38.png",
             "powerCost": 1,
             "rarity": "R",
             "sendToPower": 1,
@@ -770,6 +808,7 @@
                 "ja": "グレイ(Ham)"
             },
             "number": 39,
+            "imageFileName": "zutomayocard_1st_39.png",
             "powerCost": 2,
             "rarity": "R",
             "sendToPower": 1,
@@ -787,6 +826,7 @@
                 "ja": "にらちゃん(ミラーチューン)"
             },
             "number": 40,
+            "imageFileName": "zutomayocard_1st_40.png",
             "powerCost": 3,
             "rarity": "R",
             "sendToPower": 1,
@@ -804,6 +844,7 @@
                 "ja": "にらちゃん・ナナシ(暗く黒く)"
             },
             "number": 41,
+            "imageFileName": "zutomayocard_1st_41.png",
             "powerCost": 3,
             "rarity": "R",
             "sendToPower": 0,
@@ -821,6 +862,7 @@
                 "ja": "うにぐりくん・みみかゆし"
             },
             "number": 42,
+            "imageFileName": "zutomayocard_1st_42.png",
             "powerCost": 4,
             "rarity": "R",
             "sendToPower": 1,
@@ -838,6 +880,7 @@
                 "ja": "配達員(猫リセット)"
             },
             "number": 43,
+            "imageFileName": "zutomayocard_1st_43.png",
             "powerCost": 1,
             "rarity": "R",
             "sendToPower": 1,
@@ -855,6 +898,7 @@
                 "ja": "NAGA・アフロ☆サムライ(MILABO)"
             },
             "number": 44,
+            "imageFileName": "zutomayocard_1st_44.png",
             "powerCost": 1,
             "rarity": "R",
             "sendToPower": 0,
@@ -872,6 +916,7 @@
                 "ja": "にらちゃん(ハゼ馳せる果てるまで)"
             },
             "number": 45,
+            "imageFileName": "zutomayocard_1st_45.png",
             "powerCost": 2,
             "rarity": "R",
             "sendToPower": 1,
@@ -889,6 +934,7 @@
                 "ja": "正義のミカタ"
             },
             "number": 46,
+            "imageFileName": "zutomayocard_1st_46.png",
             "powerCost": 2,
             "rarity": "R",
             "sendToPower": 0,
@@ -906,6 +952,7 @@
                 "ja": "にらチャイナ(お勉強しといてよ)"
             },
             "number": 47,
+            "imageFileName": "zutomayocard_1st_47.png",
             "powerCost": 3,
             "rarity": "R",
             "sendToPower": 0,
@@ -923,6 +970,7 @@
                 "ja": "にらちゃん(MILABO)"
             },
             "number": 48,
+            "imageFileName": "zutomayocard_1st_48.png",
             "powerCost": 0,
             "rarity": "R",
             "sendToPower": 0,
@@ -940,6 +988,7 @@
                 "ja": "にらちゃん(脳裏上のクラッカー)"
             },
             "number": 49,
+            "imageFileName": "zutomayocard_1st_49.png",
             "powerCost": 0,
             "rarity": "R",
             "sendToPower": 0,
@@ -957,6 +1006,7 @@
                 "ja": "栽培うにぐり"
             },
             "number": 50,
+            "imageFileName": "zutomayocard_1st_50.png",
             "powerCost": 1,
             "rarity": "R",
             "sendToPower": 1,
@@ -974,6 +1024,7 @@
                 "ja": "にらちゃん(勘ぐれい)"
             },
             "number": 51,
+            "imageFileName": "zutomayocard_1st_51.png",
             "powerCost": 1,
             "rarity": "R",
             "sendToPower": 1,
@@ -991,6 +1042,7 @@
                 "ja": "にらちゃん逃走中(勘冴えて悔しいわ)"
             },
             "number": 52,
+            "imageFileName": "zutomayocard_1st_52.png",
             "powerCost": 1,
             "rarity": "R",
             "sendToPower": 0,
@@ -1017,6 +1069,7 @@
                 "ja": "脳裏上の勘覧車"
             },
             "number": 53,
+            "imageFileName": "zutomayocard_1st_53.png",
             "powerCost": 1,
             "rarity": "R",
             "sendToPower": 0,
@@ -1044,6 +1097,7 @@
                 "ja": "チョキ・チョキ"
             },
             "number": 54,
+            "imageFileName": "zutomayocard_1st_54.png",
             "powerCost": 2,
             "rarity": "R",
             "sendToPower": 1,
@@ -1070,6 +1124,7 @@
                 "ja": "助っ人演奏隊"
             },
             "number": 55,
+            "imageFileName": "zutomayocard_1st_55.png",
             "powerCost": 1,
             "rarity": "R",
             "sendToPower": 0,
@@ -1097,6 +1152,7 @@
                 "ja": "夕焼け風鏡"
             },
             "number": 56,
+            "imageFileName": "zutomayocard_1st_56.png",
             "powerCost": 2,
             "rarity": "R",
             "sendToPower": 1,
@@ -1120,6 +1176,7 @@
                 "ja": "うにぐりパン"
             },
             "number": 57,
+            "imageFileName": "zutomayocard_1st_57.png",
             "powerCost": 1,
             "rarity": "R",
             "sendToPower": 1,
@@ -1149,6 +1206,7 @@
                 "ja": "爆撃ストライプ"
             },
             "number": 58,
+            "imageFileName": "zutomayocard_1st_58.png",
             "powerCost": 2,
             "rarity": "R",
             "sendToPower": 1,
@@ -1175,6 +1233,7 @@
                 "ja": "レモン香るうにぐりソテー"
             },
             "number": 59,
+            "imageFileName": "zutomayocard_1st_59.png",
             "powerCost": 1,
             "rarity": "R",
             "sendToPower": 0,
@@ -1202,6 +1261,7 @@
                 "ja": "電撃鍵"
             },
             "number": 60,
+            "imageFileName": "zutomayocard_1st_60.png",
             "powerCost": 2,
             "rarity": "R",
             "sendToPower": 1,
@@ -1228,6 +1288,7 @@
                 "ja": "ZUTOMAYO CITY"
             },
             "number": 61,
+            "imageFileName": "zutomayocard_1st_61.png",
             "powerCost": 1,
             "rarity": "R",
             "sendToPower": 1,
@@ -1255,6 +1316,7 @@
                 "ja": "たけのこご飯"
             },
             "number": 62,
+            "imageFileName": "zutomayocard_1st_62.png",
             "powerCost": 2,
             "rarity": "R",
             "sendToPower": 1,
@@ -1278,6 +1340,7 @@
                 "ja": "ふわふわの猫"
             },
             "number": 63,
+            "imageFileName": "zutomayocard_1st_63.png",
             "powerCost": 2,
             "rarity": "R",
             "sendToPower": 1,
@@ -1307,6 +1370,7 @@
                 "ja": "ちょっぴり豪華な朝ごはん"
             },
             "number": 64,
+            "imageFileName": "zutomayocard_1st_64.png",
             "powerCost": 0,
             "rarity": "R",
             "sendToPower": 0,
@@ -1324,6 +1388,7 @@
                 "ja": "柿原 栗ムント(秒針を噛む)"
             },
             "number": 65,
+            "imageFileName": "zutomayocard_1st_65.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -1341,6 +1406,7 @@
                 "ja": "ハカセ(低血ボルト)"
             },
             "number": 66,
+            "imageFileName": "zutomayocard_1st_66.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -1358,6 +1424,7 @@
                 "ja": "ちりとり男(勘冴えて悔しいわ)"
             },
             "number": 67,
+            "imageFileName": "zutomayocard_1st_67.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 0,
@@ -1375,6 +1442,7 @@
                 "ja": "宇宙人ストリングス(あいつら全員同窓会)"
             },
             "number": 68,
+            "imageFileName": "zutomayocard_1st_68.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 0,
@@ -1392,6 +1460,7 @@
                 "ja": "にらちゃん(秒針を噛む)"
             },
             "number": 69,
+            "imageFileName": "zutomayocard_1st_69.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 2,
@@ -1409,6 +1478,7 @@
                 "ja": "うにぐりくん(蹴っ飛ばした毛布)"
             },
             "number": 70,
+            "imageFileName": "zutomayocard_1st_70.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 2,
@@ -1426,6 +1496,7 @@
                 "ja": "にらちゃん(こんなこと騒動)"
             },
             "number": 71,
+            "imageFileName": "zutomayocard_1st_71.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -1443,6 +1514,7 @@
                 "ja": "低血(低血ボルト)"
             },
             "number": 72,
+            "imageFileName": "zutomayocard_1st_72.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -1460,6 +1532,7 @@
                 "ja": "うにぐりくん(こんなこと騒動)"
             },
             "number": 73,
+            "imageFileName": "zutomayocard_1st_73.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -1477,6 +1550,7 @@
                 "ja": "ふらんけん(Dear.Mr「F」)"
             },
             "number": 74,
+            "imageFileName": "zutomayocard_1st_74.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -1494,6 +1568,7 @@
                 "ja": "にらちゃん(袖のキルト)"
             },
             "number": 75,
+            "imageFileName": "zutomayocard_1st_75.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 0,
@@ -1511,6 +1586,7 @@
                 "ja": "うにぐりくん(袖のキルト)"
             },
             "number": 76,
+            "imageFileName": "zutomayocard_1st_76.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 0,
@@ -1528,6 +1604,7 @@
                 "ja": "にらちゃん(眩しいDNAだけ)"
             },
             "number": 77,
+            "imageFileName": "zutomayocard_1st_77.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -1545,6 +1622,7 @@
                 "ja": "にらちゃん(蹴っ飛ばした毛布)"
             },
             "number": 78,
+            "imageFileName": "zutomayocard_1st_78.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -1562,6 +1640,7 @@
                 "ja": "グレイ？(正しくなれない)"
             },
             "number": 79,
+            "imageFileName": "zutomayocard_1st_79.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -1579,6 +1658,7 @@
                 "ja": "ナナシ(暗く黒く)"
             },
             "number": 80,
+            "imageFileName": "zutomayocard_1st_80.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -1606,6 +1686,7 @@
                 "ja": "いちごケーキ"
             },
             "number": 81,
+            "imageFileName": "zutomayocard_1st_81.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -1633,6 +1714,7 @@
                 "ja": "遺影"
             },
             "number": 82,
+            "imageFileName": "zutomayocard_1st_82.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -1659,6 +1741,7 @@
                 "ja": "回廊"
             },
             "number": 83,
+            "imageFileName": "zutomayocard_1st_83.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -1685,6 +1768,7 @@
                 "ja": "クレーター"
             },
             "number": 84,
+            "imageFileName": "zutomayocard_1st_84.png",
             "powerCost": 1,
             "rarity": "N",
             "sendToPower": 1,
@@ -1708,6 +1792,7 @@
                 "ja": "散らかったソファ"
             },
             "number": 85,
+            "imageFileName": "zutomayocard_1st_85.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -1728,6 +1813,7 @@
                 "ja": "縁"
             },
             "number": 86,
+            "imageFileName": "zutomayocard_1st_86.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 0,
@@ -1755,6 +1841,7 @@
                 "ja": "残り物"
             },
             "number": 87,
+            "imageFileName": "zutomayocard_1st_87.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -1782,6 +1869,7 @@
                 "ja": "赤闇を照らす"
             },
             "number": 88,
+            "imageFileName": "zutomayocard_1st_88.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -1805,6 +1893,7 @@
                 "ja": "時計(秒針を噛む)"
             },
             "number": 89,
+            "imageFileName": "zutomayocard_1st_89.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -1831,6 +1920,7 @@
                 "ja": "DNA鍋"
             },
             "number": 90,
+            "imageFileName": "zutomayocard_1st_90.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -1866,6 +1956,7 @@
                 "ja": "しゃっくりの招き猫店"
             },
             "number": 91,
+            "imageFileName": "zutomayocard_1st_91.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -1886,6 +1977,7 @@
                 "ja": "妙薬の調合"
             },
             "number": 92,
+            "imageFileName": "zutomayocard_1st_92.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -1913,6 +2005,7 @@
                 "ja": "ブラウン管テレビ\"強\""
             },
             "number": 93,
+            "imageFileName": "zutomayocard_1st_93.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -1940,6 +2033,7 @@
                 "ja": "制御室"
             },
             "number": 94,
+            "imageFileName": "zutomayocard_1st_94.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -1975,6 +2069,7 @@
                 "ja": "パラボラアンテナ"
             },
             "number": 95,
+            "imageFileName": "zutomayocard_1st_95.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -2001,6 +2096,7 @@
                 "ja": "FPS"
             },
             "number": 96,
+            "imageFileName": "zutomayocard_1st_96.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 2,
@@ -2027,6 +2123,7 @@
                 "ja": "心メンテ"
             },
             "number": 97,
+            "imageFileName": "zutomayocard_1st_97.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -2056,6 +2153,7 @@
                 "ja": "スラムマート"
             },
             "number": 98,
+            "imageFileName": "zutomayocard_1st_98.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 0,
@@ -2083,6 +2181,7 @@
                 "ja": "落書き教室"
             },
             "number": 99,
+            "imageFileName": "zutomayocard_1st_99.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -2110,6 +2209,7 @@
                 "ja": "植物化"
             },
             "number": 100,
+            "imageFileName": "zutomayocard_1st_100.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -2139,6 +2239,7 @@
                 "ja": "正義の玉子"
             },
             "number": 101,
+            "imageFileName": "zutomayocard_1st_101.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -2160,12 +2261,12 @@
                     },
                     "add": 20
                 }
-
             },
             "name": {
                 "ja": "乾き日和"
             },
             "number": 102,
+            "imageFileName": "zutomayocard_1st_102.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -2189,6 +2290,7 @@
                 "ja": "利権"
             },
             "number": 103,
+            "imageFileName": "zutomayocard_1st_103.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 1,
@@ -2212,6 +2314,7 @@
                 "ja": "古文書、呼"
             },
             "number": 104,
+            "imageFileName": "zutomayocard_1st_104.png",
             "powerCost": 0,
             "rarity": "N",
             "sendToPower": 0,
