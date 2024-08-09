@@ -99,20 +99,6 @@ func get_charged_power():
 	)
 
 
-func end_battle(is_win: bool):
-	_hit()
-	attack_point_modifier = null
-	for card in set_field_cards():
-		_drop_card(card)
-	setable_card_count = 1 if is_win else 2
-	swap_day_and_night_attack_point = false
-	for card in $EnchantZone.cards():
-		if card.info["sendToPower"] > 0:
-			card.reparent($PowerCharger)
-		else:
-			card.reparent($Abyss)
-
-
 func send_cards_to_selection_field(cards, target_field, return_field):
 	selection_field_parent = return_field
 	selection_field_target = target_field
@@ -174,8 +160,6 @@ func _ready():
 		$ReadyButton.visible = false
 		$SelectionZone.visible = false
 	
-	for i in range(5):
-		_draw_card($SelectionZone/SelectionField)
 	$SelectionZone.card_selected.connect(_on_card_selected)
 
 
@@ -219,25 +203,6 @@ func _init_deck():
 		card.card_exited.connect(_on_card_exited)
 		card.card_clicked.connect(_on_card_clicked)
 		$DeckZone.add_child(card)
-
-
-func _drop_card(card: Card):
-	if card.info["sendToPower"] > 0:
-		card.reparent($PowerCharger)
-	else:
-		card.reparent($Abyss)
-
-
-func _draw_card(dest: Node):
-	var deck_cards = $DeckZone.cards()
-	if deck_cards.size() <= 0:
-		return
-	
-	var card: Card = deck_cards[-1]
-	card.selectable = true
-	if controllable:
-		card.show_card()
-	card.reparent(dest)
 
 
 func _hit():

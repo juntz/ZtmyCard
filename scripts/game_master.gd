@@ -3,6 +3,8 @@ extends Node
 
 enum Phase{SET, CLOCK, ENCHANT, BATTLE}
 
+const MULLIGAN_COUNT = 5
+
 var players = {}
 var phase = Phase.BATTLE
 var ready_status = {}
@@ -48,12 +50,6 @@ func select_card(player: Player, card: Card):
 		else:
 			return false
 		return true
-		
-	if player.controllable:
-		if card.get_parent() == player.card_fields[CardField.Field.BATTLE]:
-			pass
-		if card.get_parent() == player.card_fields[CardField.Field.SET]:
-			pass
 	
 	_move_card(player, card, CardField.Field.HAND)
 	player.draw_require_count -= 1
@@ -109,6 +105,12 @@ func finish_mulligan():
 	player.card_fields[CardField.Field.DECK].shuffle()
 
 
+func _ready_mulligan():
+	var player = _get_player()
+	for i in range(MULLIGAN_COUNT):
+		_draw_card(player, CardField.Field.SELECTION)
+
+
 func _get_init_ready_status():
 	var result = {}
 	for status in Phase.values():
@@ -116,6 +118,7 @@ func _get_init_ready_status():
 	return result
 
 
+# Return the player who calls this function
 func _get_player() -> Player:
 	var id = multiplayer.get_remote_sender_id()
 	if id == 0:
@@ -129,7 +132,8 @@ func _process_phase_transition():
 	
 	if phase == Phase.SET:
 		for player: Player in players.values():
-			_draw_card(player)
+			for i in range(player.draw_require_count):
+				_draw_card(player)
 			player.set_battle_button_state(true)
 	elif phase == Phase.CLOCK:
 		_get_player().set_battle_button_state(false)
@@ -140,12 +144,18 @@ func _process_phase_transition():
 		_apply_enchant()
 	elif phase == Phase.BATTLE:
 		_battle()
+		_end_battle()
 
-func _draw_card(player: Player):
-	for i in range(player.draw_require_count):
-		var card: Card = player.card_fields[CardField.Field.DECK].cards()[-1]
-		_move_card(player, card, CardField.Field.HAND)
-		card.show_card()
+
+func _draw_card(player: Player, to = CardField.Field.HAND):
+	var deck_cards = player.card_fields[CardField.Field.DECK].cards()
+	if deck_cards.size() == 0:
+		return
+	
+	var card: Card = deck_cards[-1]
+	_move_card(player, card, to)
+	card.show_card()
+	if player.controllable:
 		card.selectable = true
 
 
@@ -198,8 +208,11 @@ func _on_enchant_end():
 
 
 func _ready_battle():
-	for player: Player in players.values():
-		_swap_battle_field_card(player)
+	var player = _get_player()
+	_swap_battle_field_card(player)
+	for field in [CardField.Field.BATTLE, CardField.Field.SET]:
+		for card in player.card_fields[field].cards():
+			card.selectable = false
 
 
 func _swap_battle_field_card(player: Player):
@@ -222,7 +235,9 @@ func _swap_battle_field_card(player: Player):
 
 
 func _end_battle():
-	pass
+	var player = _get_player()
+	for card in player.card_fields[CardField.Field.ENCHANT].cards():
+		_move_card(player, card, CardField.Field.ABYSS)
 
 
 func _is_ready_for_next_phase():
@@ -242,6 +257,7 @@ func _reset_ready_status():
 func _on_peer_connected(id):
 	players[id] = $"../Opponent"
 	ready_status[id] = _get_init_ready_status()
+	_ready_mulligan()
 
 
 func _on_chronos_turn_done():
