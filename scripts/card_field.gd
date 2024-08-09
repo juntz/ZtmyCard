@@ -26,6 +26,33 @@ func shuffle():
 	for card in cards:
 		add_child(card)
 
+func scroll_move_up(scroll : float): 
+	if not scrollable:
+		printerr("scrollable is false, but try scroll up.")
+
+	var cur_y = position.y 
+	var new_y = cur_y + scroll
+	var min_y = (card_line_offset.y / 2)
+	if new_y > min_y:
+		new_y = min_y
+
+	position.y = new_y
+	
+
+func scroll_move_down(scroll : float): 
+	if not scrollable:
+		printerr("scrollable is false, but try scroll down.")
+
+	var cur_y = position.y
+	var new_y = cur_y - scroll
+
+	# 매직넘버. (0은 카드의 머리부분만 잘려서 보이고. -1.5가 이쁘게 보인다.)
+	var hide_line_count = -1.5
+	var max_y = (-(card_line_offset.y+cards_offset.y) * (floor(float(cards().size())/float(card_count_per_line))+hide_line_count)) * scale.y
+	if new_y < max_y:
+		new_y = max_y
+
+	position.y = new_y
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

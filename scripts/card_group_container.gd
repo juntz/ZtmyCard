@@ -17,6 +17,6 @@ func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.is_pressed():
 			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-				$CardField.position += scroll_speed
+				$CardField.scroll_move_up( scroll_speed.y )
 			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-				$CardField.position -= scroll_speed
+				$CardField.scroll_move_down( scroll_speed.y )

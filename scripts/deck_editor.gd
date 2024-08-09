@@ -12,6 +12,7 @@ func _ready():
 	
 	for cardInfo in cardInfos:
 		var card: Card = card_scene.instantiate()
+		card.image_base_path = card_json["imageBasePath"]
 		card.set_info(cardInfo)
 		card.show_card()
 		card.selectable = true
