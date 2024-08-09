@@ -27,11 +27,15 @@ var mouse_is_in = false
 var shaking = false
 var shake_amount = 2
 var orginal_pos: Vector2
+
+# 해당 정보는 계승되어야 한다. (instance한 정보가 아님)
 var image_base_path = "./"
 
 
 func clone() -> Card:
 	var card = card_scene.instantiate()
+	# 자신의 base_path도 전달해준다 (중요한 정보임)
+	card.image_base_path = image_base_path
 	card.set_info(info)
 	card.global_position = global_position
 	return card
