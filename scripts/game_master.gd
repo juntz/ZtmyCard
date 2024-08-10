@@ -1,7 +1,7 @@
 class_name GameMaster
 extends Node
 
-enum Phase{SET, CLOCK, ENCHANT, BATTLE}
+enum Phase{SET, OPEN, CLOCK, ENCHANT, BATTLE}
 
 const MULLIGAN_COUNT = 5
 
@@ -28,6 +28,9 @@ func _process(delta):
 	if _is_ready_for_next_phase():
 		_process_phase_transition()
 		_reset_ready_status()
+	if phase == Phase.OPEN:
+		if players.values().all(func(x): return x.is_all_card_open()):
+			next_phase_ready()
 
 
 func select_card(player: Player, card: Card):
@@ -135,9 +138,10 @@ func _process_phase_transition():
 			for i in range(player.draw_require_count):
 				_draw_card(player)
 			player.set_battle_button_state(true)
-	elif phase == Phase.CLOCK:
+	elif phase == Phase.OPEN:
 		_get_player().set_battle_button_state(false)
 		_open_cards()
+	elif phase == Phase.CLOCK:
 		_ready_battle()
 		_update_chronos()
 	elif phase == Phase.ENCHANT:
@@ -157,6 +161,13 @@ func _draw_card(player: Player, to = CardField.Field.HAND):
 	card.show_card()
 	if player.controllable:
 		card.selectable = true
+
+
+func _drop_card(player: Player, card: Card):
+	var target_card_field = CardField.Field.POWER_CHARGER \
+		if int(card.info["sendToPower"]) > 0 else \
+		CardField.Field.ABYSS
+	_move_card(player, card, target_card_field)
 
 
 func _open_cards():
@@ -237,7 +248,7 @@ func _swap_battle_field_card(player: Player):
 func _end_battle():
 	var player = _get_player()
 	for card in player.card_fields[CardField.Field.ENCHANT].cards():
-		_move_card(player, card, CardField.Field.ABYSS)
+		_drop_card(player, card)
 
 
 func _is_ready_for_next_phase():

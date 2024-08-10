@@ -1,5 +1,5 @@
 ﻿{
-    "imageBasePath": "./cards/img/",
+    "imageBasePath": "./cards/img",
     "cards": [
         {
             "attackPoint": {

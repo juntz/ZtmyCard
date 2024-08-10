@@ -52,10 +52,6 @@ func field_cards():
 	return $BattleField.cards() + set_field_cards()
 
 
-func hand_cards():
-	return $Hand.cards()
-
-
 func get_attack_point(is_night: bool) -> int:
 	if $BattleField.cards().size() <= 0:
 		return 0
@@ -99,12 +95,6 @@ func get_charged_power():
 	)
 
 
-func send_cards_to_selection_field(cards, target_field, return_field):
-	selection_field_parent = return_field
-	selection_field_target = target_field
-	$SelectionZone.start_selection(cards, _on_card_clicked)
-
-
 func attack(damage):
 	self.damage = damage
 	var card = battle_field_card()
@@ -143,6 +133,14 @@ func set_field_cards():
 	return $SetField.cards()
 
 
+func is_all_card_open():
+	for field in [CardField.Field.BATTLE, CardField.Field.SET]:
+		for card: Card in card_fields[field].cards():
+			if card.is_closed():
+				return false
+	return true
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	card_fields[CardField.Field.BATTLE] = $BattleField
@@ -152,15 +150,15 @@ func _ready():
 	card_fields[CardField.Field.DECK] = $DeckZone
 	card_fields[CardField.Field.HAND] = $Hand
 	card_fields[CardField.Field.ENCHANT] = $EnchantZone
-	card_fields[CardField.Field.SELECTION] = $SelectionZone/SelectionField
+	card_fields[CardField.Field.SELECTION] = $MulliganZone/SelectionField
 	
 	$CardInfoContainer.visible = false
 	_init_deck()
 	if !controllable:
 		$ReadyButton.visible = false
-		$SelectionZone.visible = false
+		$MulliganZone.visible = false
 	
-	$SelectionZone.card_selected.connect(_on_card_selected)
+	$MulliganZone.card_selected.connect(_on_card_selected)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -226,8 +224,8 @@ func _on_ready_button_pressed():
 
 
 func _on_selection_done_button_pressed():
-	$SelectionZone/SelectionDoneButton.visible = false
-	$SelectionZone.visible = false
+	$MulliganZone/SelectionDoneButton.visible = false
+	$MulliganZone.visible = false
 	game_master.finish_mulligan()
 	game_master.next_phase_ready()
 
