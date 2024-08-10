@@ -92,7 +92,8 @@ disabled = true
 text = "BATTLE"
 
 [node name="SelectionZone" type="Node2D" parent="."]
-position = Vector2(119, 365)
+visible = false
+position = Vector2(238, 730)
 script = ExtResource("6_bi0n1")
 
 [node name="CardShadow" type="Sprite2D" parent="SelectionZone"]
@@ -109,7 +110,25 @@ cards_offset = Vector2(100, 0)
 fly_ease_out = false
 base_z_index = 50
 
-[node name="SelectionDoneButton" type="Button" parent="SelectionZone"]
+[node name="MulliganZone" type="Node2D" parent="."]
+position = Vector2(119, 365)
+script = ExtResource("6_bi0n1")
+
+[node name="CardShadow" type="Sprite2D" parent="MulliganZone"]
+modulate = Color(1, 1, 1, 0.419608)
+z_index = 49
+position = Vector2(207.5, -33.5)
+rotation = 1.5708
+scale = Vector2(1.04, 1.25286)
+texture = ExtResource("7_p4beu")
+
+[node name="SelectionField" parent="MulliganZone" instance=ExtResource("6_flpfl")]
+position = Vector2(0, -35)
+cards_offset = Vector2(100, 0)
+fly_ease_out = false
+base_z_index = 50
+
+[node name="SelectionDoneButton" type="Button" parent="MulliganZone"]
 offset_left = 159.0
 offset_top = 103.0
 offset_right = 238.0
@@ -139,6 +158,6 @@ fly_ease_out = false
 base_z_index = 99
 
 [connection signal="pressed" from="ReadyButton" to="." method="_on_ready_button_pressed"]
-[connection signal="pressed" from="SelectionZone/SelectionDoneButton" to="." method="_on_selection_done_button_pressed"]
+[connection signal="pressed" from="MulliganZone/SelectionDoneButton" to="." method="_on_selection_done_button_pressed"]
 [connection signal="attack_end" from="AttackPoints" to="." method="_on_attack_end"]
 [connection signal="child_entered_tree" from="AttackPoints" to="AttackPoints" method="_on_child_entered_tree"]
