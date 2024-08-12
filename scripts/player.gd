@@ -10,7 +10,7 @@ signal attack_end
 @export var game_master: GameMaster
 var draw_require_count = 0
 var setable_card_count = 0
-var attack_point_modifier = null
+var attack_point_addend = 0
 var attack_scale = 1.3
 var damage_reduce = 0
 var damage = 0
@@ -62,9 +62,7 @@ func get_attack_point(is_night: bool) -> int:
 	
 	var field_name = "night" if is_night != swap_day_and_night_attack_point else "day"
 	var base_attack_point = int(card.info["attackPoint"][field_name])
-	if attack_point_modifier:
-		return attack_point_modifier.call(base_attack_point)
-	return base_attack_point
+	return base_attack_point + attack_point_addend;
 
 
 func get_clock() -> int:
