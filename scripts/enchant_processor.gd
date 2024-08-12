@@ -6,18 +6,13 @@ const ENCAHNTING_SCALE = 1.1
 
 signal enchant_end
 
-var main: Main
-var player: Player
-var opponent: Player
+@export var main: Main
+@export var player: Player
+@export var opponent: Player
+@export var game_master: GameMaster
 var timer: Timer
 var selecting = false
 var enchanting_card: Card
-
-
-func _init(main: Main, player: Player, opponent: Player):
-	self.main = main
-	self.player = player
-	self.opponent = opponent
 
 
 # Called when the node enters the scene tree for the first time.
@@ -56,7 +51,7 @@ func apply_enchant(card: Card):
 
 
 func draw(fields):
-	player._draw_card($Hand)
+	game_master.draw_card(player)
 
 
 func disableClock(fields):
@@ -83,11 +78,11 @@ func reduceDamage(fields):
 	
 	
 func modifyHp(fields):
-	_modify_hp(fields)
+	_modify_hp.rpc(fields)
 	
 	
 func modifyAttackPoint(fields):
-	_modify_attack_point(fields)
+	_modify_attack_point.rpc(fields)
 	
 	
 func swapHandAndAbyss(fields):
@@ -107,22 +102,30 @@ func swapDayAndNightAttackPoint(fields):
 		opponent.swap_day_and_night_attack_point = true	
 			
 
+@rpc("any_peer", "call_local")
 func _modify_hp(fields: Dictionary):
 	if fields.has("condition"):
 		if !_check_card_condition(fields["condition"]):
 			return
 	
-	player.heal(int(fields["add"]))
+	var target = _get_target(fields)
+	target.heal(int(fields["add"]))
 
 
+@rpc("any_peer", "call_local")
 func _modify_attack_point(fields: Dictionary):
-	var target = player
 	if fields.has("condition"):
 		if _check_card_condition(fields["condition"]):
-			if target.attack_point_modifier:
-				target.attack_point_modifier = func(n): return target.attack_point_modifier.call(n) + int(fields["add"])
-			else:
-				target.attack_point_modifier = func(n): return n + int(fields["add"])
+			var target = _get_target(fields)
+			target.attack_point_addend += int(fields["add"])
+
+
+func _get_target(fields: Dictionary) -> Player:
+	var call_from_local = multiplayer.get_remote_sender_id() == multiplayer.get_unique_id()
+	var target_is_player = fields["target"] == "player"
+	if call_from_local != target_is_player:
+		return opponent
+	return player
 
 
 func _check_card_condition(condition: Dictionary) -> bool:

@@ -19,8 +19,6 @@ func _ready():
 	players[id] = $"../Player"
 	ready_status[id] = _get_init_ready_status()
 	chronos.turn_done.connect(_on_chronos_turn_done)
-	enchant_processor = EnchantProcessor.new($"..", $"../Player", $"../Opponent")
-	add_child(enchant_processor)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -111,7 +109,7 @@ func finish_mulligan():
 func _ready_mulligan():
 	var player = _get_player()
 	for i in range(MULLIGAN_COUNT):
-		_draw_card(player, CardField.Field.SELECTION)
+		draw_card(player, CardField.Field.SELECTION)
 
 
 func _get_init_ready_status():
@@ -136,7 +134,7 @@ func _process_phase_transition():
 	if phase == Phase.SET:
 		for player: Player in players.values():
 			for i in range(player.draw_require_count):
-				_draw_card(player)
+				draw_card(player)
 			player.set_battle_button_state(true)
 	elif phase == Phase.OPEN:
 		_get_player().set_battle_button_state(false)
@@ -151,7 +149,7 @@ func _process_phase_transition():
 		_end_battle()
 
 
-func _draw_card(player: Player, to = CardField.Field.HAND):
+func draw_card(player: Player, to = CardField.Field.HAND):
 	var deck_cards = player.card_fields[CardField.Field.DECK].cards()
 	if deck_cards.size() == 0:
 		return

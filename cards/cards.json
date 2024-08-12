@@ -1,5 +1,5 @@
 ﻿{
-    "imageBasePath": "D:\\shnvr\\Pictures\\ztmy\\1st",
+    "imageBasePath": "./cards/img",
     "cards": [
         {
             "attackPoint": {
