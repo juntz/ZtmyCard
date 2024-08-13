@@ -12,7 +12,7 @@ var draw_require_count = 0
 var setable_card_count = 0
 var attack_point_addend = 0
 var attack_scale = 1.3
-var damage_reduce = 0
+var damage_subtrahend = 0
 var damage = 0
 var swap_day_and_night_attack_point = false
 var selection_field_target
@@ -102,8 +102,8 @@ func attack(damage):
 
 
 func hit(damage):
-	damage -= damage_reduce
-	damage_reduce = 0
+	damage -= damage_subtrahend
+	damage_subtrahend = 0
 	if damage <= 0:
 		damage = 0
 		setable_card_count = 1
@@ -139,6 +139,12 @@ func is_all_card_open():
 	return true
 
 
+func send_cards_to_selection_field(cards, target_field, return_field):
+	selection_field_parent = return_field
+	selection_field_target = target_field
+	$SelectionZone.start_selection(cards, _on_card_clicked)
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	card_fields[CardField.Field.BATTLE] = $BattleField
@@ -160,7 +166,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 

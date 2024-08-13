@@ -14,18 +14,14 @@ var shake_timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if multiplayer.get_peers().size() <= 0:
-		$AiController.acitvate()
-	
 	shake_timer = Timer.new()
 	add_child(shake_timer)
 	shake_timer.wait_time = shake_time
 	shake_timer.one_shot = true
-	shake_timer.connect("timeout", _on_shake_timer_timeout)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if shaking:
 		var rng = RandomNumberGenerator.new()
 		var x = rng.randf_range(- shake_amount, shake_amount)
@@ -37,8 +33,8 @@ func shake(amount: float):
 	shake_amount = amount
 	shaking = true
 	shake_timer.start()
-
-
-func _on_shake_timer_timeout():
+	
+	await shake_timer.timeout
+	
 	shaking = false
 	position = Vector2()

@@ -120,7 +120,7 @@
             "name": {
                 "ja": "木っ手男・インク猫(正義)",
                 "en": "KITTE-MEN・INC-NEKO (Seigi)",
-                "ko": "킷테남・잉크네코(정의)"
+                "ko": "우표남・잉크고양이(정의)"
             },
             "number": 6,
             "imageFileName": "zutomayocard_1st_6.png",
@@ -144,6 +144,7 @@
                     "condition": {
                         "abyss": "fourAttribute"
                     },
+                    "target": "player",
                     "add": 50
                 }
             },
@@ -491,6 +492,7 @@
                         "target": "opponent",
                         "attribute": "wind"
                     },
+                    "target": "player",
                     "add": 50
                 }
             },
@@ -544,6 +546,7 @@
                         "target": "opponent",
                         "attribute": "electric"
                     },
+                    "target": "player",
                     "add": 50
                 }
             },
@@ -568,6 +571,7 @@
                 },
                 "type": "reduceDamage",
                 "fields": {
+                    "target": "player",
                     "amount": 40
                 }
             },
@@ -596,6 +600,7 @@
                         "target": "opponent",
                         "attribute": "darkness"
                     },
+                    "target": "player",
                     "add": 50
                 }
             },
@@ -620,6 +625,7 @@
                 },
                 "type": "modifyAttackPoint",
                 "fields": {
+                    "target": "player",
                     "add": 30
                 }
             },
@@ -648,6 +654,7 @@
                         "target": "opponent",
                         "attribute": "flame"
                     },
+                    "target": "player",
                     "add": 50
                 }
             },
@@ -675,6 +682,7 @@
                     "condition": {
                         "hpLessOrEqual": 30
                     },
+                    "target": "player",
                     "add": 50
                 }
             },
@@ -1062,6 +1070,7 @@
                     "condition": {
                         "time": "night"
                     },
+                    "target": "player",
                     "add": 30
                 }
             },
@@ -1090,6 +1099,7 @@
                         "target": "opponent",
                         "attribute": "wind"
                     },
+                    "target": "player",
                     "add": 30
                 }
             },
@@ -1117,6 +1127,7 @@
                     "condition": {
                         "hpLessOrEqual": 50
                     },
+                    "target": "player",
                     "add": 20
                 }
             },
@@ -1145,6 +1156,7 @@
                         "target": "opponent",
                         "attribute": "electric"
                     },
+                    "target": "player",
                     "add": 30
                 }
             },
@@ -1169,6 +1181,7 @@
                 },
                 "type": "reduceDamage",
                 "fields": {
+                    "target": "player",
                     "amount": 30
                 }
             },
@@ -1199,6 +1212,7 @@
                             "greaterThanOrEqual": 2
                         }
                     },
+                    "target": "player",
                     "add": 20
                 }
             },
@@ -1226,6 +1240,7 @@
                     "condition": {
                         "time": "day"
                     },
+                    "target": "player",
                     "add": 30
                 }
             },
@@ -1254,6 +1269,7 @@
                         "target": "opponent",
                         "attribute": "darkness"
                     },
+                    "target": "player",
                     "add": 30
                 }
             },
@@ -1281,6 +1297,7 @@
                     "condition": {
                         "timeChanged": "dayToNight"
                     },
+                    "target": "player",
                     "add": 30
                 }
             },
@@ -1309,6 +1326,7 @@
                         "target": "opponent",
                         "attribute": "flame"
                     },
+                    "target": "player",
                     "add": 30
                 }
             },
@@ -1363,6 +1381,7 @@
                             "greaterThanOrEqual": 2
                         }
                     },
+                    "target": "player",
                     "add": 30
                 }
             },
@@ -1679,6 +1698,7 @@
                         "target": "player",
                         "attribute": "darkness"
                     },
+                    "target": "player",
                     "add": 10
                 }
             },
@@ -1707,6 +1727,7 @@
                         "target": "player",
                         "attribute": "darkness"
                     },
+                    "target": "player",
                     "add": 20
                 }
             },
@@ -1734,6 +1755,7 @@
                     "condition": {
                         "time": "night"
                     },
+                    "target": "player",
                     "add": 20
                 }
             },
@@ -1761,6 +1783,7 @@
                     "condition": {
                         "timeChanged": "nightToDay"
                     },
+                    "target": "player",
                     "add": 30
                 }
             },
@@ -1785,6 +1808,7 @@
                 },
                 "type": "reduceDamage",
                 "fields": {
+                    "target": "player",
                     "amount": 20
                 }
             },
@@ -1834,6 +1858,7 @@
                         "target": "player",
                         "attribute": "flame"
                     },
+                    "target": "player",
                     "add": 10
                 }
             },
@@ -1862,6 +1887,7 @@
                         "target": "player",
                         "attribute": "flame"
                     },
+                    "target": "player",
                     "add": 20
                 }
             },
@@ -1886,6 +1912,7 @@
                 },
                 "type": "modifyAttackPoint",
                 "fields": {
+                    "target": "player",
                     "add": 10
                 }
             },
@@ -1913,6 +1940,7 @@
                     "condition": {
                         "timeChanged": "dayToNight"
                     },
+                    "target": "player",
                     "add": 20
                 }
             },
@@ -1949,6 +1977,7 @@
                             }
                         ]
                     },
+                    "target": "player",
                     "add": 20
                 }
             },
@@ -1998,6 +2027,7 @@
                         "target": "player",
                         "attribute": "electric"
                     },
+                    "target": "player",
                     "add": 10
                 }
             },
@@ -2026,6 +2056,7 @@
                         "target": "player",
                         "attribute": "electric"
                     },
+                    "target": "player",
                     "add": 20
                 }
             },
@@ -2062,6 +2093,7 @@
                             }
                         ]
                     },
+                    "target": "player",
                     "add": 20
                 }
             },
@@ -2089,6 +2121,7 @@
                     "condition": {
                         "timeChanged": "dayToNight"
                     },
+                    "target": "player",
                     "add": 10
                 }
             },
@@ -2116,6 +2149,7 @@
                     "condition": {
                         "timeChanged": "nightToDay"
                     },
+                    "target": "player",
                     "add": 20
                 }
             },
@@ -2146,6 +2180,7 @@
                             "lessThanOrEqual": 1
                         }
                     },
+                    "target": "player",
                     "add": 30
                 }
             },
@@ -2174,6 +2209,7 @@
                         "target": "player",
                         "attribute": "wind"
                     },
+                    "target": "player",
                     "add": 10
                 }
             },
@@ -2202,6 +2238,7 @@
                         "target": "player",
                         "attribute": "wind"
                     },
+                    "target": "player",
                     "add": 20
                 }
             },
@@ -2232,6 +2269,7 @@
                             "lessThanOrEqual": 1
                         }
                     },
+                    "target": "player",
                     "add": 30
                 }
             },
@@ -2259,6 +2297,7 @@
                     "condition": {
                         "time": "day"
                     },
+                    "target": "player",
                     "add": 20
                 }
             },

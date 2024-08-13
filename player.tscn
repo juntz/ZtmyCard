@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bd377sxk4fxdy"]
+[gd_scene load_steps=12 format=3 uid="uid://bd377sxk4fxdy"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_onpsp"]
 [ext_resource type="PackedScene" uid="uid://q1boos0cq5c3" path="res://card.tscn" id="2_pgcg1"]
@@ -7,8 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://cjqvqwm2xpq4t" path="res://card_field.tscn" id="6_flpfl"]
 [ext_resource type="Script" path="res://scripts/hp_bar.gd" id="6_lx0n0"]
 [ext_resource type="Script" path="res://scripts/attack_points.gd" id="7_ksjyq"]
-[ext_resource type="PackedScene" path="res://card_info_container.tscn" id="7_mfhxv"]
+[ext_resource type="PackedScene" uid="uid://cobeil5r75r7b" path="res://card_info_container.tscn" id="7_mfhxv"]
 [ext_resource type="Texture2D" uid="uid://cc57ub34dl8hl" path="res://resources/card_shadow.png" id="7_p4beu"]
+[ext_resource type="Script" path="res://scripts/mulligan_zone.gd" id="8_t5xpj"]
 
 [sub_resource type="Curve2D" id="Curve2D_0n4v4"]
 _data = {
@@ -93,7 +94,7 @@ text = "BATTLE"
 
 [node name="SelectionZone" type="Node2D" parent="."]
 visible = false
-position = Vector2(238, 730)
+position = Vector2(118, 363)
 script = ExtResource("6_bi0n1")
 
 [node name="CardShadow" type="Sprite2D" parent="SelectionZone"]
@@ -112,7 +113,7 @@ base_z_index = 50
 
 [node name="MulliganZone" type="Node2D" parent="."]
 position = Vector2(119, 365)
-script = ExtResource("6_bi0n1")
+script = ExtResource("8_t5xpj")
 
 [node name="CardShadow" type="Sprite2D" parent="MulliganZone"]
 modulate = Color(1, 1, 1, 0.419608)

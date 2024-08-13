@@ -45,12 +45,12 @@ func _process(delta):
 		rotation_left -= ture_rotate_amount
 
 
+@rpc("any_peer", "call_local")
 func turn(time_span: int):
 	if time_span == 0:
 		turn_done.emit()
 		return
 	
-	prev_time = time
 	time = (time + time_span) % TOTAL_STEP
 	if time_span > 0:
 		step_left = time_span - 1
@@ -60,6 +60,7 @@ func turn(time_span: int):
 		rotation_left += time_span * rotation_step
 
 
+@rpc("any_peer", "call_local")
 func revert():
 	var time_span = prev_time - time
 	turn(time_span)
@@ -71,3 +72,7 @@ func is_prev_night():
 
 func is_night():
 	return time < 9
+
+
+func _on_turn_end():
+	prev_time = time

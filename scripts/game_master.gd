@@ -5,11 +5,12 @@ enum Phase{SET, OPEN, CLOCK, ENCHANT, BATTLE}
 
 const MULLIGAN_COUNT = 5
 
+signal battle_end
+
 var players = {}
 var phase = Phase.BATTLE
 var ready_status = {}
 @onready var chronos: Chronos = $"../Chronos"
-var enchant_processor: EnchantProcessor
 
 
 # Called when the node enters the scene tree for the first time.
@@ -22,7 +23,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if _is_ready_for_next_phase():
 		_process_phase_transition()
 		_reset_ready_status()
@@ -199,7 +200,7 @@ func _update_chronos():
 
 
 func _apply_enchant():
-	enchant_processor.enchant_end.connect(_on_enchant_end)
+	$EnchantProcessor.enchant_end.connect(_on_enchant_end)
 	_on_enchant_end()
 
 
@@ -210,9 +211,9 @@ func _on_enchant_end():
 	if cards.size() > 0:
 		var card = cards[0]
 		_move_card(player, card, CardField.Field.ENCHANT)
-		enchant_processor.apply_enchant(card)
+		$EnchantProcessor.apply_enchant(card)
 	else:
-		enchant_processor.enchant_end.disconnect(_on_enchant_end)
+		$EnchantProcessor.enchant_end.disconnect(_on_enchant_end)
 		next_phase_ready()
 
 
@@ -244,9 +245,14 @@ func _swap_battle_field_card(player: Player):
 
 
 func _end_battle():
+	for player: Player in players.values():
+		player.attack_point_addend = 0
+		player.damage_subtrahend = 0
+		player.swap_day_and_night_attack_point = false
 	var player = _get_player()
 	for card in player.card_fields[CardField.Field.ENCHANT].cards():
 		_drop_card(player, card)
+	battle_end.emit()
 
 
 func _is_ready_for_next_phase():
