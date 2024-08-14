@@ -6,18 +6,13 @@ const ENCAHNTING_SCALE = 1.1
 
 signal enchant_end
 
-var main: Main
-var player: Player
-var opponent: Player
+@export var player: Player
+@export var opponent: Player
+@export var game_master: GameMaster
+@export var chronos: Chronos
 var timer: Timer
 var selecting = false
 var enchanting_card: Card
-
-
-func _init(main: Main, player: Player, opponent: Player):
-	self.main = main
-	self.player = player
-	self.opponent = opponent
 
 
 # Called when the node enters the scene tree for the first time.
@@ -26,7 +21,6 @@ func _ready():
 	add_child(timer)
 	timer.one_shot = true
 	timer.timeout.connect(_on_timer_timeout)
-	player.get_node("SelectionZone").card_selected.connect(_on_card_selected)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -56,73 +50,103 @@ func apply_enchant(card: Card):
 
 
 func draw(fields):
-	player._draw_card($Hand)
+	game_master.draw_card(player)
 
 
 func disableClock(fields):
-	main.revert_chronos()
+	chronos.revert.rpc()
 		
 
 func modifyTime(fields):
-	main.revert_chronos()
-	main.turn_chronos(-opponent.battle_field_card().info["clock"])
+	chronos.revert.rpc()
+	chronos.turn.rpc(-opponent.battle_field_card().info["clock"])
 	
 	
 func useFromAbyss(fields):
-	var abyssCards = player.abyss.cards()
+	var abyssCards = player.card_fields[CardField.Field.ABYSS].cards()
 	if abyssCards.size() <= 0:
 		return
 	
 	timer.stop()
 	selecting = true
-	player.send_cards_to_selection_field(abyssCards, player.set_field, player.abyss)
+	var selection_zone = player.get_node("SelectionZone")
+	selection_zone.start_selection(player, CardField.Field.ABYSS)
+	
+	var idx = await selection_zone.card_selected
+	game_master.move_card.rpc(CardField.Field.ABYSS, idx, CardField.Field.SET)
+	selecting = false
+	_end_enchant()
 	
 	
 func reduceDamage(fields):
-	player.damage_reduce = int(fields["amount"])
+	_reduce_damage.rpc(fields)
 	
 	
 func modifyHp(fields):
-	_modify_hp(fields)
+	_modify_hp.rpc(fields)
 	
 	
 func modifyAttackPoint(fields):
-	_modify_attack_point(fields)
+	_modify_attack_point.rpc(fields)
 	
 	
 func swapHandAndAbyss(fields):
-	var abyssCards = player.abyss.cards()
+	var abyssCards = player.card_fields[CardField.Field.ABYSS].cards()
 	if abyssCards.size() <= 0:
 		return
 	
 	timer.stop()
 	selecting = true
-	player.send_cards_to_selection_field(player.hand.cards(), player.abyss, player.hand)
+	var selection_zone = player.get_node("SelectionZone")
+	selection_zone.start_selection(player, CardField.Field.HAND)
+	
+	var idx = await selection_zone.card_selected
+	game_master.move_card.rpc(CardField.Field.ABYSS, -1, CardField.Field.HAND)
+	game_master.move_card.rpc(CardField.Field.HAND, idx, CardField.Field.ABYSS)
+	selecting = false
+	_end_enchant()
 	
 	
 func swapDayAndNightAttackPoint(fields):
-	if fields["target"] == "player":
-		player.swap_day_and_night_attack_point = true
-	else:
-		opponent.swap_day_and_night_attack_point = true	
-			
+	_swap_day_and_night_attack_point.rpc(fields)
 
+
+@rpc("any_peer", "call_local")
 func _modify_hp(fields: Dictionary):
 	if fields.has("condition"):
 		if !_check_card_condition(fields["condition"]):
 			return
 	
-	player.heal(int(fields["add"]))
+	var target = _get_target_player(fields)
+	target.heal(int(fields["add"]))
 
 
+@rpc("any_peer", "call_local")
 func _modify_attack_point(fields: Dictionary):
-	var target = player
 	if fields.has("condition"):
 		if _check_card_condition(fields["condition"]):
-			if target.attack_point_modifier:
-				target.attack_point_modifier = func(n): return target.attack_point_modifier.call(n) + int(fields["add"])
-			else:
-				target.attack_point_modifier = func(n): return n + int(fields["add"])
+			var target = _get_target_player(fields)
+			target.attack_point_addend += int(fields["add"])
+
+
+@rpc("any_peer", "call_local")
+func _reduce_damage(fields: Dictionary):
+	var target = _get_target_player(fields)
+	target.damage_subtrahend += int(fields["amount"])
+
+
+@rpc("any_peer", "call_local")
+func _swap_day_and_night_attack_point(fields: Dictionary):
+	var target = _get_target_player(fields)
+	target.swap_day_and_night_attack_point = true
+
+
+func _get_target_player(fields: Dictionary) -> Player:
+	var call_from_local = multiplayer.get_remote_sender_id() == multiplayer.get_unique_id()
+	var target_is_player = fields["target"] == "player"
+	if call_from_local != target_is_player:
+		return opponent
+	return player
 
 
 func _check_card_condition(condition: Dictionary) -> bool:
@@ -157,15 +181,15 @@ func _check_card_condition(condition: Dictionary) -> bool:
 		if player.hp() > condition["hpLessOrEqual"]:
 			return false
 	if condition.has("time"):
-		if condition["time"] == "night" && !main.is_night():
+		if condition["time"] == "night" && !chronos.is_night():
 			return false
-		if condition["time"] == "day" && main.is_night():
+		if condition["time"] == "day" && chronos.is_night():
 			return false
 	
 	if condition.has("timeChanged"):
-		if condition["timeChanged"] == "dayToNight" && !(!main.is_prev_night() && main.is_night()):
+		if condition["timeChanged"] == "dayToNight" && !(!chronos.is_prev_night() && chronos.is_night()):
 			return false
-		if condition["timeChanged"] == "nightToDay" && !(main.is_prev_night() && !main.is_night()):
+		if condition["timeChanged"] == "nightToDay" && !(chronos.is_prev_night() && !chronos.is_night()):
 			return false
 	
 	if condition.has("abyss"):

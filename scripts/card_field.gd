@@ -1,6 +1,8 @@
 class_name CardField
 extends Area2D
 
+enum Field{NONE, BATTLE, SET, ABYSS, POWER_CHARGER, DECK, HAND, ENCHANT, SELECTION}
+
 @export var cards_offset = Vector2(25, 0)
 @export var card_line_offset = Vector2(0, 150)
 @export var fly_ease_out = true
@@ -58,7 +60,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if scrollable:
 		if Input.is_action_just_pressed("scroll_up"):
 			if col_offset > 0:
@@ -83,14 +85,14 @@ func _reposition_cards():
 		cards[i].set_order(base_z_index + i)
 
 
-func _on_child_entered_tree(node):
+func _on_child_entered_tree(_node):
 	need_reposition = true
 
 
-func _on_child_exiting_tree(node):
+func _on_child_exiting_tree(_node):
 	need_reposition = true
 
 
-func _on_input_event(viewport, event, shape_idx):
+func _on_input_event(_viewport, event, _shape_idx):
 	if event is InputEventKey:
 		event.is_pressed()

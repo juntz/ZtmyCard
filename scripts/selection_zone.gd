@@ -1,36 +1,23 @@
 extends Node2D
 
-signal card_selected(selected, unselected)
-
-var on_card_clicked
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+signal card_selected(idx)
+signal _card_clicked(card)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-func start_selection(cards, on_card_clicked):
-	self.on_card_clicked = on_card_clicked
+func start_selection(player: Player, field: CardField.Field):
+	var cards = player.card_fields[field].cards()
 	for card: Card in cards:
-		card.selectable = true
-		card.card_clicked.disconnect(on_card_clicked)
-		card.card_clicked.connect(_on_card_clicked)
-		card.reparent($SelectionField)
+		var cloned_card = card.clone()
+		cloned_card.selectable = true
+		cloned_card.card_clicked.connect(func(card): _card_clicked.emit(card))
+		cloned_card.show_card()
+		$SelectionField.add_child(cloned_card)
 	visible = true
-		
-		
-func _on_card_clicked(selected_card: Card):
-	var cards = $SelectionField.cards()
-	for card in cards:
-		card.selectable = false
-		card.card_clicked.disconnect(_on_card_clicked)
-		card.card_clicked.connect(on_card_clicked)
-	var unselected = cards
-	unselected.erase(selected_card)
+	
+	var selected_card = await _card_clicked
+	
+	for card in $SelectionField.cards():
+		$SelectionField.remove_child(card)
 	visible = false
-	card_selected.emit(selected_card, unselected)
+	var idx = player.find_card_index(selected_card, field)
+	card_selected.emit(idx)
