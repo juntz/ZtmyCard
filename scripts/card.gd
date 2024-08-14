@@ -8,7 +8,10 @@ signal card_exited(card: Card)
 signal card_clicked(card: Card)
 signal transition_end(card: Card)
 
-var card_scene: PackedScene = preload("res://card.tscn")
+const CARD_INFO_FILE_PATH = "cards/cards.json"
+
+static var card_info: Dictionary
+static var card_scene: PackedScene = preload("res://card.tscn")
 var order = 0
 var hover_scale = 1.1
 var top_z_index = 1000
@@ -28,23 +31,20 @@ var shaking = false
 var shake_amount = 2
 var orginal_pos: Vector2
 
-# 해당 정보는 계승되어야 한다. (instance한 정보가 아님)
-var image_base_path = "./"
-
 
 func clone() -> Card:
 	var card = card_scene.instantiate()
-	# 자신의 base_path도 전달해준다 (중요한 정보임)
-	card.image_base_path = image_base_path
-	card.set_info(info)
+	card._set_info(info)
 	card.global_position = global_position
 	return card
 
 
-func set_info(info):
+func _set_info(info):
 	self.info = info
-	_load_card_image(image_base_path.path_join(str(info["imageFileName"])))
-	
+	var iamge_base_path = str(card_info["imageBasePath"])
+	var image_file_name = str(info["imageFileName"])
+	_load_card_image(iamge_base_path.path_join(image_file_name))
+
 
 func set_order(i: int):
 	order = i
@@ -91,9 +91,25 @@ func fly_to(pos: Vector2, slow_stop = true):
 	flying_length = (target_pos - position).length()
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
+func set_card_number(number: int):
+	var cards = card_info["cards"]
+	_set_info(cards[number - 1])
+
+
+func get_card_number() -> int:
+	return int(info["number"])
+
+
+static func from_card_number(number: int) -> Card:
+	var card: Card = card_scene.instantiate()
+	card.set_card_number(number)
+	return card
+
+
+static func _static_init():
+	var card_file = FileAccess.open(CARD_INFO_FILE_PATH, FileAccess.READ)
+	card_info = JSON.parse_string(card_file.get_as_text())
+	card_file.close()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

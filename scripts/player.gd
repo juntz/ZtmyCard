@@ -178,30 +178,18 @@ func abyss_attribute_count():
 
 
 func _init_deck():
-	var f = FileAccess.open("cards/cards.json", FileAccess.READ)
-	var json = JSON.parse_string(f.get_as_text())
-	var cardInfos = json["cards"]
-	f.close()
-	
-	var deck_card_info = []
-	
+	var card_numbers
 	var deck_file_path = "user://deck.json"
 	if FileAccess.file_exists(deck_file_path) && controllable:
 		var deck_file = FileAccess.open(deck_file_path, FileAccess.READ)
 		var deck_json = JSON.parse_string(deck_file.get_as_text())
-		var card_numbers = deck_json["cards"]
+		card_numbers = deck_json["cards"]
 		deck_file.close()
-		
-		for card_number in card_numbers:
-			deck_card_info.append(cardInfos[card_number - 1])
 	else:
-		deck_card_info = cardInfos.slice(0, 20)
-		
-	deck_card_info.shuffle()
-	for cardInfo in deck_card_info:
-		var card = card_scene.instantiate()
-		card.image_base_path = json["imageBasePath"]
-		card.set_info(cardInfo)
+		card_numbers = range(1, 21)
+	
+	for card_number in card_numbers:
+		var card = Card.from_card_number(card_number)
 		card.card_entered.connect(_on_card_entered)
 		card.card_exited.connect(_on_card_exited)
 		card.card_clicked.connect(_on_card_clicked)

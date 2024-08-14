@@ -88,11 +88,11 @@ func move_card(from, idx, to):
 	
 
 @rpc("any_peer")
-func open_card(from, idx, info):
+func open_card(from, idx, card_number):
 	var player = _get_player()
 	var from_field = player.card_fields[from]
 	var card: Card = from_field.cards()[idx]
-	card.set_info(info)
+	card.set_card_number(card_number)
 	card.show_card()
 
 
@@ -175,7 +175,7 @@ func _open_cards():
 		var cards = player.card_fields[field].cards()
 		for i in len(cards):
 			var card: Card = cards[i]
-			open_card.rpc(field, i, card.info)
+			open_card.rpc(field, i, card.get_card_number())
 
 
 func _battle():
