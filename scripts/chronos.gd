@@ -13,6 +13,7 @@ var pause_left = 0
 var pause_delay = 0.3
 var time = 5
 var prev_time = 5
+var turn_started = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -25,9 +26,6 @@ func _process(delta):
 	if pause_left > 0:
 		pause_left -= delta
 		return
-		
-	if rotation_left == 0:
-		return
 	
 	var rotate_amount = rotation_speed * delta
 	if abs(rotation_left) < rotate_amount:
@@ -37,7 +35,8 @@ func _process(delta):
 			step_left -= 1
 			pause_left = pause_delay
 			rotation_left = rotation_step
-		else:
+		elif turn_started:
+			turn_started = false
 			turn_done.emit()
 	else:
 		var ture_rotate_amount = rotate_amount if rotation_left > 0 else -rotate_amount
@@ -47,17 +46,12 @@ func _process(delta):
 
 @rpc("any_peer", "call_local")
 func turn(time_span: int):
-	if time_span == 0:
-		turn_done.emit()
-		return
-	
 	time = (time + time_span) % TOTAL_STEP
 	if time_span > 0:
-		step_left = time_span - 1
-		rotation_left += rotation_step
+		step_left = time_span
 	else:
-		step_left = 0
 		rotation_left += time_span * rotation_step
+	turn_started = true
 
 
 @rpc("any_peer", "call_local")

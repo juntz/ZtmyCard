@@ -196,8 +196,7 @@ func _battle():
 
 
 func _update_chronos():
-	var total_clock = players.values().map(func(x): return x.get_clock()).reduce(func(a, b): return a + b)
-	chronos.turn(total_clock)
+	chronos.turn.rpc(_get_player().get_clock())
 
 
 func _apply_enchant():
