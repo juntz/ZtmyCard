@@ -136,6 +136,7 @@ func _process_phase_transition():
 		for player: Player in players.values():
 			for i in range(player.draw_require_count):
 				draw_card(player)
+			player.draw_require_count = 0
 			player.set_battle_button_state(true)
 	elif phase == Phase.OPEN:
 		_get_player().set_battle_button_state(false)
