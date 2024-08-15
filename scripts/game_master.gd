@@ -185,14 +185,15 @@ func _battle():
 	).reduce(
 		func(a, b): return a + b
 	)
+	var player_hit_func: Callable
 	for player: Player in players.values():
 		var damage = total_attack_point - 2 * player.get_attack_point(chronos.is_night())
 		if damage < 0:
 			player.attack(damage)
 			await player.attack_end
 		else:
-			player.hit(damage)
-			
+			player_hit_func = func(): player.hit(damage)
+	player_hit_func.call()
 	next_phase_ready()
 
 
