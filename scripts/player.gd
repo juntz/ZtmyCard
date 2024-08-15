@@ -23,7 +23,7 @@ var selection_field_parent
 @onready var deck_zone = $DeckZone
 @onready var hand = $Hand
 var card_fields = {}
-var is_first_turn = true
+var prev_battle_field_card = null
 
 
 @rpc("any_peer")
@@ -48,10 +48,6 @@ func check_powered(card: Card):
 	return card.info["powerCost"] <= get_charged_power()
 
 
-func field_cards():
-	return $BattleField.cards() + set_field_cards()
-
-
 func get_attack_point(is_night: bool) -> int:
 	if $BattleField.cards().size() <= 0:
 		return 0
@@ -66,15 +62,10 @@ func get_attack_point(is_night: bool) -> int:
 
 
 func get_clock() -> int:
-	var cards
-	if is_first_turn:
-		if !battle_field_card():
-			return 0
-		is_first_turn = false
-		cards = field_cards()
-	else:
-		cards = set_field_cards()
+	var cards = card_fields[CardField.Field.BATTLE].cards() + card_fields[CardField.Field.SET].cards()
 	return cards.filter(
+		func(c): return c != prev_battle_field_card
+	).filter(
 		func(c): return check_powered(c)
 	).map(
 		func(c): return int(c.info["clock"])
@@ -120,15 +111,18 @@ func heal(amount):
 		$HpBar.hp = 100
 
 
+func end_battle():
+	attack_point_addend = 0
+	damage_subtrahend = 0
+	swap_day_and_night_attack_point = false
+	prev_battle_field_card = battle_field_card()
+
+
 func battle_field_card():
-	var cards = $BattleField.cards()
+	var cards = card_fields[CardField.Field.BATTLE].cards()
 	if cards.size() > 0:
 		return cards[0]
 	return null
-	
-
-func set_field_cards():
-	return $SetField.cards()
 
 
 func is_all_card_open():

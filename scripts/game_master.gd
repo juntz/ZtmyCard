@@ -147,7 +147,7 @@ func _process_phase_transition():
 	elif phase == Phase.ENCHANT:
 		_apply_enchant()
 	elif phase == Phase.BATTLE:
-		_battle()
+		await _battle()
 		_end_battle()
 
 
@@ -189,6 +189,7 @@ func _battle():
 		var damage = total_attack_point - 2 * player.get_attack_point(chronos.is_night())
 		if damage < 0:
 			player.attack(damage)
+			await player.attack_end
 		else:
 			player.hit(damage)
 			
@@ -246,9 +247,7 @@ func _swap_battle_field_card(player: Player):
 
 func _end_battle():
 	for player: Player in players.values():
-		player.attack_point_addend = 0
-		player.damage_subtrahend = 0
-		player.swap_day_and_night_attack_point = false
+		player.end_battle()
 	var player = _get_player()
 	for card in player.card_fields[CardField.Field.ENCHANT].cards():
 		_drop_card(player, card)

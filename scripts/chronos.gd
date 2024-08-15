@@ -48,7 +48,7 @@ func _process(delta):
 func turn(time_span: int):
 	time = (time + time_span) % TOTAL_STEP
 	if time_span > 0:
-		step_left = time_span
+		step_left += time_span
 	else:
 		rotation_left += time_span * rotation_step
 	turn_started = true
