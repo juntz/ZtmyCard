@@ -1,6 +1,8 @@
 class_name Player
 extends Node2D
 
+enum Field{NONE, BATTLE, SET, ABYSS, POWER_CHARGER, DECK, HAND, ENCHANT, SELECTION}
+
 signal attack_end
 
 @export var card_scene: PackedScene
@@ -48,6 +50,10 @@ func check_powered(card: Card):
 	return card.info["powerCost"] <= get_charged_power()
 
 
+func get_cards(field: Field) -> Array[Card]:
+	return card_fields[field].cards()
+
+
 func get_attack_point(is_night: bool) -> int:
 	if $BattleField.cards().size() <= 0:
 		return 0
@@ -62,7 +68,7 @@ func get_attack_point(is_night: bool) -> int:
 
 
 func get_clock() -> int:
-	var cards = card_fields[CardField.Field.BATTLE].cards() + card_fields[CardField.Field.SET].cards()
+	var cards = get_cards(Field.BATTLE) + get_cards(Field.SET)
 	return cards.filter(
 		func(c): return c != prev_battle_field_card
 	).filter(
@@ -119,14 +125,14 @@ func end_battle():
 
 
 func battle_field_card():
-	var cards = card_fields[CardField.Field.BATTLE].cards()
+	var cards = card_fields[Field.BATTLE].cards()
 	if cards.size() > 0:
 		return cards[0]
 	return null
 
 
 func is_all_card_open():
-	for field in [CardField.Field.BATTLE, CardField.Field.SET]:
+	for field in [Field.BATTLE, Field.SET]:
 		for card: Card in card_fields[field].cards():
 			if card.is_closed():
 				return false
@@ -141,14 +147,14 @@ func send_cards_to_selection_field(cards, target_field, return_field):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	card_fields[CardField.Field.BATTLE] = $BattleField
-	card_fields[CardField.Field.SET] = $SetField
-	card_fields[CardField.Field.ABYSS] = $Abyss
-	card_fields[CardField.Field.POWER_CHARGER] = $PowerCharger
-	card_fields[CardField.Field.DECK] = $DeckZone
-	card_fields[CardField.Field.HAND] = $Hand
-	card_fields[CardField.Field.ENCHANT] = $EnchantZone
-	card_fields[CardField.Field.SELECTION] = $MulliganZone/SelectionField
+	card_fields[Field.BATTLE] = $BattleField
+	card_fields[Field.SET] = $SetField
+	card_fields[Field.ABYSS] = $Abyss
+	card_fields[Field.POWER_CHARGER] = $PowerCharger
+	card_fields[Field.DECK] = $DeckZone
+	card_fields[Field.HAND] = $Hand
+	card_fields[Field.ENCHANT] = $EnchantZone
+	card_fields[Field.SELECTION] = $MulliganZone/SelectionField
 	
 	$CardInfoContainer.visible = false
 	_init_deck()
@@ -256,15 +262,15 @@ func _on_card_exited(card: Card):
 		$CardInfoContainer.visible = false
 
 
-func find_card_field(card: Card) -> CardField.Field:
+func find_card_field(card: Card) -> Field:
 	for field in card_fields.keys():
-		if card_fields[field].cards().has(card):
+		if get_cards(field).has(card):
 			return field
-	return CardField.Field.NONE
+	return Field.NONE
 
 
-func find_card_index(card: Card, field: CardField.Field) -> int:
-	return card_fields[field].cards().find(card)
+func find_card_index(card: Card, field: Field) -> int:
+	return get_cards(field).find(card)
 
 
 func _on_card_clicked(card: Card):

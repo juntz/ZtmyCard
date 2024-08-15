@@ -63,17 +63,17 @@ func modifyTime(fields):
 	
 	
 func useFromAbyss(fields):
-	var abyssCards = player.card_fields[CardField.Field.ABYSS].cards()
+	var abyssCards = player.get_cards(Player.Field.ABYSS)
 	if abyssCards.size() <= 0:
 		return
 	
 	timer.stop()
 	selecting = true
 	var selection_zone = player.get_node("SelectionZone")
-	selection_zone.start_selection(player, CardField.Field.ABYSS)
+	selection_zone.start_selection(player, Player.Field.ABYSS)
 	
 	var idx = await selection_zone.card_selected
-	game_master.move_card.rpc(CardField.Field.ABYSS, idx, CardField.Field.SET)
+	game_master.move_card.rpc(Player.Field.ABYSS, idx, Player.Field.SET)
 	selecting = false
 	_end_enchant()
 	
@@ -91,18 +91,18 @@ func modifyAttackPoint(fields):
 	
 	
 func swapHandAndAbyss(fields):
-	var abyssCards = player.card_fields[CardField.Field.ABYSS].cards()
+	var abyssCards = player.get_cards(Player.Field.ABYSS)
 	if abyssCards.size() <= 0:
 		return
 	
 	timer.stop()
 	selecting = true
 	var selection_zone = player.get_node("SelectionZone")
-	selection_zone.start_selection(player, CardField.Field.HAND)
+	selection_zone.start_selection(player, Player.Field.HAND)
 	
 	var idx = await selection_zone.card_selected
-	game_master.move_card.rpc(CardField.Field.ABYSS, -1, CardField.Field.HAND)
-	game_master.move_card.rpc(CardField.Field.HAND, idx, CardField.Field.ABYSS)
+	game_master.move_card.rpc(Player.Field.ABYSS, -1, Player.Field.HAND)
+	game_master.move_card.rpc(Player.Field.HAND, idx, Player.Field.ABYSS)
 	selecting = false
 	_end_enchant()
 	

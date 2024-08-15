@@ -33,27 +33,28 @@ func _process(_delta):
 
 
 func select_card(player: Player, card: Card):
-	if card.get_parent() == player.card_fields[CardField.Field.SELECTION]:
+	var card_field = player.find_card_field(card)
+	if card_field == Player.Field.SELECTION:
 		card.selectable = false
 		card.unset_hover()
-		_move_card(player, card, CardField.Field.ABYSS)
+		_move_card(player, card, Player.Field.ABYSS)
 		player.draw_require_count += 1
 		return true
 	
-	if card.get_parent() == player.card_fields[CardField.Field.HAND]:
+	if card_field == Player.Field.HAND:
 		if player.controllable:
 			pass
-		if player.card_fields[CardField.Field.BATTLE].cards().size() <= 0 && (card.info["type"] == "character"):
-			_move_card(player, card, CardField.Field.BATTLE)
+		if player.battle_field_card() == null && (card.info["type"] == "character"):
+			_move_card(player, card, Player.Field.BATTLE)
 			player.draw_require_count += 1
-		elif player.card_fields[CardField.Field.SET].cards().size() < player.setable_card_count:
-			_move_card(player, card, CardField.Field.SET)
+		elif player.get_cards(Player.Field.SET).size() < player.setable_card_count:
+			_move_card(player, card, Player.Field.SET)
 			player.draw_require_count += 1
 		else:
 			return false
 		return true
 	
-	_move_card(player, card, CardField.Field.HAND)
+	_move_card(player, card, Player.Field.HAND)
 	player.draw_require_count -= 1
 	return true
 
@@ -72,7 +73,7 @@ func next_phase_ready_remote(target_phase: Phase):
 	ready_status[sender_id][target_phase] = true
 
 
-func _move_card(player: Player, card: Card, to: CardField.Field):
+func _move_card(player: Player, card: Card, to: Player.Field):
 	var from = player.find_card_field(card)
 	var idx = player.find_card_index(card, from)
 	move_card.rpc(from, idx, to)
@@ -98,19 +99,19 @@ func open_card(from, idx, info):
 
 func finish_mulligan():
 	var player = _get_player()
-	for card in player.card_fields[CardField.Field.SELECTION].cards():
-		_move_card(player, card, CardField.Field.HAND)
-	for card in player.card_fields[CardField.Field.ABYSS].cards():
+	for card in player.get_cards(Player.Field.SELECTION):
+		_move_card(player, card, Player.Field.HAND)
+	for card in player.get_cards(Player.Field.ABYSS):
 		card.close_card()
 		card.selectable = false
-		_move_card(player, card, CardField.Field.DECK)
-	player.card_fields[CardField.Field.DECK].shuffle()
+		_move_card(player, card, Player.Field.DECK)
+	player.card_fields[Player.Field.DECK].shuffle()
 
 
 func _ready_mulligan():
 	var player = _get_player()
 	for i in range(MULLIGAN_COUNT):
-		draw_card(player, CardField.Field.SELECTION)
+		draw_card(player, Player.Field.SELECTION)
 
 
 func _get_init_ready_status():
@@ -149,8 +150,8 @@ func _process_phase_transition():
 		_end_battle()
 
 
-func draw_card(player: Player, to = CardField.Field.HAND):
-	var deck_cards = player.card_fields[CardField.Field.DECK].cards()
+func draw_card(player: Player, to = Player.Field.HAND):
+	var deck_cards = player.get_cards(Player.Field.DECK)
 	if deck_cards.size() == 0:
 		return
 	
@@ -170,21 +171,21 @@ func _draw_cards():
 
 
 func _drop_card(player: Player, card: Card):
-	var target_card_field = CardField.Field.POWER_CHARGER \
+	var target_card_field = Player.Field.POWER_CHARGER \
 		if int(card.info["sendToPower"]) > 0 else \
-		CardField.Field.ABYSS
+		Player.Field.ABYSS
 	_move_card(player, card, target_card_field)
 
 
 func _set_player_hand_card_selectable(selectable: bool):
-	for card in _get_player().card_fields[CardField.Field.HAND].cards():
+	for card in _get_player().get_cards(Player.Field.HAND):
 		card.selectable = selectable
 
 
 func _open_cards():
 	var player = _get_player()
-	for field in [CardField.Field.BATTLE, CardField.Field.SET]:
-		var cards = player.card_fields[field].cards()
+	for field in [Player.Field.BATTLE, Player.Field.SET]:
+		var cards = player.get_cards(field)
 		for i in len(cards):
 			var card: Card = cards[i]
 			open_card.rpc(field, i, card.info)
@@ -219,11 +220,10 @@ func _apply_enchant():
 
 func _on_enchant_end():
 	var player = _get_player()
-	var set_field = player.card_fields[CardField.Field.SET]
-	var cards = set_field.cards()
+	var cards = player.get_cards(Player.Field.SET)
 	if cards.size() > 0:
 		var card = cards[0]
-		_move_card(player, card, CardField.Field.ENCHANT)
+		_move_card(player, card, Player.Field.ENCHANT)
 		$EnchantProcessor.apply_enchant(card)
 	else:
 		$EnchantProcessor.enchant_end.disconnect(_on_enchant_end)
@@ -233,27 +233,27 @@ func _on_enchant_end():
 func _ready_battle():
 	var player = _get_player()
 	_swap_battle_field_card(player)
-	for field in [CardField.Field.BATTLE, CardField.Field.SET]:
-		for card in player.card_fields[field].cards():
+	for field in [Player.Field.BATTLE, Player.Field.SET]:
+		for card in player.get_cards(field):
 			card.selectable = false
 
 
 func _swap_battle_field_card(player: Player):
-	var set_field_cards = player.card_fields[CardField.Field.SET].cards()
+	var set_field_cards = player.get_cards(Player.Field.SET)
 	for i in set_field_cards.size():
 		var card = set_field_cards[i]
 		if card.info["type"] != "character":
 			continue
 		
-		var battle_field_cards = player.card_fields[CardField.Field.BATTLE].cards()
+		var battle_field_cards = player.get_cards(Player.Field.BATTLE)
 		if battle_field_cards.size() == 0:
 			return
 		
-		var drop_target_field = CardField.Field.ABYSS
+		var drop_target_field = Player.Field.ABYSS
 		if battle_field_cards[0].info["sendToPower"] > 0:
-			drop_target_field = CardField.Field.POWER_CHARGER
-		move_card.rpc(CardField.Field.BATTLE, 0, drop_target_field)
-		move_card.rpc(CardField.Field.SET, i, CardField.Field.BATTLE)
+			drop_target_field = Player.Field.POWER_CHARGER
+		move_card.rpc(Player.Field.BATTLE, 0, drop_target_field)
+		move_card.rpc(Player.Field.SET, i, Player.Field.BATTLE)
 		return
 
 
@@ -261,7 +261,7 @@ func _end_battle():
 	for player: Player in players.values():
 		player.end_battle()
 	var player = _get_player()
-	for card in player.card_fields[CardField.Field.ENCHANT].cards():
+	for card in player.get_cards(Player.Field.ENCHANT):
 		_drop_card(player, card)
 	battle_end.emit()
 

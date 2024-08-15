@@ -1,8 +1,6 @@
 class_name CardField
 extends Area2D
 
-enum Field{NONE, BATTLE, SET, ABYSS, POWER_CHARGER, DECK, HAND, ENCHANT, SELECTION}
-
 @export var cards_offset = Vector2(25, 0)
 @export var card_line_offset = Vector2(0, 150)
 @export var fly_ease_out = true
@@ -14,8 +12,11 @@ var row_offset = 0
 var col_offset = 0
 
 
-func cards() -> Array[Node]:
-	return get_children().filter(func(node): return node is Card)
+func cards() -> Array[Card]:
+	var result: Array[Card]
+	var cards = get_children().filter(func(node): return node is Card)
+	result.assign(cards)
+	return result
 
 
 func shuffle():

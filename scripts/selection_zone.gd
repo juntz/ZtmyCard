@@ -4,7 +4,7 @@ signal card_selected(idx)
 signal _card_clicked(card)
 
 
-func start_selection(player: Player, field: CardField.Field):
+func start_selection(player: Player, field: Player.Field):
 	var cards = player.card_fields[field].cards()
 	for card: Card in cards:
 		var cloned_card = card.clone()
