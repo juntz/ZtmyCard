@@ -133,13 +133,11 @@ func _process_phase_transition():
 	print("Current phase: " + Phase.keys()[phase])
 	
 	if phase == Phase.SET:
-		for player: Player in players.values():
-			for i in range(player.draw_require_count):
-				draw_card(player)
-			player.draw_require_count = 0
-			player.set_battle_button_state(true)
+		_draw_cards()
+		_set_player_hand_card_selectable(true)
 	elif phase == Phase.OPEN:
 		_get_player().set_battle_button_state(false)
+		_set_player_hand_card_selectable(false)
 		_open_cards()
 	elif phase == Phase.CLOCK:
 		_ready_battle()
@@ -163,11 +161,24 @@ func draw_card(player: Player, to = CardField.Field.HAND):
 		card.selectable = true
 
 
+func _draw_cards():
+	for player: Player in players.values():
+		for i in range(player.draw_require_count):
+			draw_card(player)
+		player.draw_require_count = 0
+		player.set_battle_button_state(true)
+
+
 func _drop_card(player: Player, card: Card):
 	var target_card_field = CardField.Field.POWER_CHARGER \
 		if int(card.info["sendToPower"]) > 0 else \
 		CardField.Field.ABYSS
 	_move_card(player, card, target_card_field)
+
+
+func _set_player_hand_card_selectable(selectable: bool):
+	for card in _get_player().card_fields[CardField.Field.HAND].cards():
+		card.selectable = selectable
 
 
 func _open_cards():
