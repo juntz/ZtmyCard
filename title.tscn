@@ -22,6 +22,7 @@ scale = Vector2(0.84, 0.84)
 texture = ExtResource("1_sx5t7")
 
 [node name="SinglePlayerButton" parent="." instance=ExtResource("3_3ywkd")]
+auto_translate_mode = 2
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -33,12 +34,12 @@ offset_right = 626.32
 offset_bottom = 447.0
 grow_horizontal = 2
 grow_vertical = 2
-auto_translate = false
 disabled = true
 text = "SINGLE PLAYER"
 target_scene = ExtResource("4_3kw8j")
 
 [node name="MultiplayerButton" parent="." instance=ExtResource("3_3ywkd")]
+auto_translate_mode = 2
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -50,7 +51,6 @@ offset_right = 624.32
 offset_bottom = 502.0
 grow_horizontal = 2
 grow_vertical = 2
-auto_translate = false
 text = "MULTIPLAYER"
 target_scene = ExtResource("5_t2s3p")
 
