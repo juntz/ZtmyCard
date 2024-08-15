@@ -15,9 +15,9 @@ func start_selection(player: Player, field: CardField.Field):
 	visible = true
 	
 	var selected_card = await _card_clicked
+	var idx = $SelectionField.cards().find(selected_card)
 	
 	for card in $SelectionField.cards():
 		$SelectionField.remove_child(card)
 	visible = false
-	var idx = player.find_card_index(selected_card, field)
 	card_selected.emit(idx)
