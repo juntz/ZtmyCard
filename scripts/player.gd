@@ -7,8 +7,6 @@ signal attack_end
 
 @export var card_scene: PackedScene
 @export var controllable: bool
-@export var opponent: Player
-@export var main: Main
 @export var game_master: GameMaster
 var draw_require_count = 0
 var setable_card_count = 0
@@ -17,13 +15,6 @@ var attack_scale = 1.3
 var damage_subtrahend = 0
 var damage = 0
 var swap_day_and_night_attack_point = false
-var selection_field_target
-var selection_field_parent
-@onready var battle_field = $BattleField
-@onready var set_field = $SetField
-@onready var abyss = $Abyss
-@onready var deck_zone = $DeckZone
-@onready var hand = $Hand
 var card_fields = {}
 var prev_battle_field_card = null
 
@@ -139,12 +130,6 @@ func is_all_card_open():
 	return true
 
 
-func send_cards_to_selection_field(cards, target_field, return_field):
-	selection_field_parent = return_field
-	selection_field_target = target_field
-	$SelectionZone.start_selection(cards, _on_card_clicked)
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	card_fields[Field.BATTLE] = $BattleField
@@ -162,7 +147,7 @@ func _ready():
 		$ReadyButton.visible = false
 		$MulliganZone.visible = false
 	
-	$MulliganZone.card_selected.connect(_on_card_selected)
+	$MulliganZone.card_selected.connect(_on_mulligan_card_selected)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -234,12 +219,6 @@ func _on_selection_done_button_pressed():
 	game_master.next_phase_ready()
 
 
-func _on_card_selected(selected, unselected):
-	selected.reparent(selection_field_target)
-	for card in unselected:
-		card.reparent(selection_field_parent)
-
-
 func _on_card_entered(card: Card):
 	$CardInfoContainer.visible = true
 	$CardInfoContainer.current_card = card
@@ -260,6 +239,12 @@ func _on_card_entered(card: Card):
 func _on_card_exited(card: Card):
 	if $CardInfoContainer.current_card == card:
 		$CardInfoContainer.visible = false
+
+
+func _on_mulligan_card_selected(card: Card):
+	var from = Field.SELECTION
+	var idx = find_card_index(card, from)
+	game_master.move_card(from, card, Field.ABYSS)
 
 
 func find_card_field(card: Card) -> Field:

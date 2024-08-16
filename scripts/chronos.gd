@@ -29,7 +29,7 @@ func _process(delta):
 	
 	var rotate_amount = rotation_speed * delta
 	if abs(rotation_left) < rotate_amount:
-		rotate(rotation_left)
+		rotate(-rotation_left)
 		rotation_left = 0
 		if step_left > 0:
 			step_left -= 1
@@ -40,7 +40,7 @@ func _process(delta):
 			turn_done.emit()
 	else:
 		var ture_rotate_amount = rotate_amount if rotation_left > 0 else -rotate_amount
-		rotate(ture_rotate_amount)
+		rotate(-ture_rotate_amount)
 		rotation_left -= ture_rotate_amount
 
 
