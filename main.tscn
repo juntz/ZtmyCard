@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://nc7kybcnbhmp"]
+[gd_scene load_steps=13 format=3 uid="uid://nc7kybcnbhmp"]
 
 [ext_resource type="Texture2D" uid="uid://njltp1wf0f7y" path="res://resources/mat.png" id="1_jxmyf"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_m1pte"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scripts/game_master.gd" id="10_0l7ah"]
 [ext_resource type="Script" path="res://scripts/enchant_processor.gd" id="10_vjxuj"]
 [ext_resource type="Texture2D" uid="uid://b0h36ixhyg48w" path="res://resources/second_hand.png" id="11_3o78s"]
+[ext_resource type="Texture2D" uid="uid://y07q6n0p0484" path="res://resources/chronos_outline.png" id="12_crcbc"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_m1pte")
@@ -89,6 +90,12 @@ position = Vector2(4.00001, 641)
 rotation = 0.785398
 scale = Vector2(0.72, 0.72)
 texture = ExtResource("11_3o78s")
+
+[node name="ChronosOutline" type="Sprite2D" parent="."]
+position = Vector2(-71, 727)
+rotation = 2.03331
+scale = Vector2(0.745, 0.745)
+texture = ExtResource("12_crcbc")
 
 [connection signal="battle_end" from="GameMaster" to="Chronos" method="_on_turn_end"]
 
