@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/card.gd" id="1_heoxq"]
 [ext_resource type="Texture2D" uid="uid://cc57ub34dl8hl" path="res://resources/card_shadow.png" id="2_fv8du"]
 [ext_resource type="Texture2D" uid="uid://11mywxu8l3si" path="res://resources/card_sample.png" id="3_v70mh"]
-[ext_resource type="Texture2D" uid="uid://dl62dt4bpgv8w" path="res://resources/card_backing.webp" id="4_pdc3w"]
+[ext_resource type="Texture2D" uid="uid://bcfet1maebuif" path="res://resources/card-backing-color.png" id="4_yvf2j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cmwe8"]
 size = Vector2(92, 128)
@@ -20,8 +20,8 @@ scale = Vector2(0.13, 0.13)
 texture = ExtResource("3_v70mh")
 
 [node name="CardBack" type="Sprite2D" parent="."]
-scale = Vector2(0.13, 0.13)
-texture = ExtResource("4_pdc3w")
+scale = Vector2(0.093, 0.093)
+texture = ExtResource("4_yvf2j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cmwe8")

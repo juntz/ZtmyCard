@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://y07q6n0p0484"
-path="res://.godot/imported/chronos_outline.png-2f0ea5e54b4220f88d684cbceebbd5d1.ctex"
+uid="uid://bcfet1maebuif"
+path="res://.godot/imported/card-backing-color.png-02b5322697c510a786bc497f34a3ef40.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/chronos_outline.png"
-dest_files=["res://.godot/imported/chronos_outline.png-2f0ea5e54b4220f88d684cbceebbd5d1.ctex"]
+source_file="res://resources/card-backing-color.png"
+dest_files=["res://.godot/imported/card-backing-color.png-02b5322697c510a786bc497f34a3ef40.ctex"]
 
 [params]
 
