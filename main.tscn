@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://scripts/background.gd" id="3_ydkjl"]
 [ext_resource type="Texture2D" uid="uid://d12qy5cuvf0mv" path="res://resources/orange_circle.png" id="5_d542b"]
 [ext_resource type="Script" path="res://scripts/chronos.gd" id="6_2ficq"]
-[ext_resource type="Texture2D" uid="uid://ct5psk2udwhrf" path="res://resources/chronos.png" id="8_mehti"]
+[ext_resource type="Texture2D" uid="uid://b4e4d8upf1iut" path="res://resources/chronos.svg" id="8_m762a"]
 [ext_resource type="Script" path="res://scripts/game_master.gd" id="10_0l7ah"]
 [ext_resource type="Script" path="res://scripts/enchant_processor.gd" id="10_vjxuj"]
 [ext_resource type="Texture2D" uid="uid://b0h36ixhyg48w" path="res://resources/second_hand.png" id="11_3o78s"]
@@ -70,8 +70,8 @@ scale = Vector2(0.13, 0.13)
 texture = ExtResource("5_d542b")
 
 [node name="Chronos" type="Sprite2D" parent="Chronos"]
-scale = Vector2(0.58, 0.58)
-texture = ExtResource("8_mehti")
+scale = Vector2(0.715, 0.715)
+texture = ExtResource("8_m762a")
 
 [node name="GameMaster" type="Node" parent="."]
 script = ExtResource("10_0l7ah")

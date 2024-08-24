@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcfet1maebuif"
-path="res://.godot/imported/card-backing-color.png-02b5322697c510a786bc497f34a3ef40.ctex"
+uid="uid://b4e4d8upf1iut"
+path="res://.godot/imported/chronos.svg-6b604bd6ce8918a6a283456ca6ed6568.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/card-backing-color.png"
-dest_files=["res://.godot/imported/card-backing-color.png-02b5322697c510a786bc497f34a3ef40.ctex"]
+source_file="res://resources/chronos.svg"
+dest_files=["res://.godot/imported/chronos.svg-6b604bd6ce8918a6a283456ca6ed6568.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false
