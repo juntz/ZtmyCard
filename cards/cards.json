@@ -9,7 +9,9 @@
             "attribute": "darkness",
             "clock": 5,
             "name": {
-                "ja": "にらちゃん(お勉強しといてよ)"
+                "ja": "にらちゃん(お勉強しといてよ)",
+                "en": "NIRA-CHAN (STUDY ME)",
+                "ko": "니라(공부해 둬)"
             },
             "number": 1,
             "imageFileName": "zutomayocard_1st_1.png",
@@ -194,7 +196,8 @@
             "clock": 1,
             "name": {
                 "ja": "にらちゃん(お勉強しといてよ)",
-                "en": "NIRA-CHAN (STUDY ME)"
+                "en": "NIRA-CHAN (STUDY ME)",
+                "ko": "니라(공부해 둬)"
             },
             "number": 9,
             "imageFileName": "zutomayocard_1st_9.png",
@@ -213,7 +216,8 @@
             "clock": 0,
             "name": {
                 "ja": "にらちゃん(胸の煙)",
-                "en": "NIRA-CHAN (One's Mind)"
+                "en": "NIRA-CHAN (One's Mind)",
+                "ko": "니라(마음의 연기)"
             },
             "number": 10,
             "imageFileName": "zutomayocard_1st_10.png",
@@ -232,7 +236,8 @@
             "clock": 5,
             "name": {
                 "ja": "にらちゃん(ばかじゃないのに)",
-                "en": "NIRA-CHAN (Stay Foolish)"
+                "en": "NIRA-CHAN (Stay Foolish)",
+                "ko": "니라(바보가 아닌데도)"
             },
             "number": 11,
             "imageFileName": "zutomayocard_1st_11.png",
@@ -251,7 +256,8 @@
             "clock": 1,
             "name": {
                 "ja": "にらちゃん［アニメーター］(猫リセット)",
-                "en": "NIRA-CHAN[Job:Animator] (Neko Reset)"
+                "en": "NIRA-CHAN[Job:Animator] (Neko Reset)",
+                "ko": "니라[애니메이터](네코리셋)"
             },
             "number": 12,
             "imageFileName": "zutomayocard_1st_12.png",
@@ -269,7 +275,9 @@
             "attribute": "flame",
             "clock": 2,
             "name": {
-                "ja": "アフロ☆サムライ(MILABO)"
+                "ja": "アフロ☆サムライ(MILABO)",
+                "en": "AFRO☆SAMURAI (MILABO)",
+                "ko": "아프로☆사무라이(MILABO)"
             },
             "number": 13,
             "imageFileName": "zutomayocard_1st_13.png",
@@ -287,7 +295,9 @@
             "attribute": "flame",
             "clock": 1,
             "name": {
-                "ja": "にらちゃん(JK BOMBER)"
+                "ja": "にらちゃん(JK BOMBER)",
+                "en": "NIRA-CHAN (JK BOMBER)",
+                "ko": "니라(JK BOMBER)"
             },
             "number": 14,
             "imageFileName": "zutomayocard_1st_14.png",
@@ -305,7 +315,9 @@
             "attribute": "flame",
             "clock": 3,
             "name": {
-                "ja": "にらちゃん(マイノリティ脈絡)"
+                "ja": "にらちゃん(マイノリティ脈絡)",
+                "en": "NIRA-CHAN (Minority Myakuraku)",
+                "ko": "니라(마이너리티 맥락)"
             },
             "number": 15,
             "imageFileName": "zutomayocard_1st_15.png",
@@ -323,7 +335,9 @@
             "attribute": "flame",
             "clock": 1,
             "name": {
-                "ja": "にらちゃん(秒針を噛む)"
+                "ja": "にらちゃん(秒針を噛む)",
+                "en": "NIRA-CHAN (Byoushinwo Kamu)",
+                "ko": "니라(초침을 깨물다)"
             },
             "number": 16,
             "imageFileName": "zutomayocard_1st_16.png",
@@ -341,7 +355,9 @@
             "attribute": "electric",
             "clock": 5,
             "name": {
-                "ja": "にらちゃん(ハゼ馳せる果てるまで)"
+                "ja": "にらちゃん(ハゼ馳せる果てるまで)",
+                "en": "NIRA-CHAN (Haze Haseru Haterumade)",
+                "ko": "니라(망둥이 달린다 끝까지)"
             },
             "number": 17,
             "imageFileName": "zutomayocard_1st_17.png",
@@ -359,7 +375,9 @@
             "attribute": "electric",
             "clock": 0,
             "name": {
-                "ja": "にらちゃん(あいつら全員同窓会)"
+                "ja": "にらちゃん(あいつら全員同窓会)",
+                "en": "NIRA-CHAN (Inside Joke)",
+                "ko": "니라(저 녀석들 전원 동창회)"
             },
             "number": 18,
             "imageFileName": "zutomayocard_1st_18.png",
@@ -377,7 +395,9 @@
             "attribute": "electric",
             "clock": 5,
             "name": {
-                "ja": "にらちゃん(ミラーチューン)"
+                "ja": "にらちゃん(ミラーチューン)",
+                "en": "NIRA-CHAN (MIRROR TUNE)",
+                "ko": "니라(미러 튠)"
             },
             "number": 19,
             "imageFileName": "zutomayocard_1st_19.png",
@@ -395,7 +415,9 @@
             "attribute": "electric",
             "clock": 1,
             "name": {
-                "ja": "ZUTOMAYO SQUARE"
+                "ja": "ZUTOMAYO SQUARE",
+                "en": "ZUTOMAYO SQUARE",
+                "ko": "ZUTOMAYO SQUARE"
             },
             "number": 20,
             "imageFileName": "zutomayocard_1st_20.png",
@@ -413,7 +435,9 @@
             "attribute": "wind",
             "clock": 3,
             "name": {
-                "ja": "うにぐり増殖中"
+                "ja": "うにぐり増殖中",
+                "en": "UNIGURI are multiplying",
+                "ko": "우니구리 증식중"
             },
             "number": 21,
             "imageFileName": "zutomayocard_1st_21.png",
@@ -431,7 +455,9 @@
             "attribute": "wind",
             "clock": 3,
             "name": {
-                "ja": "にらちゃん(ヒューマノイド)"
+                "ja": "にらちゃん(ヒューマノイド)",
+                "en": "NIRA-CHAN (Humanoid)",
+                "ko": "니라(휴머노이드)"
             },
             "number": 22,
             "imageFileName": "zutomayocard_1st_22.png",
@@ -449,7 +475,9 @@
             "attribute": "wind",
             "clock": 3,
             "name": {
-                "ja": "にらちゃん(勘ぐれい)"
+                "ja": "にらちゃん(勘ぐれい)",
+                "en": "NIRA-CHAN (Hunch Gray)",
+                "ko": "니라(감 그레이)"
             },
             "number": 23,
             "imageFileName": "zutomayocard_1st_23.png",
@@ -467,7 +495,9 @@
             "attribute": "wind",
             "clock": 2,
             "name": {
-                "ja": "にらちゃん(正しくなれない)"
+                "ja": "にらちゃん(正しくなれない)",
+                "en": "NIRA-CHAN (Can't Be Right)",
+                "ko": "니라(올바르게 될 수 없어)"
             },
             "number": 24,
             "imageFileName": "zutomayocard_1st_24.png",
@@ -497,7 +527,9 @@
                 }
             },
             "name": {
-                "ja": "顕現するハサミ"
+                "ja": "顕現するハサミ",
+                "en": "Incarnation of HASAMI",
+                "ko": "현현하는 가위"
             },
             "number": 25,
             "imageFileName": "zutomayocard_1st_25.png",
@@ -522,7 +554,9 @@
                 }
             },
             "name": {
-                "ja": "開幕宣言"
+                "ja": "開幕宣言",
+                "en": "Declaration of the Opening",
+                "ko": "개막선언"
             },
             "number": 26,
             "imageFileName": "zutomayocard_1st_26.png",
@@ -538,6 +572,7 @@
             "effect": {
                 "description": {
                     "ja": "相手のキャラクターカードの属性が電気なら攻撃力+50",
+                    "en": "Attack +50 if the attribute of the opponent's character card is electric.",
                     "ko": "상대 캐릭터 카드의 속성이 전기일 경우 공격력+50"
                 },
                 "type": "modifyAttackPoint",
@@ -551,7 +586,9 @@
                 }
             },
             "name": {
-                "ja": "ミラーシューター"
+                "ja": "ミラーシューター",
+                "en": "Mirror Shooter",
+                "ko": "미러 슈터"
             },
             "number": 27,
             "imageFileName": "zutomayocard_1st_27.png",
@@ -567,6 +604,7 @@
             "effect": {
                 "description": {
                     "ja": "自分がダメージを受けたとき40ダメージを軽減する",
+                    "en": "40 damage reduction when you take damage.",
                     "ko": "자신이 데미지를 받았을 시 40데미지 경감"
                 },
                 "type": "reduceDamage",
@@ -576,7 +614,9 @@
                 }
             },
             "name": {
-                "ja": "お勉強会"
+                "ja": "お勉強会",
+                "en": "Study Group",
+                "ko": "공부회"
             },
             "number": 28,
             "imageFileName": "zutomayocard_1st_28.png",
@@ -592,6 +632,7 @@
             "effect": {
                 "description": {
                     "ja": "相手のキャラクターカードの属性が闇なら攻撃力+50",
+                    "en": "Attack +50 if the attribute of the opponent's character card is darkness.",
                     "ko": "상대 캐릭터 카드의 속성이 어둠일 경우 공격력+50"
                 },
                 "type": "modifyAttackPoint",
@@ -605,7 +646,9 @@
                 }
             },
             "name": {
-                "ja": "稲妻のレンジ"
+                "ja": "稲妻のレンジ",
+                "en": "Microwave Oven of Lightning",
+                "ko": "번개렌지"
             },
             "number": 29,
             "imageFileName": "zutomayocard_1st_29.png",
@@ -621,6 +664,7 @@
             "effect": {
                 "description": {
                     "ja": "自分の攻撃力+30",
+                    "en": "Your attack power is increased by 30.",
                     "ko": "자신의 공격력+30"
                 },
                 "type": "modifyAttackPoint",
@@ -630,7 +674,9 @@
                 }
             },
             "name": {
-                "ja": "爆弾みたいな球体"
+                "ja": "爆弾みたいな球体",
+                "en": "Sphere like a Bomb",
+                "ko": "폭탄과도 같은 구체"
             },
             "number": 30,
             "imageFileName": "zutomayocard_1st_30.png",
@@ -646,6 +692,7 @@
             "effect": {
                 "description": {
                     "ja": "相手のキャラクターカードの属性が炎なら攻撃力+50",
+                    "en": "Attack +50 if the attribute of the opponent's character card is flame.",
                     "ko": "상대 캐릭터 카드의 속성이 화염일 경우 공격력+50"
                 },
                 "type": "modifyAttackPoint",
@@ -659,7 +706,9 @@
                 }
             },
             "name": {
-                "ja": "洗車中"
+                "ja": "洗車中",
+                "en": "Washing a Car",
+                "ko": "세차중"
             },
             "number": 31,
             "imageFileName": "zutomayocard_1st_31.png",
@@ -675,6 +724,7 @@
             "effect": {
                 "description": {
                     "ja": "自分のHPが30以下なら攻撃力+50",
+                    "en": "Attack +50 if your HP is below 30.",
                     "ko": "자신의 HP가 30이하일 경우 공격력+50"
                 },
                 "type": "modifyAttackPoint",
@@ -687,7 +737,9 @@
                 }
             },
             "name": {
-                "ja": "インク猫ケルベロス"
+                "ja": "インク猫ケルベロス",
+                "en": "INC-NEKO ver.Cerberus",
+                "ko": "잉크고양이 케르베로스"
             },
             "number": 32,
             "imageFileName": "zutomayocard_1st_32.png",
@@ -705,7 +757,9 @@
             "attribute": "darkness",
             "clock": 3,
             "name": {
-                "ja": "にらちゃん(居眠り遠征隊)"
+                "ja": "にらちゃん(居眠り遠征隊)",
+                "en": "NIRA-CHAN (Inemuri Enseitai)",
+                "ko": "니라(말뚝잠 원정대)"
             },
             "number": 33,
             "imageFileName": "zutomayocard_1st_33.png",
@@ -723,7 +777,9 @@
             "attribute": "darkness",
             "clock": 1,
             "name": {
-                "ja": "眩しいDNA隊"
+                "ja": "眩しいDNA隊",
+                "en": "Squad of Radiant DNA",
+                "ko": "눈부신 DNA 분대"
             },
             "number": 34,
             "imageFileName": "zutomayocard_1st_34.png",
@@ -741,7 +797,9 @@
             "attribute": "darkness",
             "clock": 2,
             "name": {
-                "ja": "グレイヌ(胸の煙)"
+                "ja": "グレイヌ(胸の煙)",
+                "en": "GREINU (One's Mind)",
+                "ko": "그레이누(마음의 연기)"
             },
             "number": 35,
             "imageFileName": "zutomayocard_1st_35.png",
@@ -759,7 +817,9 @@
             "attribute": "darkness",
             "clock": 1,
             "name": {
-                "ja": "しゃくま男･･･？"
+                "ja": "しゃくま男･･･？",
+                "en": "SYAKUMA-MEN…?",
+                "ko": "샤쿠마남…?"
             },
             "number": 36,
             "imageFileName": "zutomayocard_1st_36.png",
@@ -777,7 +837,9 @@
             "attribute": "darkness",
             "clock": 3,
             "name": {
-                "ja": "うにぐりスーパースター"
+                "ja": "うにぐりスーパースター",
+                "en": "UNIGURI SUPER STAR",
+                "ko": "우니구리 슈퍼스타"
             },
             "number": 37,
             "imageFileName": "zutomayocard_1st_37.png",
@@ -795,7 +857,9 @@
             "attribute": "flame",
             "clock": 3,
             "name": {
-                "ja": "にらちゃん(あいつら全員同窓会)"
+                "ja": "にらちゃん(あいつら全員同窓会)",
+                "en": "NIRA-CHAN (Inside Joke)",
+                "ko": "니라(저 녀석들 전원 동창회)"
             },
             "number": 38,
             "imageFileName": "zutomayocard_1st_38.png",
@@ -813,7 +877,9 @@
             "attribute": "flame",
             "clock": 2,
             "name": {
-                "ja": "グレイ(Ham)"
+                "ja": "グレイ(Ham)",
+                "en": "GRAY (Ham)",
+                "ko": "그레이(Ham)"
             },
             "number": 39,
             "imageFileName": "zutomayocard_1st_39.png",
@@ -831,7 +897,9 @@
             "attribute": "flame",
             "clock": 3,
             "name": {
-                "ja": "にらちゃん(ミラーチューン)"
+                "ja": "にらちゃん(ミラーチューン)",
+                "en": "NIRA-CHAN (MIRROR TUNE)",
+                "ko": "니라(미러 튠)"
             },
             "number": 40,
             "imageFileName": "zutomayocard_1st_40.png",
@@ -849,7 +917,9 @@
             "attribute": "flame",
             "clock": 1,
             "name": {
-                "ja": "にらちゃん・ナナシ(暗く黒く)"
+                "ja": "にらちゃん・ナナシ(暗く黒く)",
+                "en": "NIRA-CHAN (DARKEN)",
+                "ko": "니라(어둡게 검게)"
             },
             "number": 41,
             "imageFileName": "zutomayocard_1st_41.png",
@@ -867,7 +937,9 @@
             "attribute": "flame",
             "clock": 2,
             "name": {
-                "ja": "うにぐりくん・みみかゆし"
+                "ja": "うにぐりくん・みみかゆし",
+                "en": "UNIGURI-KUN・MIMI-KAYUSHI",
+                "ko": "우니구리군・미미카유시"
             },
             "number": 42,
             "imageFileName": "zutomayocard_1st_42.png",
@@ -885,7 +957,9 @@
             "attribute": "electric",
             "clock": 3,
             "name": {
-                "ja": "配達員(猫リセット)"
+                "ja": "配達員(猫リセット)",
+                "en": "Paper Carrier (Neko Reset)",
+                "ko": "신문배달부(네코리셋)"
             },
             "number": 43,
             "imageFileName": "zutomayocard_1st_43.png",
@@ -903,7 +977,9 @@
             "attribute": "electric",
             "clock": 1,
             "name": {
-                "ja": "NAGA・アフロ☆サムライ(MILABO)"
+                "ja": "NAGA・アフロ☆サムライ(MILABO)",
+                "en": "NAGA・AFRO☆SAMURAI (MILABO)",
+                "ko": "NAGA・아프로☆사무라이(MILABO)"
             },
             "number": 44,
             "imageFileName": "zutomayocard_1st_44.png",
@@ -921,7 +997,9 @@
             "attribute": "electric",
             "clock": 2,
             "name": {
-                "ja": "にらちゃん(ハゼ馳せる果てるまで)"
+                "ja": "にらちゃん(ハゼ馳せる果てるまで)",
+                "en": "NIRA-CHAN (Haze Haseru Haterumade)",
+                "ko": "니라(망둥이 달린다 끝까지)"
             },
             "number": 45,
             "imageFileName": "zutomayocard_1st_45.png",
@@ -939,7 +1017,9 @@
             "attribute": "electric",
             "clock": 1,
             "name": {
-                "ja": "正義のミカタ"
+                "ja": "正義のミカタ",
+                "en": "Knight of Justice",
+                "ko": "정의의 편"
             },
             "number": 46,
             "imageFileName": "zutomayocard_1st_46.png",
@@ -957,7 +1037,9 @@
             "attribute": "electric",
             "clock": 3,
             "name": {
-                "ja": "にらチャイナ(お勉強しといてよ)"
+                "ja": "にらチャイナ(お勉強しといてよ)",
+                "en": "NIRA-CHAN (STUDY ME)",
+                "ko": "니라(공부해 둬)"
             },
             "number": 47,
             "imageFileName": "zutomayocard_1st_47.png",
@@ -975,7 +1057,9 @@
             "attribute": "wind",
             "clock": 1,
             "name": {
-                "ja": "にらちゃん(MILABO)"
+                "ja": "にらちゃん(MILABO)",
+                "en": "NIRA-CHAN (MILABO)",
+                "ko": "니라(MILABO)"
             },
             "number": 48,
             "imageFileName": "zutomayocard_1st_48.png",
@@ -993,7 +1077,9 @@
             "attribute": "wind",
             "clock": 2,
             "name": {
-                "ja": "にらちゃん(脳裏上のクラッカー)"
+                "ja": "にらちゃん(脳裏上のクラッカー)",
+                "en": "NIRA-CHAN (Nouriueno Cracker)",
+                "ko": "니라(뇌리 위의 크래커)"
             },
             "number": 49,
             "imageFileName": "zutomayocard_1st_49.png",
@@ -1011,7 +1097,9 @@
             "attribute": "wind",
             "clock": 3,
             "name": {
-                "ja": "栽培うにぐり"
+                "ja": "栽培うにぐり",
+                "en": "Growing UNIGURI",
+                "ko": "재배 우니구리"
             },
             "number": 50,
             "imageFileName": "zutomayocard_1st_50.png",
@@ -1029,7 +1117,9 @@
             "attribute": "wind",
             "clock": 1,
             "name": {
-                "ja": "にらちゃん(勘ぐれい)"
+                "ja": "にらちゃん(勘ぐれい)",
+                "en": "NIRA-CHAN (Hunch Gray)",
+                "ko": "니라(감 그레이)"
             },
             "number": 51,
             "imageFileName": "zutomayocard_1st_51.png",
@@ -1047,7 +1137,9 @@
             "attribute": "wind",
             "clock": 1,
             "name": {
-                "ja": "にらちゃん逃走中(勘冴えて悔しいわ)"
+                "ja": "にらちゃん逃走中(勘冴えて悔しいわ)",
+                "en": "NIRA-CHAN on the run (Kan Saete Kuyashiiwa)",
+                "ko": "니라 도주중(감이 좋아서 분해)"
             },
             "number": 52,
             "imageFileName": "zutomayocard_1st_52.png",
@@ -1063,6 +1155,7 @@
             "effect": {
                 "description": {
                     "ja": "夜なら攻撃力+30",
+                    "en": "Attack +30 if it's night.",
                     "ko": "밤이면 공격력+30"
                 },
                 "type": "modifyAttackPoint",
@@ -1075,7 +1168,9 @@
                 }
             },
             "name": {
-                "ja": "脳裏上の勘覧車"
+                "ja": "脳裏上の勘覧車",
+                "en": "Ferris wheel (Nouriueno Cracker)",
+                "ko": "뇌리 위의 관람차"
             },
             "number": 53,
             "imageFileName": "zutomayocard_1st_53.png",
@@ -1091,6 +1186,7 @@
             "effect": {
                 "description": {
                     "ja": "相手のキャラクターカードの属性が風なら攻撃力+30",
+                    "en": "Attack +30 if the attribute of the opponent's chracter card is wind.",
                     "ko": "상대 캐릭터 카드의 속성이 바람일 경우 공격력+30"
                 },
                 "type": "modifyAttackPoint",
@@ -1104,7 +1200,9 @@
                 }
             },
             "name": {
-                "ja": "チョキ・チョキ"
+                "ja": "チョキ・チョキ",
+                "en": "CYOKI・CYOKI",
+                "ko": "쵸키・쵸키"
             },
             "number": 54,
             "imageFileName": "zutomayocard_1st_54.png",
@@ -1120,6 +1218,7 @@
             "effect": {
                 "description": {
                     "ja": "自分のHPが50以下なら攻撃力+20",
+                    "en": "Attack +20 if your HP is below 50.",
                     "ko": "자신의 HP가 50이하일 경우 공격력+20"
                 },
                 "type": "modifyAttackPoint",
@@ -1132,7 +1231,9 @@
                 }
             },
             "name": {
-                "ja": "助っ人演奏隊"
+                "ja": "助っ人演奏隊",
+                "en": "Supporting Band",
+                "ko": "도우미 연주대"
             },
             "number": 55,
             "imageFileName": "zutomayocard_1st_55.png",
@@ -1148,6 +1249,7 @@
             "effect": {
                 "description": {
                     "ja": "相手のキャラクターカードの属性が電気なら攻撃力+30",
+                    "en": "Attack +30 if the attribute of the opponent's chracter card is electric.",
                     "ko": "상대 캐릭터 카드의 속성이 전기일 경우 공격력+30"
                 },
                 "type": "modifyAttackPoint",
@@ -1161,7 +1263,9 @@
                 }
             },
             "name": {
-                "ja": "夕焼け風鏡"
+                "ja": "夕焼け風鏡",
+                "en": "Kazekazami of Sunset",
+                "ko": "저녁놀 바람 거울"
             },
             "number": 56,
             "imageFileName": "zutomayocard_1st_56.png",
@@ -1177,6 +1281,7 @@
             "effect": {
                 "description": {
                     "ja": "自分がダメージを受けたとき30ダメージを軽減する",
+                    "en": "30 damage reduction when you take damage.",
                     "ko": "자신이 데미지를 받았을 시 30데미지 경감"
                 },
                 "type": "reduceDamage",
@@ -1186,7 +1291,9 @@
                 }
             },
             "name": {
-                "ja": "うにぐりパン"
+                "ja": "うにぐりパン",
+                "en": "UNIGURI Bread",
+                "ko": "우니구리빵"
             },
             "number": 57,
             "imageFileName": "zutomayocard_1st_57.png",
@@ -1202,6 +1309,7 @@
             "effect": {
                 "description": {
                     "ja": "相手のキャラクターカードのパワーコストが✧2以上なら攻撃力+20",
+                    "en": "Attack +20 if the opponent's character card has a power cost of 2 or more ✧.",
                     "ko": "상대 캐릭터 카드의 파워 코스트가 ✧2이상이라면 공격력+20"
                 },
                 "type": "modifyAttackPoint",
@@ -1217,7 +1325,9 @@
                 }
             },
             "name": {
-                "ja": "爆撃ストライプ"
+                "ja": "爆撃ストライプ",
+                "en": "Bomb Stripe",
+                "ko": "폭격 스트라이프"
             },
             "number": 58,
             "imageFileName": "zutomayocard_1st_58.png",
@@ -1233,6 +1343,7 @@
             "effect": {
                 "description": {
                     "ja": "昼なら攻撃力+30",
+                    "en": "Attack +30 if it's daytime.",
                     "ko": "낮이면 공격력+30"
                 },
                 "type": "modifyAttackPoint",
@@ -1245,7 +1356,9 @@
                 }
             },
             "name": {
-                "ja": "レモン香るうにぐりソテー"
+                "ja": "レモン香るうにぐりソテー",
+                "en": "Lemon-scented sautéed UNIGURI",
+                "ko": "레몬향 우니구리"
             },
             "number": 59,
             "imageFileName": "zutomayocard_1st_59.png",
@@ -1261,6 +1374,7 @@
             "effect": {
                 "description": {
                     "ja": "相手のキャラクターカードの属性が闇なら攻撃力+30",
+                    "en": "Attack +30 if the attribute of the opponent's chracter card is darkness.",
                     "ko": "상대 캐릭터 카드의 속성이 어둠일 경우 공격력+30"
                 },
                 "type": "modifyAttackPoint",
@@ -1274,7 +1388,9 @@
                 }
             },
             "name": {
-                "ja": "電撃鍵"
+                "ja": "電撃鍵",
+                "en": "Electric Key",
+                "ko": "전격 열쇠"
             },
             "number": 60,
             "imageFileName": "zutomayocard_1st_60.png",
@@ -1290,6 +1406,7 @@
             "effect": {
                 "description": {
                     "ja": "昼から夜に変わると攻撃力+30",
+                    "en": "Attack +30 when day changes to night.",
                     "ko": "낮에서 밤으로 바뀌었으면 공격력+30"
                 },
                 "type": "modifyAttackPoint",
@@ -1302,7 +1419,9 @@
                 }
             },
             "name": {
-                "ja": "ZUTOMAYO CITY"
+                "ja": "ZUTOMAYO CITY",
+                "en": "ZUTOMAYO CITY",
+                "ko": "ZUTOMAYO CITY"
             },
             "number": 61,
             "imageFileName": "zutomayocard_1st_61.png",
@@ -1318,6 +1437,7 @@
             "effect": {
                 "description": {
                     "ja": "相手のキャラクターカードの属性が炎なら攻撃力+30",
+                    "en": "Attack +30 if the attribute of the opponent's chracter card is flame.",
                     "ko": "상대 캐릭터 카드의 속성이 화염일 경우 공격력+30"
                 },
                 "type": "modifyAttackPoint",
@@ -1331,7 +1451,9 @@
                 }
             },
             "name": {
-                "ja": "たけのこご飯"
+                "ja": "たけのこご飯",
+                "en": "Rice cooked with Bamboo Shoots",
+                "ko": "죽순밥"
             },
             "number": 62,
             "imageFileName": "zutomayocard_1st_62.png",
@@ -1347,6 +1469,7 @@
             "effect": {
                 "description": {
                     "ja": "自分の基礎攻撃力を昼夜逆転する",
+                    "en": "Reversing one's basic attack power day and night.",
                     "ko": "자신 캐릭터 기초 공격력의 밤낮을 뒤바꾼다."
                 },
                 "type": "swapDayAndNightAttackPoint",
@@ -1355,7 +1478,9 @@
                 }
             },
             "name": {
-                "ja": "ふわふわの猫"
+                "ja": "ふわふわの猫",
+                "en": "Fluffy Cat",
+                "ko": "푹신푹신 고양이"
             },
             "number": 63,
             "imageFileName": "zutomayocard_1st_63.png",
@@ -1371,6 +1496,7 @@
             "effect": {
                 "description": {
                     "ja": "相手のキャラクターカードのパワーコストが︎✧2以上なら攻撃力+30",
+                    "en": "Attack +30 if the opponent's character card has a power cost 2 or more ✧.",
                     "ko": "상대 캐릭터 카드의 파워 코스트가 ✧2이상이라면 공격력+30"
                 },
                 "type": "modifyAttackPoint",
@@ -1386,7 +1512,9 @@
                 }
             },
             "name": {
-                "ja": "ちょっぴり豪華な朝ごはん"
+                "ja": "ちょっぴり豪華な朝ごはん",
+                "en": "A little luxury breakfast",
+                "ko": "조금 호화로운 아침식사"
             },
             "number": 64,
             "imageFileName": "zutomayocard_1st_64.png",
@@ -1404,7 +1532,9 @@
             "attribute": "darkness",
             "clock": 2,
             "name": {
-                "ja": "柿原 栗ムント(秒針を噛む)"
+                "ja": "柿原 栗ムント(秒針を噛む)",
+                "en": "KAKIHARA-KURIMUNTO (Byoushinwo Kamu)",
+                "ko": "카키하라 쿠리문토(초침을 깨물다)"
             },
             "number": 65,
             "imageFileName": "zutomayocard_1st_65.png",
@@ -1422,7 +1552,9 @@
             "attribute": "darkness",
             "clock": 1,
             "name": {
-                "ja": "ハカセ(低血ボルト)"
+                "ja": "ハカセ(低血ボルト)",
+                "en": "HAKASE (FASTENING)",
+                "ko": "박사(저혈 볼트)"
             },
             "number": 66,
             "imageFileName": "zutomayocard_1st_66.png",
@@ -1440,7 +1572,9 @@
             "attribute": "darkness",
             "clock": 1,
             "name": {
-                "ja": "ちりとり男(勘冴えて悔しいわ)"
+                "ja": "ちりとり男(勘冴えて悔しいわ)",
+                "en": "CHIRITORI-MEN (Kan Saete Kuyashiiwa)",
+                "ko": "치리토리남(감이 좋아서 분해)"
             },
             "number": 67,
             "imageFileName": "zutomayocard_1st_67.png",
@@ -1458,7 +1592,9 @@
             "attribute": "darkness",
             "clock": 2,
             "name": {
-                "ja": "宇宙人ストリングス(あいつら全員同窓会)"
+                "ja": "宇宙人ストリングス(あいつら全員同窓会)",
+                "en": "UCHUJIN-STRINGS (Inside Joke)",
+                "ko": "우주인 스트링스(저 녀석들 전원 동창회)"
             },
             "number": 68,
             "imageFileName": "zutomayocard_1st_68.png",
@@ -1476,7 +1612,9 @@
             "attribute": "flame",
             "clock": 1,
             "name": {
-                "ja": "にらちゃん(秒針を噛む)"
+                "ja": "にらちゃん(秒針を噛む)",
+                "en": "NIRA-CHAN (Byoushinwo Kamu)",
+                "ko": "니라(초침을 깨물다)"
             },
             "number": 69,
             "imageFileName": "zutomayocard_1st_69.png",
@@ -1494,7 +1632,9 @@
             "attribute": "flame",
             "clock": 2,
             "name": {
-                "ja": "うにぐりくん(蹴っ飛ばした毛布)"
+                "ja": "うにぐりくん(蹴っ飛ばした毛布)",
+                "en": "UNIGURI-KUN (Kettobashita Moufu)",
+                "ko": "우니구리군(걷어차버린 담요)"
             },
             "number": 70,
             "imageFileName": "zutomayocard_1st_70.png",
@@ -1512,7 +1652,9 @@
             "attribute": "flame",
             "clock": 3,
             "name": {
-                "ja": "にらちゃん(こんなこと騒動)"
+                "ja": "にらちゃん(こんなこと騒動)",
+                "en": "NIRA-CHAN (Konnakoto Soudou)",
+                "ko": "니라(이런 일 소동)"
             },
             "number": 71,
             "imageFileName": "zutomayocard_1st_71.png",
@@ -1530,7 +1672,9 @@
             "attribute": "flame",
             "clock": 1,
             "name": {
-                "ja": "低血(低血ボルト)"
+                "ja": "低血(低血ボルト)",
+                "en": "TEIKETSU (FASTENING)",
+                "ko": "저혈(저혈 볼트)"
             },
             "number": 72,
             "imageFileName": "zutomayocard_1st_72.png",
@@ -1548,7 +1692,9 @@
             "attribute": "electric",
             "clock": 2,
             "name": {
-                "ja": "うにぐりくん(こんなこと騒動)"
+                "ja": "うにぐりくん(こんなこと騒動)",
+                "en": "UNIGURI-KUN (Konnakoto Soudou)",
+                "ko": "우니구리군(이런 일 소동)"
             },
             "number": 73,
             "imageFileName": "zutomayocard_1st_73.png",
@@ -1566,7 +1712,9 @@
             "attribute": "electric",
             "clock": 1,
             "name": {
-                "ja": "ふらんけん(Dear.Mr「F」)"
+                "ja": "ふらんけん(Dear. Mr「F」)",
+                "en": "FRANKEN (Dear. Mr「F」)",
+                "ko": "프랑켄(Dear. Mr「F」)"
             },
             "number": 74,
             "imageFileName": "zutomayocard_1st_74.png",
@@ -1584,7 +1732,9 @@
             "attribute": "electric",
             "clock": 1,
             "name": {
-                "ja": "にらちゃん(袖のキルト)"
+                "ja": "にらちゃん(袖のキルト)",
+                "en": "NIRA-CHAN (QUILT)",
+                "ko": "니라(소매의 퀼트)"
             },
             "number": 75,
             "imageFileName": "zutomayocard_1st_75.png",
@@ -1602,7 +1752,9 @@
             "attribute": "electric",
             "clock": 2,
             "name": {
-                "ja": "うにぐりくん(袖のキルト)"
+                "ja": "うにぐりくん(袖のキルト)",
+                "en": "UNIGURI-KUN (QUILT)",
+                "ko": "우니구리군(소매의 퀼트)"
             },
             "number": 76,
             "imageFileName": "zutomayocard_1st_76.png",
@@ -1620,7 +1772,9 @@
             "attribute": "wind",
             "clock": 2,
             "name": {
-                "ja": "にらちゃん(眩しいDNAだけ)"
+                "ja": "にらちゃん(眩しいDNAだけ)",
+                "en": "NIRA-CHAN (Mabushii DNA Dake)",
+                "ko": "니라(눈부신 DNA뿐)"
             },
             "number": 77,
             "imageFileName": "zutomayocard_1st_77.png",
@@ -1638,7 +1792,9 @@
             "attribute": "wind",
             "clock": 3,
             "name": {
-                "ja": "にらちゃん(蹴っ飛ばした毛布)"
+                "ja": "にらちゃん(蹴っ飛ばした毛布)",
+                "en": "NIRA-CHAN (Kettobashita Moufu)",
+                "ko": "니라(걷어차버린 담요)"
             },
             "number": 78,
             "imageFileName": "zutomayocard_1st_78.png",
@@ -1656,7 +1812,9 @@
             "attribute": "wind",
             "clock": 1,
             "name": {
-                "ja": "グレイ？(正しくなれない)"
+                "ja": "グレイ？(正しくなれない)",
+                "en": "GRAY? (Can't Be Right)",
+                "ko": "그레이?(올바르게 될 수 없어)"
             },
             "number": 79,
             "imageFileName": "zutomayocard_1st_79.png",
@@ -1674,7 +1832,9 @@
             "attribute": "wind",
             "clock": 2,
             "name": {
-                "ja": "ナナシ(暗く黒く)"
+                "ja": "ナナシ(暗く黒く)",
+                "en": "NANASHI (DARKEN)",
+                "ko": "나나시 (어둡게 검게)"
             },
             "number": 80,
             "imageFileName": "zutomayocard_1st_80.png",
@@ -1690,6 +1850,7 @@
             "effect": {
                 "description": {
                     "ja": "自分のキャラクターカードの属性が闇ならHPを10回復",
+                    "en": "Recovers 10 HP if your character card's attribute is darkness.",
                     "ko": "자신 캐릭터 카드의 속성이 어둠일 경우 HP 10회복"
                 },
                 "type": "modifyHp",
@@ -1703,7 +1864,9 @@
                 }
             },
             "name": {
-                "ja": "いちごケーキ"
+                "ja": "いちごケーキ",
+                "en": "Strawberry Cake",
+                "ko": "딸기케이크"
             },
             "number": 81,
             "imageFileName": "zutomayocard_1st_81.png",
@@ -1719,6 +1882,7 @@
             "effect": {
                 "description": {
                     "ja": "自分のキャラクターカードの属性が闇なら攻撃力+20",
+                    "en": "Attack +20 if your character card's attribute is darkness.",
                     "ko": "자신 캐릭터 카드의 속성이 어둠일 경우 공격력+20"
                 },
                 "type": "modifyAttackPoint",
@@ -1732,7 +1896,9 @@
                 }
             },
             "name": {
-                "ja": "遺影"
+                "ja": "遺影",
+                "en": "Portrait of the deceased",
+                "ko": "영정"
             },
             "number": 82,
             "imageFileName": "zutomayocard_1st_82.png",
@@ -1748,6 +1914,7 @@
             "effect": {
                 "description": {
                     "ja": "夜なら攻撃力+20",
+                    "en": "Attack +20 if it's night.",
                     "ko": "밤이면 공격력+20"
                 },
                 "type": "modifyAttackPoint",
@@ -1760,7 +1927,9 @@
                 }
             },
             "name": {
-                "ja": "回廊"
+                "ja": "回廊",
+                "en": "Corridor",
+                "ko": "회랑"
             },
             "number": 83,
             "imageFileName": "zutomayocard_1st_83.png",
@@ -1776,6 +1945,7 @@
             "effect": {
                 "description": {
                     "ja": "夜から昼に変わると攻撃力+30",
+                    "en": "Attack +30 when night changes to day.",
                     "ko": "밤에서 낮으로 바뀌었으면 공격력+30"
                 },
                 "type": "modifyAttackPoint",
@@ -1788,7 +1958,9 @@
                 }
             },
             "name": {
-                "ja": "クレーター"
+                "ja": "クレーター",
+                "en": "Crater",
+                "ko": "크레이터"
             },
             "number": 84,
             "imageFileName": "zutomayocard_1st_84.png",
@@ -1804,6 +1976,7 @@
             "effect": {
                 "description": {
                     "ja": "自分がダメージを受けたとき20ダメージを軽減する",
+                    "en": "20 damage reduction when you take damage.",
                     "ko": "자신이 데미지를 받았을 시 20데미지 경감"
                 },
                 "type": "reduceDamage",
@@ -1813,7 +1986,9 @@
                 }
             },
             "name": {
-                "ja": "散らかったソファ"
+                "ja": "散らかったソファ",
+                "en": "Cluttered Sofas",
+                "ko": "어질러진 소파"
             },
             "number": 85,
             "imageFileName": "zutomayocard_1st_85.png",
@@ -1829,12 +2004,15 @@
             "effect": {
                 "description": {
                     "ja": "手札1枚とアビスの一番上のカード1枚を入れ替える",
+                    "en": "Swap one card in hand with the top card of the Abyss.",
                     "ko": "손패의 카드 1장과 어비스 제일 위 카드 1장을 교환한다"
                 },
                 "type": "swapHandAndAbyss"
             },
             "name": {
-                "ja": "縁"
+                "ja": "縁",
+                "en": "Fate",
+                "ko": "운명"
             },
             "number": 86,
             "imageFileName": "zutomayocard_1st_86.png",
@@ -1850,6 +2028,7 @@
             "effect": {
                 "description": {
                     "ja": "自分のキャラクターカードの属性が炎ならHPを10回復",
+                    "en": "Recovers 10 HP if your character card's attribute is flame.",
                     "ko": "자신 캐릭터 카드의 속성이 화염일 경우 HP 10회복"
                 },
                 "type": "modifyHp",
@@ -1863,7 +2042,9 @@
                 }
             },
             "name": {
-                "ja": "残り物"
+                "ja": "残り物",
+                "en": "Remnants",
+                "ko": "잔재"
             },
             "number": 87,
             "imageFileName": "zutomayocard_1st_87.png",
@@ -1879,6 +2060,7 @@
             "effect": {
                 "description": {
                     "ja": "自分のキャラクターカードの属性が炎なら攻撃力+20",
+                    "en": "Attack +20 if your character card's attribute is flame.",
                     "ko": "자신 캐릭터 카드의 속성이 화염일 경우 공격력+20"
                 },
                 "type": "modifyAttackPoint",
@@ -1892,7 +2074,9 @@
                 }
             },
             "name": {
-                "ja": "赤闇を照らす"
+                "ja": "赤闇を照らす",
+                "en": "Illuminate into the Red Darkness",
+                "ko": "붉은 어둠을 비추다"
             },
             "number": 88,
             "imageFileName": "zutomayocard_1st_88.png",
@@ -1908,6 +2092,7 @@
             "effect": {
                 "description": {
                     "ja": "自分の攻撃力+10",
+                    "en": "Your attack power is increased by 10.",
                     "ko": "자신의 공격력+10"
                 },
                 "type": "modifyAttackPoint",
@@ -1917,7 +2102,9 @@
                 }
             },
             "name": {
-                "ja": "時計(秒針を噛む)"
+                "ja": "時計(秒針を噛む)",
+                "en": "Clock (Byoushinwo Kamu)",
+                "ko": "시계 (초침을 깨물다)"
             },
             "number": 89,
             "imageFileName": "zutomayocard_1st_89.png",
@@ -1933,6 +2120,7 @@
             "effect": {
                 "description": {
                     "ja": "昼から夜に変わると攻撃力+20",
+                    "en": "Attack +20 when day changes to night.",
                     "ko": "낮에서 밤으로 바뀌었으면 공격력+20"
                 },
                 "type": "modifyAttackPoint",
@@ -1945,7 +2133,9 @@
                 }
             },
             "name": {
-                "ja": "DNA鍋"
+                "ja": "DNA鍋",
+                "en": "DNA NABE",
+                "ko": "DNA 나베"
             },
             "number": 90,
             "imageFileName": "zutomayocard_1st_90.png",
@@ -1961,6 +2151,7 @@
             "effect": {
                 "description": {
                     "ja": "相手のキャラクターカードカードの属性が炎・風なら攻撃力+20",
+                    "en": "Attack +20 if the attribute of the opponent's character card is flame or wind.",
                     "ko": "상대 캐릭터 카드의 속성이 화염 또는 바람일 경우 공격력+20"
                 },
                 "type": "modifyAttackPoint",
@@ -1982,7 +2173,9 @@
                 }
             },
             "name": {
-                "ja": "しゃっくりの招き猫店"
+                "ja": "しゃっくりの招き猫店",
+                "en": "SHAKKURI's beckoning cat shop",
+                "ko": "샤쿠리의 마네키네코 가게"
             },
             "number": 91,
             "imageFileName": "zutomayocard_1st_91.png",
@@ -1998,12 +2191,15 @@
             "effect": {
                 "description": {
                     "ja": "デッキから1枚カードを引き、手札に加える ※このカードを使用後、手札の数はバトル終了まで1枚増える",
-                    "ko": "덱에서 카드를 1장 뽑아 자신의 손패에 추가한다 ※이 카드의 사용 후, 배틀 종료시까지 손패의 카드 수가 1장 늘어난다"
+                    "en": "Draw a card from the deck and add it to your hand. *After using this card, the number of cards in your hand increases by one until the end of the battle.",
+                    "ko": "덱에서 카드를 1장 드로우해 자신의 손패에 추가한다 ※이 카드의 사용 후, 배틀 종료시까지 손패의 카드 수가 1장 늘어난다"
                 },
                 "type": "draw"
             },
             "name": {
-                "ja": "妙薬の調合"
+                "ja": "妙薬の調合",
+                "en": "Compounding of Wonder Drug",
+                "ko": "비약의 조제"
             },
             "number": 92,
             "imageFileName": "zutomayocard_1st_92.png",
@@ -2019,6 +2215,7 @@
             "effect": {
                 "description": {
                     "ja": "自分のキャラクターカードの属性が電気ならHPを10回復",
+                    "en": "Recovers 10 HP if your character card's attribute is electric.",
                     "ko": "자신 캐릭터 카드의 속성이 전기일 경우 HP 10회복"
                 },
                 "type": "modifyHp",
@@ -2032,7 +2229,9 @@
                 }
             },
             "name": {
-                "ja": "ブラウン管テレビ\"強\""
+                "ja": "ブラウン管テレビ\"強\"",
+                "en": "CRT TV \"STRONG\"",
+                "ko": "브라운관 TV \"강\""
             },
             "number": 93,
             "imageFileName": "zutomayocard_1st_93.png",
@@ -2048,6 +2247,7 @@
             "effect": {
                 "description": {
                     "ja": "自分のキャラクターカードの属性が電気なら攻撃力+20",
+                    "en": "Attack +20 if your character card's attribute is electric.",
                     "ko": "자신 캐릭터 카드의 속성이 전기일 경우 공격력+20"
                 },
                 "type": "modifyAttackPoint",
@@ -2061,7 +2261,9 @@
                 }
             },
             "name": {
-                "ja": "制御室"
+                "ja": "制御室",
+                "en": "Control Room",
+                "ko": "관제실"
             },
             "number": 94,
             "imageFileName": "zutomayocard_1st_94.png",
@@ -2077,6 +2279,7 @@
             "effect": {
                 "description": {
                     "ja": "相手のキャラクターカードの属性が闇・電気なら攻撃力+20",
+                    "en": "Attack +20 if the attribute of the opponent's character card is darkness or electric.",
                     "ko": "상대 캐릭터 카드의 속성이 어둠 또는 전기일 경우 공격력+20"
                 },
                 "type": "modifyAttackPoint",
@@ -2098,7 +2301,9 @@
                 }
             },
             "name": {
-                "ja": "パラボラアンテナ"
+                "ja": "パラボラアンテナ",
+                "en": "Parabolic Antenna",
+                "ko": "파라볼라 안테나"
             },
             "number": 95,
             "imageFileName": "zutomayocard_1st_95.png",
@@ -2114,6 +2319,7 @@
             "effect": {
                 "description": {
                     "ja": "昼から夜に変わると攻撃力+10",
+                    "en": "Attack +10 when day changes to night.",
                     "ko": "낮에서 밤으로 바뀌었으면 공격력+10"
                 },
                 "type": "modifyAttackPoint",
@@ -2126,7 +2332,9 @@
                 }
             },
             "name": {
-                "ja": "FPS"
+                "ja": "FPS",
+                "en": "FPS",
+                "ko": "FPS"
             },
             "number": 96,
             "imageFileName": "zutomayocard_1st_96.png",
@@ -2142,6 +2350,7 @@
             "effect": {
                 "description": {
                     "ja": "夜から昼に変わると攻撃力+20",
+                    "en": "Attack +20 when night changes to day.",
                     "ko": "밤에서 낮으로 바뀌었으면 공격력+20"
                 },
                 "type": "modifyAttackPoint",
@@ -2154,7 +2363,9 @@
                 }
             },
             "name": {
-                "ja": "心メンテ"
+                "ja": "心メンテ",
+                "en": "Mental Maintenance",
+                "ko": "마음 정비"
             },
             "number": 97,
             "imageFileName": "zutomayocard_1st_97.png",
@@ -2170,6 +2381,7 @@
             "effect": {
                 "description": {
                     "ja": "相手のキャラクターカードのパワーコストが︎✧0か︎✧1なら攻撃力+30",
+                    "en": "Attack +30 if the opponent's character card has a power cost of 0 or 1 ✧.",
                     "ko": "상대 캐릭터 카드의 파워 코스트가 ✧0 또는 ✧1이라면 공격력+30"
                 },
                 "type": "modifyAttackPoint",
@@ -2185,7 +2397,9 @@
                 }
             },
             "name": {
-                "ja": "スラムマート"
+                "ja": "スラムマート",
+                "en": "Slum Mart",
+                "ko": "슬럼 마트"
             },
             "number": 98,
             "imageFileName": "zutomayocard_1st_98.png",
@@ -2201,6 +2415,7 @@
             "effect": {
                 "description": {
                     "ja": "自分のキャラクターカードの属性が風ならHPを10回復",
+                    "en": "Recovers 10 HP if your character card's attribute is wind.",
                     "ko": "자신 캐릭터 카드의 속성이 바람일 경우 HP 10회복"
                 },
                 "type": "modifyHp",
@@ -2214,7 +2429,9 @@
                 }
             },
             "name": {
-                "ja": "落書き教室"
+                "ja": "落書き教室",
+                "en": "Scribble on the Blackboard",
+                "ko": "낙서 교실"
             },
             "number": 99,
             "imageFileName": "zutomayocard_1st_99.png",
@@ -2230,6 +2447,7 @@
             "effect": {
                 "description": {
                     "ja": "自分のキャラクターカードの属性が風なら攻撃力+20",
+                    "en": "Attack +20 if your character card's attribute is wind.",
                     "ko": "자신 캐릭터 카드의 속성이 바람일 경우 공격력+20"
                 },
                 "type": "modifyAttackPoint",
@@ -2243,7 +2461,9 @@
                 }
             },
             "name": {
-                "ja": "植物化"
+                "ja": "植物化",
+                "en": "Vegetatisation",
+                "ko": "식물화"
             },
             "number": 100,
             "imageFileName": "zutomayocard_1st_100.png",
@@ -2259,6 +2479,7 @@
             "effect": {
                 "description": {
                     "ja": "相手のキャラクターカードのパワーコストが︎✧0か︎✧1なら攻撃力+20",
+                    "en": "Attack +20 if the opponent's character card has a power cost of 0 or 1✧.",
                     "ko": "상대 캐릭터 카드의 파워 코스트가 ✧0 또는 ✧1이라면 공격력+20"
                 },
                 "type": "modifyAttackPoint",
@@ -2274,7 +2495,9 @@
                 }
             },
             "name": {
-                "ja": "正義の玉子"
+                "ja": "正義の玉子",
+                "en": "Eggs of Justice",
+                "ko": "정의의 달걀"
             },
             "number": 101,
             "imageFileName": "zutomayocard_1st_101.png",
@@ -2290,6 +2513,7 @@
             "effect": {
                 "description": {
                     "ja": "昼なら攻撃力+20",
+                    "en": "Attack +20 if it's daytime.",
                     "ko": "낮이면 공격력+20"
                 },
                 "type": "modifyAttackPoint",
@@ -2302,7 +2526,9 @@
                 }
             },
             "name": {
-                "ja": "乾き日和"
+                "ja": "乾き日和",
+                "en": "A sense of Thirst",
+                "ko": "건조하기 좋은 날"
             },
             "number": 102,
             "imageFileName": "zutomayocard_1st_102.png",
@@ -2318,6 +2544,7 @@
             "effect": {
                 "description": {
                     "ja": "相手のアビスのカードを1枚選んでデッキに戻させる",
+                    "en": "Select one of your opponent's Abyss cards and have it returned to the deck.",
                     "ko": "상대 어비스에서 카드 1장을 골라 덱으로 돌려보낸다"
                 },
                 "type": "sendAbyssToDeck",
@@ -2326,7 +2553,9 @@
                 }
             },
             "name": {
-                "ja": "利権"
+                "ja": "利権",
+                "en": "Concession",
+                "ko": "특권"
             },
             "number": 103,
             "imageFileName": "zutomayocard_1st_103.png",
@@ -2342,6 +2571,7 @@
             "effect": {
                 "description": {
                     "ja": "相手のデッキの一番上のカードをパワーの有無に関わらずアビスに置く",
+                    "en": "Put the top card of the opponent's deck, with or without power, on the Abyss.",
                     "ko": "상대 덱 최상단 카드를 파워 유무의 관계없이 어비스로 보낸다"
                 },
                 "type": "sendDeckToAbyss",
@@ -2350,7 +2580,9 @@
                 }
             },
             "name": {
-                "ja": "古文書、呼"
+                "ja": "古文書、呼",
+                "en": "Historical Documents, Summon",
+                "ko": "고문서, 소환"
             },
             "number": 104,
             "imageFileName": "zutomayocard_1st_104.png",
