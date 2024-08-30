@@ -220,25 +220,12 @@ func _on_selection_done_button_pressed():
 
 
 func _on_card_entered(card: Card):
-	$CardInfoContainer.visible = true
-	$CardInfoContainer.current_card = card
-	$CardInfoContainer/CardInfo.texture = card.get_child(1).texture
-	if card.info["powerCost"] > get_charged_power():
-		$CardInfoContainer/UnpoweredMask.visible = true
-	else:
-		$CardInfoContainer/UnpoweredMask.visible = false
-	$CardInfoContainer.visible = true
-	if card.info.has("effect"):
-		var desc = card.info["effect"]["description"];
-		if desc.has("ko"):
-			$CardInfoContainer/CardInfoLabel.text = desc["ko"]
-	else:
-		$CardInfoContainer/CardInfoLabel.text = ""
+	$CardInfoContainer.set_card(card, check_powered(card))
 
 
 func _on_card_exited(card: Card):
-	if $CardInfoContainer.current_card == card:
-		$CardInfoContainer.visible = false
+	if $CardInfoContainer.card == card:
+		$CardInfoContainer.unset_card()
 
 
 func _on_mulligan_card_selected(card: Card):

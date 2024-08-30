@@ -1,13 +1,21 @@
 extends Node2D
 
-var current_card: Card
+var card: Card
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+func unset_card():
+	card = null
 	visible = false
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func set_card(value: Card, powered: bool = true):
+	card = value
+	visible = true
+	$CardInfo.texture = card.get_child(1).texture
+	$UnpoweredMask.visible = !powered
+	if card.info.has("effect"):
+		var desc = card.info["effect"]["description"];
+		if desc.has("ko"):
+			$CardInfoLabel.text = desc["ko"]
+	else:
+		$CardInfoLabel.text = ""

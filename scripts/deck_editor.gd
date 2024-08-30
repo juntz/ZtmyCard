@@ -77,25 +77,12 @@ func _on_deck_card_clicked(card: Card):
 
 
 func _on_card_entered(card: Card):
-	var locale = OS.get_locale()
-	$CardInfoContainer.visible = true
-	$CardInfoContainer.current_card = card
-	$CardInfoContainer/UnpoweredMask.visible = false
-	$CardInfoContainer/CardInfo.texture = card.get_child(1).texture
-	$CardInfoContainer.visible = true
-	if card.info.has("effect"):
-		var desc = card.info["effect"]["description"];
-		if desc.has(locale):
-			$CardInfoContainer/CardInfoLabel.text = desc[locale]
-		elif desc.has("ko"):
-			$CardInfoContainer/CardInfoLabel.text = desc["ko"]
-	else:
-		$CardInfoContainer/CardInfoLabel.text = ""
+	$CardInfoContainer.set_card(card)
 
 
 func _on_card_exited(card: Card):
-	if $CardInfoContainer.current_card == card:
-		$CardInfoContainer.visible = false
+	if $CardInfoContainer.card == card:
+		$CardInfoContainer.unset_card()
 
 
 func _on_exit_button_pressed():
