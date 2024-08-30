@@ -86,7 +86,6 @@ func attack(damage):
 	var card = battle_field_card()
 	card.scale = Vector2(attack_scale, attack_scale)
 	card.reparent($AttackPoints)
-	setable_card_count = 1
 
 
 func hit(damage):
@@ -94,9 +93,6 @@ func hit(damage):
 	damage_subtrahend = 0
 	if damage <= 0:
 		damage = 0
-		setable_card_count = 1
-	else:
-		setable_card_count = 2
 	$HpBar.hp -= damage
 	$HpBar/HpPathFollow/DamageLabel.text = "-" + str(damage)
 
@@ -141,7 +137,6 @@ func _ready():
 	card_fields[Field.ENCHANT] = $EnchantZone
 	card_fields[Field.SELECTION] = $MulliganZone/SelectionField
 	
-	$CardInfoContainer.visible = false
 	_init_deck()
 	if !controllable:
 		$ReadyButton.visible = false
@@ -220,12 +215,12 @@ func _on_selection_done_button_pressed():
 
 
 func _on_card_entered(card: Card):
-	$CardInfoContainer.set_card(card, check_powered(card))
+	$"../CardInfoContainer".set_card(card, check_powered(card))
 
 
 func _on_card_exited(card: Card):
-	if $CardInfoContainer.card == card:
-		$CardInfoContainer.unset_card()
+	if $"../CardInfoContainer".card == card:
+		$"../CardInfoContainer".unset_card()
 
 
 func _on_mulligan_card_selected(card: Card):

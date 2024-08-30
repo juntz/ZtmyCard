@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bd377sxk4fxdy"]
+[gd_scene load_steps=11 format=3 uid="uid://bd377sxk4fxdy"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_onpsp"]
 [ext_resource type="PackedScene" uid="uid://q1boos0cq5c3" path="res://card.tscn" id="2_pgcg1"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://cjqvqwm2xpq4t" path="res://card_field.tscn" id="6_flpfl"]
 [ext_resource type="Script" path="res://scripts/hp_bar.gd" id="6_lx0n0"]
 [ext_resource type="Script" path="res://scripts/attack_points.gd" id="7_ksjyq"]
-[ext_resource type="PackedScene" uid="uid://yvaeghs5pc8f" path="res://card_info_container.tscn" id="7_mfhxv"]
 [ext_resource type="Texture2D" uid="uid://cc57ub34dl8hl" path="res://resources/card_shadow.png" id="7_p4beu"]
 [ext_resource type="Script" path="res://scripts/mulligan_zone.gd" id="8_t5xpj"]
 
@@ -143,8 +142,6 @@ offset_top = 463.0
 offset_right = 858.0
 offset_bottom = 486.0
 text = "HP: 100"
-
-[node name="CardInfoContainer" parent="." instance=ExtResource("7_mfhxv")]
 
 [node name="AttackPoints" type="Node2D" parent="."]
 script = ExtResource("7_ksjyq")

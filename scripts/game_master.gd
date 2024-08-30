@@ -4,6 +4,9 @@ extends Node
 enum Phase{SET, OPEN, CLOCK, ENCHANT, BATTLE}
 
 const MULLIGAN_COUNT = 5
+const WIN_SETABLE_CARD_COUNT = 1
+const DRAW_SETABLE_CARD_COUNT = 1
+const LOSE_SETABLE_CARD_COUNT = 2
 
 signal battle_end
 
@@ -197,15 +200,21 @@ func _battle():
 	).reduce(
 		func(a, b): return a + b
 	)
-	var player_hit_func: Callable
+	var after_attack_func: Callable
 	for player: Player in players.values():
 		var damage = total_attack_point - 2 * player.get_attack_point(chronos.is_night())
 		if damage < 0:
 			player.attack(damage)
 			await player.attack_end
+			player.setable_card_count = WIN_SETABLE_CARD_COUNT
+		elif damage > 0:
+			after_attack_func = func(): player.hit(damage)
+			player.setable_card_count = LOSE_SETABLE_CARD_COUNT
 		else:
-			player_hit_func = func(): player.hit(damage)
-	player_hit_func.call()
+			player.battle_field_card().shake()
+			player.setable_card_count = DRAW_SETABLE_CARD_COUNT
+	if after_attack_func:
+		after_attack_func.call()
 	next_phase_ready()
 
 
