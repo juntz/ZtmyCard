@@ -1,7 +1,5 @@
 extends Button
 
-@export var target_scene: PackedScene
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,8 +12,4 @@ func _process(delta):
 
 
 func _on_pressed():
-	var peer = ENetMultiplayerPeer.new()
-	peer.create_client("localhost", 50001)
-	multiplayer.multiplayer_peer = peer
-	get_tree().change_scene_to_packed(target_scene)
-	
+	$"../ClientConnectionDialog".visible = true
