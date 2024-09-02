@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ImGuiDebugConfig" load_steps=2 format=3 uid="uid://bbspgbblgxqxs"]
+
+[ext_resource type="Script" path="res://scripts/imgui_debug_config.gd" id="1_fvpdp"]
+
+[resource]
+script = ExtResource("1_fvpdp")
+visible_card_ui = true
+font_size = 24
+font_path = "res://resources/NanumSquareNeo-aLt.ttf"
