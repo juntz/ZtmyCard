@@ -21,6 +21,8 @@ func _ready():
 	ready_status[id] = _get_init_ready_status()
 	chronos.turn_done.connect(_on_chronos_turn_done)
 
+	ImguiDebugWindow.watch(self, ImguiDebugWindow.SupportType.GAME_MASTER)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

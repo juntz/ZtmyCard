@@ -150,6 +150,9 @@ func _ready():
 	$MulliganZone.card_selected.connect(_on_mulligan_card_selected)
 
 
+	ImguiDebugWindow.watch(self, ImguiDebugWindow.SupportType.PLAYER)
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
