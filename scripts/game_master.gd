@@ -81,6 +81,46 @@ func _move_card(player: Player, card: Card, to: Player.Field):
 	move_card.rpc(from, idx, to)
 
 
+func _add_card(number: int, to: Player.Field):
+	add_card.rpc(number, to)
+
+
+var json = null
+var cardInfos = null
+var card_scene: PackedScene = preload("res://card.tscn")
+
+@rpc("any_peer", "call_local")
+func add_card(number : int, to: Player.Field):
+	var player = _get_player()
+	var to_field = player.card_fields[to]
+	if cardInfos == null:
+		var f = FileAccess.open("cards/cards.json", FileAccess.READ)
+		json = JSON.parse_string(f.get_as_text())
+		cardInfos = json["cards"]
+
+	# Find Number.
+	for cardInfo in cardInfos:
+		if cardInfo["number"] == number:
+			var card : Card = card_scene.instantiate()
+			card.image_base_path = json["imageBasePath"]
+			card.set_info(cardInfo)
+
+			card.card_entered.connect(player._on_card_entered)
+			card.card_exited.connect(player._on_card_exited)
+			card.card_clicked.connect(player._on_card_clicked)
+		
+			card.set_info(cardInfo)
+			to_field.add_child(card)
+
+			if player.controllable:
+				# 카드 선택이 가능하도록 함
+				card.selectable = true
+				card.show_card()
+
+			return
+
+
+
 @rpc("any_peer", "call_local")
 func move_card(from, idx, to):
 	var player = _get_player()

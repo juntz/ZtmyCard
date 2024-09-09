@@ -68,7 +68,8 @@ func main_window_draw():
 
 	ImGui.Text("Game Master")
 	ImGui.Text("Phase: %s" % [phase_str])
-	ImGui.Text("ID? %s" % [_game_master.multiplayer.get_unique_id()])
+	if _game_master.multiplayer:
+		ImGui.Text("ID? %s" % [_game_master.multiplayer.get_unique_id()])
 
 	var chronos := _game_master.chronos
 	var is_night : bool = chronos.is_night()
@@ -84,12 +85,42 @@ func main_window_draw():
 
 
 
+var _input_id : String = ""
+var json = null
+var cardInfos = null
+var cardInfosKeyName : Dictionary = {}
+@export var card_scene: PackedScene = preload("res://card.tscn")
+
 func _hand_debugger():
 	var hand_cards := _player.get_cards(Player.Field.HAND)
 	ImGui.Text("Card Count: %d" % [hand_cards.size()])
 
 
 	ImGui.Separator()
+
+	if json == null:
+		var f = FileAccess.open("cards/cards.json", FileAccess.READ)
+		json = JSON.parse_string(f.get_as_text())
+		cardInfos = json["cards"]
+
+		for cardInfo in cardInfos:
+			cardInfosKeyName[cardInfo["name"]["ko"]] = cardInfo
+
+
+	var _input_id_arr := [_input_id]
+	if ImGui.InputText("Card Name? (cards.json 참고)", _input_id_arr, 40): 
+		_input_id = _input_id_arr[0]
+	
+	if ImGui.Button("Create Card"):
+		_game_master._add_card(cardInfosKeyName[_input_id]["number"], Player.Field.HAND)
+
+	if not cardInfosKeyName.is_empty():
+		var keys = cardInfosKeyName.keys()
+		for key in keys:
+			if cardInfosKeyName[key]["name"]["ko"].find(_input_id) != -1 || cardInfosKeyName[key]["name"]["en"].find(_input_id) != -1:
+				if ImGui.Selectable(key):
+					_input_id = cardInfosKeyName[key]["name"]["ko"]
+
 	for i in range(hand_cards.size()):
 		var card = hand_cards[i]
 		var card_info = card.info
