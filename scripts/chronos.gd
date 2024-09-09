@@ -43,6 +43,9 @@ func _process(delta):
 		rotate(-ture_rotate_amount)
 		rotation_left -= ture_rotate_amount
 
+@rpc("any_peer", "call_local")
+func set_time(p_time: int):
+	time = p_time
 
 @rpc("any_peer", "call_local")
 func turn(time_span: int):

@@ -18,6 +18,7 @@ var swap_day_and_night_attack_point = false
 var card_fields = {}
 var prev_battle_field_card = null
 
+var CHEAT_super_powered = false
 
 @rpc("any_peer")
 func show_card(field, idx, info):
@@ -73,6 +74,8 @@ func get_clock() -> int:
 
 
 func get_charged_power():
+	if CHEAT_super_powered:
+		return 100
 	return $PowerCharger.cards().map(
 		func(c): return c.info["sendToPower"]
 	).reduce(

@@ -57,6 +57,9 @@ func enum_to_str(v: int, enum_obj) -> String:
 
 	return "Unknown"
 
+var _set_time : int = 0
+var _input_heal : int = 0
+
 func main_window_draw():
 	ImGui.Begin("Main Window")
 	if _game_master == null:
@@ -79,7 +82,28 @@ func main_window_draw():
 		text = "Night"
 	
 	ImGui.Text("Time? - %s(%d)" % [text, time])
+	var _set_time_arr := [_set_time]
+	if ImGui.InputInt("##choosetime", _set_time_arr):
+		_set_time = _set_time_arr[0]
+		_set_time = min(_set_time, Chronos.TOTAL_STEP)
+		_set_time = max(_set_time, 0)
+
+	if ImGui.Button("Set Time (0~18)"):
+		chronos.set_time.rpc(_set_time)
+
+	var input = [_player.CHEAT_super_powered]
+	if ImGui.Checkbox("Super Powered", input):
+		_player.CHEAT_super_powered = input[0]
+
 	ImGui.Text("Power? - %d" % [_player.get_charged_power()])
+	ImGui.Text("HP? - %d" % [_player.hp()])
+
+	input = [_input_heal]
+	if ImGui.InputInt("Heal Amount", input):
+		_input_heal = input[0]
+
+	if ImGui.Button("Heal"):
+		_game_master.force_heal.rpc(_input_heal)
 
 	ImGui.End()
 

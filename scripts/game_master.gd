@@ -119,7 +119,10 @@ func add_card(number : int, to: Player.Field):
 
 			return
 
-
+@rpc("any_peer", "call_local")
+func force_heal(hp : int):
+	var player = _get_player()
+	player.heal(hp)
 
 @rpc("any_peer", "call_local")
 func move_card(from, idx, to):
