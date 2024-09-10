@@ -211,7 +211,9 @@ func _battle():
 			after_attack_func = func(): player.hit(damage)
 			player.setable_card_count = LOSE_SETABLE_CARD_COUNT
 		else:
-			player.battle_field_card().shake()
+			var card = player.battle_field_card()
+			if card:
+				card.shake()
 			player.setable_card_count = DRAW_SETABLE_CARD_COUNT
 	if after_attack_func:
 		after_attack_func.call()
