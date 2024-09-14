@@ -17,6 +17,8 @@ config/features=PackedStringArray("4.3", "GL Compatibility")
 [autoload]
 
 GlobalUI="*res://scripts/global_ui.gd"
+ImGuiRoot="*res://addons/imgui-godot/data/ImGuiRoot.tscn"
+ImguiDebugWindow="*res://scripts/imgui_debug_window.gd"
 
 [display]
 
@@ -25,6 +27,10 @@ window/stretch/mode="canvas_items"
 [dotnet]
 
 project/assembly_name="ZtmyCardGd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/imgui-godot/plugin.cfg")
 
 [input]
 
