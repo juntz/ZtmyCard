@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://nc7kybcnbhmp"]
+[gd_scene load_steps=14 format=3 uid="uid://nc7kybcnbhmp"]
 
 [ext_resource type="Texture2D" uid="uid://njltp1wf0f7y" path="res://resources/mat.png" id="1_jxmyf"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_m1pte"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://scripts/enchant_processor.gd" id="10_vjxuj"]
 [ext_resource type="Texture2D" uid="uid://b0h36ixhyg48w" path="res://resources/second_hand.png" id="11_3o78s"]
 [ext_resource type="PackedScene" uid="uid://yvaeghs5pc8f" path="res://card_info_container.tscn" id="12_62va5"]
+[ext_resource type="PackedScene" uid="uid://bghrbe7baini3" path="res://phase_title_overlay.tscn" id="13_uv7ar"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_m1pte")
@@ -89,6 +90,8 @@ texture = ExtResource("11_3o78s")
 [node name="CardInfoContainer" parent="." instance=ExtResource("12_62va5")]
 visible = false
 position = Vector2(1034, 151)
+
+[node name="PhaseTitleOverlay" parent="." instance=ExtResource("13_uv7ar")]
 
 [connection signal="battle_end" from="GameMaster" to="Chronos" method="_on_turn_end"]
 

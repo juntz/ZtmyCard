@@ -180,6 +180,7 @@ func _get_player() -> Player:
 func _process_phase_transition():
 	phase = _get_next_phase()
 	print("Current phase: " + Phase.keys()[phase])
+	$"../PhaseTitleOverlay".start_animation(Phase.keys()[phase])
 	
 	if phase == Phase.SET:
 		_draw_cards()
