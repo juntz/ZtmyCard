@@ -37,15 +37,9 @@ position = Vector2(896, 657)
 rotation = 3.14159
 game_master = NodePath("../GameMaster")
 
-[node name="AttackPoints" parent="Opponent" index="12" node_paths=PackedStringArray("main")]
-main = NodePath("../..")
-
 [node name="Player" parent="." node_paths=PackedStringArray("game_master") instance=ExtResource("2_x3eei")]
 controllable = true
 game_master = NodePath("../GameMaster")
-
-[node name="AttackPoints" parent="Player" index="12" node_paths=PackedStringArray("main")]
-main = NodePath("../..")
 
 [node name="TimeLabel" type="Label" parent="."]
 visible = false

@@ -81,6 +81,7 @@ func close_card():
 
 func fly_to(pos: Vector2, ease_out = true):
 	var tween = get_tree().create_tween()
+	tween.bind_node(self)
 	tween.set_trans(Tween.TRANS_EXPO)
 	var position_tween = tween.tween_property(self, "position", pos, FLYING_DURATION)
 	if ease_out:
