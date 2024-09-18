@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bd377sxk4fxdy"]
+[gd_scene load_steps=13 format=3 uid="uid://bd377sxk4fxdy"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_onpsp"]
 [ext_resource type="PackedScene" uid="uid://q1boos0cq5c3" path="res://card.tscn" id="2_pgcg1"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://scripts/selection_zone.gd" id="6_bi0n1"]
 [ext_resource type="PackedScene" uid="uid://cjqvqwm2xpq4t" path="res://card_field.tscn" id="6_flpfl"]
 [ext_resource type="Script" path="res://scripts/hp_bar.gd" id="6_lx0n0"]
-[ext_resource type="Script" path="res://scripts/attack_points.gd" id="7_ksjyq"]
 [ext_resource type="Texture2D" uid="uid://cc57ub34dl8hl" path="res://resources/card_shadow.png" id="7_p4beu"]
 [ext_resource type="Script" path="res://scripts/mulligan_zone.gd" id="8_t5xpj"]
 
@@ -15,6 +14,77 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 295, 0, 0, 0, 0, 0, 0)
 }
 point_count = 2
+
+[sub_resource type="Animation" id="Animation_0cbr6"]
+resource_name = "attack_animation"
+length = 3.0
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(400, -0.25, 0, 0.207046, 88.8905, 555.524, -0.554537, 13.9266, 0.3, 125.34, -0.752576, -0.05, 404.66, 0.0414068, 355.906, 400, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 1.5, 3)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 2.5, 3),
+"transitions": PackedFloat32Array(0.267943, 1, 0.267943, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0ui8q"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(317, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(397, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ipbwh"]
+_data = {
+"RESET": SubResource("Animation_0ui8q"),
+"attack_animation": SubResource("Animation_0cbr6")
+}
 
 [node name="Player" type="Node2D"]
 position = Vector2(262, -8)
@@ -143,19 +213,11 @@ offset_right = 858.0
 offset_bottom = 486.0
 text = "HP: 100"
 
-[node name="AttackPoints" type="Node2D" parent="."]
-script = ExtResource("7_ksjyq")
-
-[node name="AttackPoint1" parent="AttackPoints" instance=ExtResource("6_flpfl")]
-position = Vector2(317, 486)
-base_z_index = 99
-
-[node name="AttackPoint2" parent="AttackPoints" instance=ExtResource("6_flpfl")]
-position = Vector2(317, 2)
-fly_ease_out = false
-base_z_index = 99
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../BattleField")
+libraries = {
+"": SubResource("AnimationLibrary_ipbwh")
+}
 
 [connection signal="pressed" from="ReadyButton" to="." method="_on_ready_button_pressed"]
 [connection signal="pressed" from="MulliganZone/SelectionDoneButton" to="." method="_on_selection_done_button_pressed"]
-[connection signal="attack_end" from="AttackPoints" to="." method="_on_attack_end"]
-[connection signal="child_entered_tree" from="AttackPoints" to="AttackPoints" method="_on_child_entered_tree"]

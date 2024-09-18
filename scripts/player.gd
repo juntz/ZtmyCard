@@ -11,7 +11,6 @@ signal attack_end
 var draw_require_count = 0
 var setable_card_count = 0
 var attack_point_addend = 0
-var attack_scale = 1.3
 var damage_subtrahend = 0
 var damage = 0
 var swap_day_and_night_attack_point = false
@@ -87,8 +86,7 @@ func get_charged_power():
 func attack(damage):
 	self.damage = damage
 	var card = battle_field_card()
-	card.scale = Vector2(attack_scale, attack_scale)
-	card.reparent($AttackPoints)
+	$AnimationPlayer.play("attack_animation")
 
 
 func hit(damage):
@@ -147,6 +145,7 @@ func _ready():
 	
 	$MulliganZone.card_selected.connect(_on_mulligan_card_selected)
 
+	$AnimationPlayer.animation_finished.connect(attack_end.emit)
 
 	ImguiDebugWindow.watch(self, ImguiDebugWindow.SupportType.PLAYER)
 

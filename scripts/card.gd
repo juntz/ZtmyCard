@@ -9,6 +9,7 @@ signal card_clicked(card: Card)
 signal transition_end(card: Card)
 
 const CARD_INFO_FILE_PATH = "cards/cards.json"
+const FLYING_DURATION = 0.5
 
 static var card_info: Dictionary
 static var card_scene: PackedScene = preload("res://card.tscn")
@@ -16,12 +17,6 @@ var order = 0
 var hover_scale = 1.1
 var top_z_index = 1000
 var selectable = false
-var flying = false
-var flying_slope = 0.1
-var min_speed = 5
-var slow_stop = true
-var flying_length
-var target_pos: Vector2
 var flipping = false
 var flipping_speed = 0.1
 var info: Dictionary
@@ -84,11 +79,13 @@ func close_card():
 	$CardBack.visible = true
 
 
-func fly_to(pos: Vector2, slow_stop = true):
-	flying = true
-	target_pos = pos
-	self.slow_stop = slow_stop
-	flying_length = (target_pos - position).length()
+func fly_to(pos: Vector2, ease_out = true):
+	var tween = get_tree().create_tween()
+	tween.set_trans(Tween.TRANS_EXPO)
+	var position_tween = tween.tween_property(self, "position", pos, FLYING_DURATION)
+	if ease_out:
+		position_tween.set_ease(Tween.EASE_OUT)
+
 
 
 func set_card_number(number: int):
@@ -121,16 +118,6 @@ func _process(delta):
 		$CardImage.position = Vector2(x, y)
 		$CardShadow.position = Vector2(x, y)
 	
-	if flying:
-		var pos_delta = target_pos - position
-		var flying_speed = (pos_delta.length() if slow_stop else flying_length - pos_delta.length()) / flying_slope + min_speed
-		if pos_delta.length() < flying_speed * delta:
-			position = target_pos
-			flying = false
-			transition_end.emit(self)
-		else:
-			position += pos_delta.normalized() * flying_speed * delta
-			
 	if flipping:
 		if $CardBack.visible:
 			scale.x -= flipping_speed
