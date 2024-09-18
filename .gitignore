@@ -5,4 +5,4 @@
 *.tmp
 
 bin/
-!addons/*/bin
+addons/
