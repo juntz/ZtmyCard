@@ -96,31 +96,21 @@ var card_scene: PackedScene = preload("res://card.tscn")
 func add_card(number : int, to: Player.Field):
 	var player = _get_player()
 	var to_field = player.card_fields[to]
-	if cardInfos == null:
-		var f = FileAccess.open("cards/cards.json", FileAccess.READ)
-		json = JSON.parse_string(f.get_as_text())
-		cardInfos = json["cards"]
+	
+	var card : Card = card_scene.instantiate()
+	card.set_card_number(number)
 
-	# Find Number.
-	for cardInfo in cardInfos:
-		if cardInfo["number"] == number:
-			var card : Card = card_scene.instantiate()
-			card.image_base_path = json["imageBasePath"]
-			card.set_info(cardInfo)
+	card.card_entered.connect(player._on_card_entered)
+	card.card_exited.connect(player._on_card_exited)
+	card.card_clicked.connect(player._on_card_clicked)
 
-			card.card_entered.connect(player._on_card_entered)
-			card.card_exited.connect(player._on_card_exited)
-			card.card_clicked.connect(player._on_card_clicked)
-		
-			card.set_info(cardInfo)
-			to_field.add_child(card)
+	to_field.add_child(card)
 
-			if player.controllable:
-				# 카드 선택이 가능하도록 함
-				card.selectable = true
-				card.show_card()
+	if player.controllable:
+		# 카드 선택이 가능하도록 함
+		card.selectable = true
+		card.show_card()
 
-			return
 
 @rpc("any_peer", "call_local")
 func force_heal(hp : int):
