@@ -4,6 +4,9 @@ extends Node
 enum Phase{SET, OPEN, CLOCK, ENCHANT, BATTLE}
 
 const MULLIGAN_COUNT = 5
+const WIN_SETABLE_CARD_COUNT = 1
+const DRAW_SETABLE_CARD_COUNT = 1
+const LOSE_SETABLE_CARD_COUNT = 2
 
 signal battle_end
 
@@ -93,31 +96,21 @@ var card_scene: PackedScene = preload("res://card.tscn")
 func add_card(number : int, to: Player.Field):
 	var player = _get_player()
 	var to_field = player.card_fields[to]
-	if cardInfos == null:
-		var f = FileAccess.open("cards/cards.json", FileAccess.READ)
-		json = JSON.parse_string(f.get_as_text())
-		cardInfos = json["cards"]
+	
+	var card : Card = card_scene.instantiate()
+	card.set_card_number(number)
 
-	# Find Number.
-	for cardInfo in cardInfos:
-		if cardInfo["number"] == number:
-			var card : Card = card_scene.instantiate()
-			card.image_base_path = json["imageBasePath"]
-			card.set_info(cardInfo)
+	card.card_entered.connect(player._on_card_entered)
+	card.card_exited.connect(player._on_card_exited)
+	card.card_clicked.connect(player._on_card_clicked)
 
-			card.card_entered.connect(player._on_card_entered)
-			card.card_exited.connect(player._on_card_exited)
-			card.card_clicked.connect(player._on_card_clicked)
-		
-			card.set_info(cardInfo)
-			to_field.add_child(card)
+	to_field.add_child(card)
 
-			if player.controllable:
-				# 카드 선택이 가능하도록 함
-				card.selectable = true
-				card.show_card()
+	if player.controllable:
+		# 카드 선택이 가능하도록 함
+		card.selectable = true
+		card.show_card()
 
-			return
 
 @rpc("any_peer", "call_local")
 func force_heal(hp : int):
@@ -134,11 +127,11 @@ func move_card(from, idx, to):
 	
 
 @rpc("any_peer")
-func open_card(from, idx, info):
+func open_card(from, idx, card_number):
 	var player = _get_player()
 	var from_field = player.card_fields[from]
 	var card: Card = from_field.cards()[idx]
-	card.set_info(info)
+	card.set_card_number(card_number)
 	card.show_card()
 
 
@@ -177,6 +170,7 @@ func _get_player() -> Player:
 func _process_phase_transition():
 	phase = _get_next_phase()
 	print("Current phase: " + Phase.keys()[phase])
+	$"../PhaseTitleOverlay".start_animation(Phase.keys()[phase])
 	
 	if phase == Phase.SET:
 		_draw_cards()
@@ -233,7 +227,7 @@ func _open_cards():
 		var cards = player.get_cards(field)
 		for i in len(cards):
 			var card: Card = cards[i]
-			open_card.rpc(field, i, card.info)
+			open_card.rpc(field, i, card.get_card_number())
 
 
 func _battle():
@@ -242,15 +236,23 @@ func _battle():
 	).reduce(
 		func(a, b): return a + b
 	)
-	var player_hit_func: Callable
+	var after_attack_func: Callable
 	for player: Player in players.values():
 		var damage = total_attack_point - 2 * player.get_attack_point(chronos.is_night())
 		if damage < 0:
 			player.attack(damage)
 			await player.attack_end
+			player.setable_card_count = WIN_SETABLE_CARD_COUNT
+		elif damage > 0:
+			after_attack_func = func(): player.hit(damage)
+			player.setable_card_count = LOSE_SETABLE_CARD_COUNT
 		else:
-			player_hit_func = func(): player.hit(damage)
-	player_hit_func.call()
+			var card = player.battle_field_card()
+			if card:
+				card.shake()
+			player.setable_card_count = DRAW_SETABLE_CARD_COUNT
+	if after_attack_func:
+		after_attack_func.call()
 	next_phase_ready()
 
 

@@ -8,17 +8,15 @@ signal card_exited(card: Card)
 signal card_clicked(card: Card)
 signal transition_end(card: Card)
 
-var card_scene: PackedScene = preload("res://card.tscn")
+const CARD_INFO_FILE_PATH = "cards/cards.json"
+const FLYING_DURATION = 0.5
+
+static var card_info: Dictionary
+static var card_scene: PackedScene = preload("res://card.tscn")
 var order = 0
 var hover_scale = 1.1
 var top_z_index = 1000
 var selectable = false
-var flying = false
-var flying_slope = 0.1
-var min_speed = 5
-var slow_stop = true
-var flying_length
-var target_pos: Vector2
 var flipping = false
 var flipping_speed = 0.1
 var info: Dictionary
@@ -28,23 +26,20 @@ var shaking = false
 var shake_amount = 2
 var orginal_pos: Vector2
 
-# 해당 정보는 계승되어야 한다. (instance한 정보가 아님)
-var image_base_path = "./"
-
 
 func clone() -> Card:
 	var card = card_scene.instantiate()
-	# 자신의 base_path도 전달해준다 (중요한 정보임)
-	card.image_base_path = image_base_path
-	card.set_info(info)
+	card._set_info(info)
 	card.global_position = global_position
 	return card
 
 
-func set_info(info):
+func _set_info(info):
 	self.info = info
-	_load_card_image(image_base_path.path_join(str(info["imageFileName"])))
-	
+	var iamge_base_path = str(card_info["imageBasePath"])
+	var image_file_name = str(info["imageFileName"])
+	_load_card_image(iamge_base_path.path_join(image_file_name))
+
 
 func set_order(i: int):
 	order = i
@@ -84,16 +79,35 @@ func close_card():
 	$CardBack.visible = true
 
 
-func fly_to(pos: Vector2, slow_stop = true):
-	flying = true
-	target_pos = pos
-	self.slow_stop = slow_stop
-	flying_length = (target_pos - position).length()
+func fly_to(pos: Vector2, ease_out = true):
+	var tween = get_tree().create_tween()
+	tween.bind_node(self)
+	tween.set_trans(Tween.TRANS_EXPO)
+	var position_tween = tween.tween_property(self, "position", pos, FLYING_DURATION)
+	if ease_out:
+		position_tween.set_ease(Tween.EASE_OUT)
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
+
+func set_card_number(number: int):
+	var cards = card_info["cards"]
+	_set_info(cards[number - 1])
+
+
+func get_card_number() -> int:
+	return int(info["number"])
+
+
+static func from_card_number(number: int) -> Card:
+	var card: Card = card_scene.instantiate()
+	card.set_card_number(number)
+	return card
+
+
+static func _static_init():
+	var card_file = FileAccess.open(CARD_INFO_FILE_PATH, FileAccess.READ)
+	card_info = JSON.parse_string(card_file.get_as_text())
+	card_file.close()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -105,16 +119,6 @@ func _process(delta):
 		$CardImage.position = Vector2(x, y)
 		$CardShadow.position = Vector2(x, y)
 	
-	if flying:
-		var pos_delta = target_pos - position
-		var flying_speed = (pos_delta.length() if slow_stop else flying_length - pos_delta.length()) / flying_slope + min_speed
-		if pos_delta.length() < flying_speed * delta:
-			position = target_pos
-			flying = false
-			transition_end.emit(self)
-		else:
-			position += pos_delta.normalized() * flying_speed * delta
-			
 	if flipping:
 		if $CardBack.visible:
 			scale.x -= flipping_speed

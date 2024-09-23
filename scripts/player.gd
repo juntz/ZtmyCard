@@ -11,7 +11,6 @@ signal attack_end
 var draw_require_count = 0
 var setable_card_count = 0
 var attack_point_addend = 0
-var attack_scale = 1.3
 var damage_subtrahend = 0
 var damage = 0
 var swap_day_and_night_attack_point = false
@@ -87,9 +86,7 @@ func get_charged_power():
 func attack(damage):
 	self.damage = damage
 	var card = battle_field_card()
-	card.scale = Vector2(attack_scale, attack_scale)
-	card.reparent($AttackPoints)
-	setable_card_count = 1
+	$AnimationPlayer.play("attack_animation")
 
 
 func hit(damage):
@@ -97,9 +94,6 @@ func hit(damage):
 	damage_subtrahend = 0
 	if damage <= 0:
 		damage = 0
-		setable_card_count = 1
-	else:
-		setable_card_count = 2
 	$HpBar.hp -= damage
 	$HpBar/HpPathFollow/DamageLabel.text = "-" + str(damage)
 
@@ -144,7 +138,6 @@ func _ready():
 	card_fields[Field.ENCHANT] = $EnchantZone
 	card_fields[Field.SELECTION] = $MulliganZone/SelectionField
 	
-	$CardInfoContainer.visible = false
 	_init_deck()
 	if !controllable:
 		$ReadyButton.visible = false
@@ -152,6 +145,7 @@ func _ready():
 	
 	$MulliganZone.card_selected.connect(_on_mulligan_card_selected)
 
+	$AnimationPlayer.animation_finished.connect(attack_end.emit)
 
 	ImguiDebugWindow.watch(self, ImguiDebugWindow.SupportType.PLAYER)
 
@@ -169,30 +163,18 @@ func abyss_attribute_count():
 
 
 func _init_deck():
-	var f = FileAccess.open("cards/cards.json", FileAccess.READ)
-	var json = JSON.parse_string(f.get_as_text())
-	var cardInfos = json["cards"]
-	f.close()
-	
-	var deck_card_info = []
-	
+	var card_numbers
 	var deck_file_path = "user://deck.json"
 	if FileAccess.file_exists(deck_file_path) && controllable:
 		var deck_file = FileAccess.open(deck_file_path, FileAccess.READ)
 		var deck_json = JSON.parse_string(deck_file.get_as_text())
-		var card_numbers = deck_json["cards"]
+		card_numbers = deck_json["cards"]
 		deck_file.close()
-		
-		for card_number in card_numbers:
-			deck_card_info.append(cardInfos[card_number - 1])
 	else:
-		deck_card_info = cardInfos.slice(0, 20)
-		
-	deck_card_info.shuffle()
-	for cardInfo in deck_card_info:
-		var card = card_scene.instantiate()
-		card.image_base_path = json["imageBasePath"]
-		card.set_info(cardInfo)
+		card_numbers = range(1, 21)
+	
+	for card_number in card_numbers:
+		var card = Card.from_card_number(card_number)
 		card.card_entered.connect(_on_card_entered)
 		card.card_exited.connect(_on_card_exited)
 		card.card_clicked.connect(_on_card_clicked)
@@ -226,25 +208,12 @@ func _on_selection_done_button_pressed():
 
 
 func _on_card_entered(card: Card):
-	$CardInfoContainer.visible = true
-	$CardInfoContainer.current_card = card
-	$CardInfoContainer/CardInfo.texture = card.get_child(1).texture
-	if card.info["powerCost"] > get_charged_power():
-		$CardInfoContainer/UnpoweredMask.visible = true
-	else:
-		$CardInfoContainer/UnpoweredMask.visible = false
-	$CardInfoContainer.visible = true
-	if card.info.has("effect"):
-		var desc = card.info["effect"]["description"];
-		if desc.has("ko"):
-			$CardInfoContainer/CardInfoLabel.text = desc["ko"]
-	else:
-		$CardInfoContainer/CardInfoLabel.text = ""
+	$"../CardInfoContainer".set_card(card, check_powered(card))
 
 
 func _on_card_exited(card: Card):
-	if $CardInfoContainer.current_card == card:
-		$CardInfoContainer.visible = false
+	if $"../CardInfoContainer".card == card:
+		$"../CardInfoContainer".unset_card()
 
 
 func _on_mulligan_card_selected(card: Card):

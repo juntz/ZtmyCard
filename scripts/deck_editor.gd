@@ -5,15 +5,8 @@ var max_card_count = 20
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var card_file = FileAccess.open("cards/cards.json", FileAccess.READ)
-	var card_json = JSON.parse_string(card_file.get_as_text())
-	var cardInfos = card_json["cards"]
-	card_file.close()
-	
-	for cardInfo in cardInfos:
-		var card: Card = card_scene.instantiate()
-		card.image_base_path = card_json["imageBasePath"]
-		card.set_info(cardInfo)
+	for i in range(Card.card_info["cards"].size()):
+		var card = Card.from_card_number(i + 1)
 		card.show_card()
 		card.selectable = true
 		card.card_clicked.connect(_on_card_clicked)
@@ -77,25 +70,12 @@ func _on_deck_card_clicked(card: Card):
 
 
 func _on_card_entered(card: Card):
-	var locale = OS.get_locale()
-	$CardInfoContainer.visible = true
-	$CardInfoContainer.current_card = card
-	$CardInfoContainer/UnpoweredMask.visible = false
-	$CardInfoContainer/CardInfo.texture = card.get_child(1).texture
-	$CardInfoContainer.visible = true
-	if card.info.has("effect"):
-		var desc = card.info["effect"]["description"];
-		if desc.has(locale):
-			$CardInfoContainer/CardInfoLabel.text = desc[locale]
-		elif desc.has("ko"):
-			$CardInfoContainer/CardInfoLabel.text = desc["ko"]
-	else:
-		$CardInfoContainer/CardInfoLabel.text = ""
+	$CardInfoContainer.set_card(card)
 
 
 func _on_card_exited(card: Card):
-	if $CardInfoContainer.current_card == card:
-		$CardInfoContainer.visible = false
+	if $CardInfoContainer.card == card:
+		$CardInfoContainer.unset_card()
 
 
 func _on_exit_button_pressed():

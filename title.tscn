@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b3h70ykhontb2" path="res://scene_change_button.tscn" id="3_3ywkd"]
 [ext_resource type="PackedScene" uid="uid://nc7kybcnbhmp" path="res://main.tscn" id="4_3kw8j"]
 [ext_resource type="PackedScene" uid="uid://dhyqlveownkli" path="res://deck_editor.tscn" id="5_mr858"]
-[ext_resource type="PackedScene" uid="uid://mrii7u5dckb5" path="res://lobby.tscn" id="5_t2s3p"]
+[ext_resource type="PackedScene" uid="uid://60m8jb7srlpk" path="res://lobby.tscn" id="5_t2s3p"]
 [ext_resource type="Script" path="res://scripts/title_mask.gd" id="6_ybexg"]
 
 [node name="Title" type="Node2D"]

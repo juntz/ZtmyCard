@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://bghrbe7baini3"]
+
+[ext_resource type="Script" path="res://scripts/phase_title_overlay.gd" id="1_1ge8h"]
+
+[sub_resource type="Curve2D" id="Curve2D_226h1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 550, 0, 0, 0, 0, 0, -550, 0)
+}
+point_count = 2
+
+[sub_resource type="Theme" id="Theme_0wbxy"]
+default_font_size = 45
+
+[node name="PhaseTitleOverlay" type="Node2D"]
+script = ExtResource("1_1ge8h")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(584, 340)
+curve = SubResource("Curve2D_226h1")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(550, 0)
+rotates = false
+loop = false
+
+[node name="Label" type="Label" parent="Path2D/PathFollow2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.0
+offset_top = -31.5
+offset_right = 158.0
+offset_bottom = 31.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_0wbxy")
+text = "Placeholder"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true

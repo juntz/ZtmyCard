@@ -2,6 +2,7 @@ class_name Chronos
 extends Node2D
 
 const TOTAL_STEP = 18
+const INITIAL_TIME = 4
 
 signal turn_done
 
@@ -11,8 +12,8 @@ var rotation_speed = 5
 var rotation_step = 2 * PI / TOTAL_STEP
 var pause_left = 0
 var pause_delay = 0.3
-var time = 5
-var prev_time = 5
+var time = INITIAL_TIME
+var prev_time = INITIAL_TIME
 var turn_started = false
 
 

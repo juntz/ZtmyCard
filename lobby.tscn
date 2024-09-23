@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://mrii7u5dckb5"]
+[gd_scene load_steps=5 format=3 uid="uid://60m8jb7srlpk"]
 
 [ext_resource type="Script" path="res://scripts/server_button.gd" id="1_p4rab"]
 [ext_resource type="Script" path="res://scripts/client_button.gd" id="2_62yn7"]
 [ext_resource type="PackedScene" uid="uid://nc7kybcnbhmp" path="res://main.tscn" id="2_g15tn"]
+[ext_resource type="Script" path="res://scripts/client_connection_dialog.gd" id="4_n8xor"]
 
 [node name="Lobby" type="Node2D"]
 
@@ -37,8 +38,41 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Connect as Client"
 script = ExtResource("2_62yn7")
-target_scene = ExtResource("2_g15tn")
 metadata/_edit_use_anchors_ = true
+
+[node name="ClientConnectionDialog" type="AcceptDialog" parent="."]
+title = "Connection Settings"
+initial_position = 1
+size = Vector2i(560, 210)
+ok_button_text = "Connect"
+dialog_hide_on_ok = false
+script = ExtResource("4_n8xor")
+target_scene = ExtResource("2_g15tn")
+
+[node name="Container" type="VBoxContainer" parent="ClientConnectionDialog"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 552.0
+offset_bottom = 161.0
+
+[node name="AddressLabel" type="Label" parent="ClientConnectionDialog/Container"]
+layout_mode = 2
+text = "Address"
+
+[node name="AddressLineEdit" type="LineEdit" parent="ClientConnectionDialog/Container"]
+layout_mode = 2
+text = "127.0.0.1"
+placeholder_text = "192.168.0.108"
+
+[node name="PortLabel" type="Label" parent="ClientConnectionDialog/Container"]
+layout_mode = 2
+text = "Port"
+
+[node name="PortLineEdit" type="LineEdit" parent="ClientConnectionDialog/Container"]
+layout_mode = 2
+text = "50001"
+placeholder_text = "12345"
 
 [connection signal="pressed" from="ServerButton" to="ServerButton" method="_on_pressed"]
 [connection signal="pressed" from="ClientButton" to="ClientButton" method="_on_pressed"]
+[connection signal="confirmed" from="ClientConnectionDialog" to="ClientConnectionDialog" method="_on_confirmed"]
