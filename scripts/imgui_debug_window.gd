@@ -142,7 +142,7 @@ func _hand_debugger():
 		cardInfos = json["cards"]
 
 		for cardInfo in cardInfos:
-			cardInfosKeyName[cardInfo["name"]["ko"]] = cardInfo
+			cardInfosKeyName[cardInfo["name"]["ko"] + " - " + str(cardInfo["number"])] = cardInfo
 
 
 	var _input_id_arr := [_input_id]
@@ -155,9 +155,10 @@ func _hand_debugger():
 	if not cardInfosKeyName.is_empty():
 		var keys = cardInfosKeyName.keys()
 		for key in keys:
-			if cardInfosKeyName[key]["name"]["ko"].find(_input_id) != -1 || cardInfosKeyName[key]["name"]["en"].find(_input_id) != -1:
-				if imgui.Selectable(key):
-					_input_id = cardInfosKeyName[key]["name"]["ko"]
+			if cardInfosKeyName[key]["name"]["en"].find(_input_id) != -1 || key.find(_input_id) != -1:
+				if ImGui.Selectable(key):
+					_input_id = key
+
 
 	for i in range(hand_cards.size()):
 		var card = hand_cards[i]
