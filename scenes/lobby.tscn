@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/server_button.gd" id="1_p4rab"]
 [ext_resource type="Script" path="res://scripts/client_button.gd" id="2_62yn7"]
-[ext_resource type="PackedScene" uid="uid://nc7kybcnbhmp" path="res://main.tscn" id="2_g15tn"]
+[ext_resource type="PackedScene" uid="uid://nc7kybcnbhmp" path="res://scenes/main.tscn" id="2_g15tn"]
 [ext_resource type="Script" path="res://scripts/client_connection_dialog.gd" id="4_n8xor"]
 
 [node name="Lobby" type="Node2D"]

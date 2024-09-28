@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wbp82ufiload"
-path="res://.godot/imported/orange_triangle.png-ceb7930e9f731224d88802f853d2254b.ctex"
+uid="uid://cc57ub34dl8hl"
+path="res://.godot/imported/card_shadow.png-b1ce3a145d929078b95f911406ba06aa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/orange_triangle.png"
-dest_files=["res://.godot/imported/orange_triangle.png-ceb7930e9f731224d88802f853d2254b.ctex"]
+source_file="res://resources/images/card_shadow.png"
+dest_files=["res://.godot/imported/card_shadow.png-b1ce3a145d929078b95f911406ba06aa.ctex"]
 
 [params]
 

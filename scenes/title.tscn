@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://d1qmq3vh2sku4"]
 
-[ext_resource type="Texture2D" uid="uid://buxrfaq8j62fb" path="res://resources/logo__tbb.png" id="1_sx5t7"]
-[ext_resource type="Texture2D" uid="uid://cc57ub34dl8hl" path="res://resources/card_shadow.png" id="2_lvm5q"]
-[ext_resource type="PackedScene" uid="uid://b3h70ykhontb2" path="res://scene_change_button.tscn" id="3_3ywkd"]
+[ext_resource type="Texture2D" uid="uid://buxrfaq8j62fb" path="res://resources/images/logo__tbb.png" id="1_sx5t7"]
+[ext_resource type="Texture2D" uid="uid://cc57ub34dl8hl" path="res://resources/images/card_shadow.png" id="2_lvm5q"]
+[ext_resource type="PackedScene" uid="uid://b3h70ykhontb2" path="res://scenes/scene_change_button.tscn" id="3_3ywkd"]
 [ext_resource type="Script" path="res://scripts/title_mask.gd" id="6_ybexg"]
 
 [node name="Title" type="Node2D"]
@@ -33,7 +33,7 @@ grow_horizontal = 2
 grow_vertical = 2
 disabled = true
 text = "SINGLE PLAYER"
-target_scene = "res://main.tscn"
+target_scene = "res://scenes/main.tscn"
 
 [node name="MultiplayerButton" parent="." instance=ExtResource("3_3ywkd")]
 auto_translate_mode = 2
@@ -49,7 +49,7 @@ offset_bottom = 502.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "MULTIPLAYER"
-target_scene = "res://lobby.tscn"
+target_scene = "res://scenes/lobby.tscn"
 
 [node name="DeckEditorButton" parent="." instance=ExtResource("3_3ywkd")]
 offset_left = 488.0
@@ -57,7 +57,7 @@ offset_top = 524.0
 offset_right = 624.0
 offset_bottom = 555.0
 text = "DECK EDITOR"
-target_scene = "res://deck_editor.tscn"
+target_scene = "res://scenes/deck_editor.tscn"
 
 [node name="TitleMask" type="Sprite2D" parent="."]
 visible = false

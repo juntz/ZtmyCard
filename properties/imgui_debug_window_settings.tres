@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_fvpdp")
+visible = true
 visible_card_ui = true
 font_size = 24
-font_path = "res://resources/NanumSquareNeo-aLt.ttf"
+font_path = "res://resources/fonts/NanumSquareNeo-aLt.ttf"

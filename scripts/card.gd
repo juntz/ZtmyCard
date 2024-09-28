@@ -12,7 +12,7 @@ const CARD_INFO_FILE_PATH = "cards/cards.json"
 const FLYING_DURATION = 0.5
 
 static var card_info: Dictionary
-static var card_scene: PackedScene = preload("res://card.tscn")
+static var card_scene: PackedScene = preload("res://scenes/card.tscn")
 var order = 0
 var hover_scale = 1.1
 var top_z_index = 1000

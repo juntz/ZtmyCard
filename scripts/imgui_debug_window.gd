@@ -1,6 +1,6 @@
 extends Node
 
-var config = preload("res://imgui_debug_window_settings.tres")
+var config = preload("res://properties/imgui_debug_window_settings.tres")
 var is_imgui_available: bool:
 	get:
 		return Engine.has_singleton("ImGuiAPI")
@@ -127,7 +127,7 @@ var _input_id : String = ""
 var json = null
 var cardInfos = null
 var cardInfosKeyName : Dictionary = {}
-@export var card_scene: PackedScene = preload("res://card.tscn")
+@export var card_scene: PackedScene = preload("res://scenes/card.tscn")
 
 func _hand_debugger():
 	var hand_cards := _player.get_cards(Player.Field.HAND)

@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://cxn3aoqggr6xl"
-path="res://.godot/imported/NanumSquareNeo-aLt.ttf-c82beaccb51a96afb0aef2222fe0f255.fontdata"
+path="res://.godot/imported/NanumSquareNeo-aLt.ttf-a5cabccbd6ee93f8311d8617fb2a1227.fontdata"
 
 [deps]
 
-source_file="res://resources/NanumSquareNeo-aLt.ttf"
-dest_files=["res://.godot/imported/NanumSquareNeo-aLt.ttf-c82beaccb51a96afb0aef2222fe0f255.fontdata"]
+source_file="res://resources/fonts/NanumSquareNeo-aLt.ttf"
+dest_files=["res://.godot/imported/NanumSquareNeo-aLt.ttf-a5cabccbd6ee93f8311d8617fb2a1227.fontdata"]
 
 [params]
 

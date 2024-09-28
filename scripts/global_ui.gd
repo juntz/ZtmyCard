@@ -1,7 +1,7 @@
 extends Node
 
 
-@onready var warning_scene := preload("res://warning.tscn")
+@onready var warning_scene := preload("res://scenes/warning.tscn")
 var _global_root_ui : CanvasLayer = null
 
 func send_warning(message: String):

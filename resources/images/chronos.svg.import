@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://11mywxu8l3si"
-path="res://.godot/imported/card_sample.png-15f852e238c4c1dbcc289b19b57a93f8.ctex"
+uid="uid://b4e4d8upf1iut"
+path="res://.godot/imported/chronos.svg-abeb737117075ee253f1f8fa7aeb3267.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/card_sample.png"
-dest_files=["res://.godot/imported/card_sample.png-15f852e238c4c1dbcc289b19b57a93f8.ctex"]
+source_file="res://resources/images/chronos.svg"
+dest_files=["res://.godot/imported/chronos.svg-abeb737117075ee253f1f8fa7aeb3267.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

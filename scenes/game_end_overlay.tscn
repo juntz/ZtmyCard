@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://oov56qgnancs"]
 
-[ext_resource type="Texture2D" uid="uid://dlt1rk5j6qwgi" path="res://resources/the_end.png" id="1_mwcyh"]
-[ext_resource type="PackedScene" uid="uid://b3h70ykhontb2" path="res://scene_change_button.tscn" id="3_1d332"]
-[ext_resource type="Texture2D" uid="uid://cc57ub34dl8hl" path="res://resources/card_shadow.png" id="4_5sp4n"]
+[ext_resource type="Texture2D" uid="uid://dlt1rk5j6qwgi" path="res://resources/images/the_end.png" id="1_mwcyh"]
+[ext_resource type="PackedScene" uid="uid://b3h70ykhontb2" path="res://scenes/scene_change_button.tscn" id="3_1d332"]
+[ext_resource type="Texture2D" uid="uid://cc57ub34dl8hl" path="res://resources/images/card_shadow.png" id="4_5sp4n"]
 
 [sub_resource type="Animation" id="Animation_qv3yu"]
 length = 0.001
@@ -162,4 +162,4 @@ offset_top = 319.0
 offset_right = 643.0
 offset_bottom = 350.0
 text = "Return to Main Menu"
-target_scene = "res://title.tscn"
+target_scene = "res://scenes/title.tscn"

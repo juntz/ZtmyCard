@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=3 uid="uid://dhyqlveownkli"]
 
-[ext_resource type="PackedScene" uid="uid://cjqvqwm2xpq4t" path="res://card_field.tscn" id="1_7wufp"]
+[ext_resource type="PackedScene" uid="uid://cjqvqwm2xpq4t" path="res://scenes/card_field.tscn" id="1_7wufp"]
 [ext_resource type="Script" path="res://scripts/deck_editor.gd" id="1_17ww2"]
-[ext_resource type="PackedScene" uid="uid://q1boos0cq5c3" path="res://card.tscn" id="2_jc880"]
+[ext_resource type="PackedScene" uid="uid://q1boos0cq5c3" path="res://scenes/card.tscn" id="2_jc880"]
 [ext_resource type="Script" path="res://scripts/card_group_container.gd" id="3_m1s7r"]
-[ext_resource type="Texture2D" uid="uid://btpthtmmbkli7" path="res://resources/background.jpg" id="3_px0t5"]
+[ext_resource type="Texture2D" uid="uid://btpthtmmbkli7" path="res://resources/images/background.jpg" id="3_px0t5"]
 [ext_resource type="Script" path="res://scripts/background.gd" id="4_pyoa7"]
-[ext_resource type="Texture2D" uid="uid://cc57ub34dl8hl" path="res://resources/card_shadow.png" id="5_e8bxn"]
-[ext_resource type="PackedScene" uid="uid://yvaeghs5pc8f" path="res://card_info_container.tscn" id="6_yrkhv"]
+[ext_resource type="Texture2D" uid="uid://cc57ub34dl8hl" path="res://resources/images/card_shadow.png" id="5_e8bxn"]
+[ext_resource type="PackedScene" uid="uid://yvaeghs5pc8f" path="res://scenes/card_info_container.tscn" id="6_yrkhv"]
 [ext_resource type="Script" path="res://scripts/scene_change_button.gd" id="9_c03w0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yho6h"]
@@ -78,7 +78,7 @@ text = "SAVE
 &
 EXIT"
 script = ExtResource("9_c03w0")
-target_scene = "res://title.tscn"
+target_scene = "res://scenes/title.tscn"
 
 [connection signal="input_event" from="CardGroupContainer" to="CardGroupContainer" method="_on_input_event"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

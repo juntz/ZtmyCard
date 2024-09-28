@@ -90,7 +90,7 @@ func _add_card(number: int, to: Player.Field):
 
 var json = null
 var cardInfos = null
-var card_scene: PackedScene = preload("res://card.tscn")
+var card_scene: PackedScene = preload("res://scenes/card.tscn")
 
 @rpc("any_peer", "call_local")
 func add_card(number : int, to: Player.Field):
