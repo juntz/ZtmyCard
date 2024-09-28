@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://scripts/background.gd" id="4_pyoa7"]
 [ext_resource type="Texture2D" uid="uid://cc57ub34dl8hl" path="res://resources/card_shadow.png" id="5_e8bxn"]
 [ext_resource type="PackedScene" uid="uid://yvaeghs5pc8f" path="res://card_info_container.tscn" id="6_yrkhv"]
-[ext_resource type="Script" path="res://scripts/deck_editor_exit_button.gd" id="7_bpa5l"]
+[ext_resource type="Script" path="res://scripts/scene_change_button.gd" id="9_c03w0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yho6h"]
 size = Vector2(640, 458)
@@ -77,7 +77,8 @@ offset_bottom = 75.0
 text = "SAVE
 &
 EXIT"
-script = ExtResource("7_bpa5l")
+script = ExtResource("9_c03w0")
+target_scene = "res://title.tscn"
 
 [connection signal="input_event" from="CardGroupContainer" to="CardGroupContainer" method="_on_input_event"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
