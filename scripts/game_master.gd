@@ -172,6 +172,10 @@ func _process_phase_transition():
 	print("Current phase: " + Phase.keys()[phase])
 	$"../PhaseTitleOverlay".start_animation(Phase.keys()[phase])
 	
+	if _check_game_end():
+		_end_game()
+		return
+	
 	if phase == Phase.SET:
 		_draw_cards()
 		_set_player_hand_card_selectable(true)
@@ -199,6 +203,15 @@ func draw_card(player: Player, to = Player.Field.HAND):
 	card.show_card()
 	if player.controllable:
 		card.selectable = true
+
+
+func _check_game_end() -> bool:
+	return players.values().any(func (p): return p.hp() <= 0)
+
+
+func _end_game():
+	$"../GameEndOverlay".visible = true
+	$"../GameEndOverlay/AnimationPlayer".play("game_end")
 
 
 func _draw_cards():
