@@ -156,7 +156,7 @@ func _hand_debugger():
 		var keys = cardInfosKeyName.keys()
 		for key in keys:
 			if cardInfosKeyName[key]["name"]["en"].find(_input_id) != -1 || key.find(_input_id) != -1:
-				if ImGui.Selectable(key):
+				if imgui.Selectable(key):
 					_input_id = key
 
 
