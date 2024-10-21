@@ -3,7 +3,7 @@ extends Node2D
 
 enum Field{NONE, BATTLE, SET, ABYSS, POWER_CHARGER, DECK, HAND, ENCHANT, SELECTION}
 
-signal attack_end
+signal on_hit
 
 @export var card_scene: PackedScene
 @export var controllable: bool
@@ -86,7 +86,11 @@ func get_charged_power():
 func attack(damage):
 	self.damage = damage
 	var card = battle_field_card()
-	$AnimationPlayer.play("attack_animation")
+	$AnimationPlayer.play("attack_start")
+	await $AnimationPlayer.animation_finished
+	on_hit.emit()
+	$AnimationPlayer.play("attack_end")
+	await $AnimationPlayer.animation_finished
 
 
 func hit(damage):
@@ -145,8 +149,6 @@ func _ready():
 	
 	$MulliganZone.card_selected.connect(_on_mulligan_card_selected)
 
-	$AnimationPlayer.animation_finished.connect(attack_end.emit)
-
 	ImguiDebugWindow.watch(self, ImguiDebugWindow.SupportType.PLAYER)
 
 
@@ -193,7 +195,6 @@ func _hit():
 func _on_attack_end(card):
 	card.reparent($BattleField)
 	card.scale = Vector2(1, 1)
-	attack_end.emit()
 
 
 func _on_ready_button_pressed():

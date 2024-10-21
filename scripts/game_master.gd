@@ -23,6 +23,9 @@ func _ready():
 	players[id] = $"../Player"
 	ready_status[id] = _get_init_ready_status()
 	chronos.turn_done.connect(_on_chronos_turn_done)
+	
+	$"../Player".on_hit.connect(_on_player_hit)
+	$"../Opponent".on_hit.connect(_on_player_hit)
 
 	ImguiDebugWindow.watch(self, ImguiDebugWindow.SupportType.GAME_MASTER)
 
@@ -253,8 +256,7 @@ func _battle():
 	for player: Player in players.values():
 		var damage = total_attack_point - 2 * player.get_attack_point(chronos.is_night())
 		if damage < 0:
-			player.attack(damage)
-			await player.attack_end
+			await player.attack(damage)
 			player.setable_card_count = WIN_SETABLE_CARD_COUNT
 		elif damage > 0:
 			after_attack_func = func(): player.hit(damage)
@@ -348,3 +350,7 @@ func _on_peer_connected(id):
 
 func _on_chronos_turn_done():
 	next_phase_ready()
+
+
+func _on_player_hit():
+	$"..".shake(5)
