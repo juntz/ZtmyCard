@@ -12,16 +12,12 @@ var draw_require_count = 0
 var setable_card_count = 0
 var attack_point_addend = 0
 var damage_subtrahend = 0
-var damage = 0
+var damage_got = 0
 var swap_day_and_night_attack_point = false
 var card_fields = {}
 var prev_battle_field_card = null
 
 var CHEAT_super_powered = false
-
-@rpc("any_peer")
-func show_card(field, idx, info):
-	pass
 
 
 func hp() -> int:
@@ -84,8 +80,7 @@ func get_charged_power():
 
 
 func attack(damage):
-	self.damage = damage
-	var card = battle_field_card()
+	damage_got = damage
 	$AnimationPlayer.play("attack_start")
 	await $AnimationPlayer.animation_finished
 	on_hit.emit()
@@ -94,7 +89,7 @@ func attack(damage):
 
 
 func hit(damage):
-	damage -= damage_subtrahend
+	damage_got -= damage_subtrahend
 	damage_subtrahend = 0
 	if damage <= 0:
 		damage = 0
@@ -184,10 +179,10 @@ func _init_deck():
 
 
 func _hit():
-	if damage < 0:
+	if damage_got < 0:
 		return
 	
-	$HpBar.hp -= damage
+	$HpBar.hp -= damage_got
 	if $HpBar.hp < 0:
 		$HpBar.hp = 0
 
@@ -219,7 +214,6 @@ func _on_card_exited(card: Card):
 
 func _on_mulligan_card_selected(card: Card):
 	var from = Field.SELECTION
-	var idx = find_card_index(card, from)
 	game_master.move_card(from, card, Field.ABYSS)
 
 

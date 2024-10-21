@@ -334,7 +334,7 @@ func _is_ready_for_next_phase():
 	
 	
 func _get_next_phase() -> Phase:
-	return (phase + 1) % Phase.size()
+	return (phase + 1) % Phase.size() as Phase
 
 
 func _reset_ready_status():

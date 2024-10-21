@@ -209,7 +209,7 @@ func field_editor():
 	pass 
 # imgui는 코드 호출로 UI를 그리는 방식입니다. imgui.Begin으로 시작하고, Text로 넣으면 적당히 예쁘게 그려줍니다.
 # 직접 제어를 원한다면 ImDrawList를 사용하면 됩니다.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not is_imgui_available:
 		return
 	

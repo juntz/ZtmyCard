@@ -34,8 +34,8 @@ func clone() -> Card:
 	return card
 
 
-func _set_info(info):
-	self.info = info
+func _set_info(information):
+	info = information
 	var iamge_base_path = str(card_info["imageBasePath"])
 	var image_file_name = str(info["imageFileName"])
 	_load_card_image(iamge_base_path.path_join(image_file_name))
@@ -111,7 +111,7 @@ static func _static_init():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if shaking:
 		var rng = RandomNumberGenerator.new()
 		var x = rng.randf_range(- shake_amount, shake_amount)
@@ -143,7 +143,7 @@ func _load_card_image(path):
 	$CardImage.texture = texture
 
 
-func _on_input_event(viewport, event, shape_idx):
+func _on_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if selectable && hover:
