@@ -160,7 +160,7 @@ func abyss_attribute_count():
 
 
 func _init_deck():
-	var card_numbers
+	var card_numbers: Array
 	var deck_file_path = "user://deck.json"
 	if FileAccess.file_exists(deck_file_path) && controllable:
 		var deck_file = FileAccess.open(deck_file_path, FileAccess.READ)
@@ -169,6 +169,8 @@ func _init_deck():
 		deck_file.close()
 	else:
 		card_numbers = range(1, 21)
+	
+	card_numbers.shuffle()
 	
 	for card_number in card_numbers:
 		var card = Card.from_card_number(card_number)
