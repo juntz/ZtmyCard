@@ -30,7 +30,7 @@ project/assembly_name="ZtmyCardGd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/imgui-godot/plugin.cfg")
+enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/imgui-godot/plugin.cfg")
 
 [input]
 
