@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cs5tsri1r0swx"]
+
+[ext_resource type="Script" path="res://scripts/debug/imgui_config.gd" id="1_vatcq"]
+[ext_resource type="Script" path="res://scripts/debug/dbg_game_master.gd" id="2_d65mb"]
+
+[node name="DbgGameplay" type="Node2D"]
+
+[node name="GameMaster" type="Node" parent="."]
+script = ExtResource("2_d65mb")
+
+[node name="ImGuiConfig" type="Node" parent="."]
+script = ExtResource("1_vatcq")

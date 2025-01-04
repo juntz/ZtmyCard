@@ -1,11 +1,5 @@
-class_name Card
-
-enum Attribute {
-	DARKNESS,
-	FLAME,
-	ELECTRIC,
-	WIND,
-}
+class_name GameCard
+extends Card
 
 var attribute: Attribute
 var clock: int
