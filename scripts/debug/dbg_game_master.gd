@@ -1,20 +1,24 @@
 extends Node
 
-var _game: Game
-var _players: Array[GamePlayerControl] = []
+var _game: GameMaster
+var _players: Array[GamePlayer] = []
 var _logs: Array[String] = []
 
 
 func _init():
+	var chronos = GameChronos.new()
 	for player_name in ['Nira', 'Uniguri']:
-		var player = GamePlayer.new([])
-		add_child(DebugPlayer.new(player_name, player))
-		var controller = DebugController.new(player_name)
+		var context = GamePlayerContext.new([
+			GameCard.new()
+		])
+		var controller = DebugController.new(context, player_name)
 		add_child(controller)
-		_players.append(
-				GamePlayerControl.new(player, controller))
-	_game = Game.new(_players)
-	_game.battle_started.connect(_on_battle_started)
+		var player = GamePlayer.new(context, controller, chronos)
+		_players.append(player)
+		var debug_player = DebugPlayer.new(context)
+		debug_player.player_name = player_name
+		add_child(debug_player)
+	_game = GameMaster.new(_players)
 	await _game.play_async()
 
 
@@ -31,6 +35,3 @@ func _on_imgui_layout():
 		ImGui.Text(log_line)
 	ImGui.EndChild()
 	ImGui.End()
-
-func _on_battle_started():
-	_logs.append("Battle started")

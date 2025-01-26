@@ -1,4 +1,4 @@
-class_name GameCard
+class_name Card
 extends Card
 
 var attribute: Attribute

@@ -1,4 +1,4 @@
-class_name Chronos
+class_name Chronos_
 extends Node2D
 
 const TOTAL_STEP = 18

@@ -6,5 +6,3 @@ enum Attribute {
 	ELECTRIC,
 	WIND,
 }
-
-var id: int

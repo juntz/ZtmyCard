@@ -1,13 +1,12 @@
 class_name DebugPlayer
 extends Node
 
-var _player_name: String
+@export var player_name: String
 var _player: Player
 var _logs: Array[String] = []
 
 
-func _init(player_name: String, player: Player):
-	_player_name = player_name
+func _init(player: Player):
 	_player = player
 	player.card_moved.connect(_on_card_moved)
 	player.hp_changed.connect(_on_hp_changed)
@@ -19,7 +18,7 @@ func _ready():
 
 
 func _on_imgui_layout():
-	ImGui.Begin('Player: ' + _player_name)
+	ImGui.Begin('Player: ' + player_name)
 	ImGui.Text("Logs")
 	ImGui.BeginChild("Logs");
 	for log_line in _logs:
@@ -32,7 +31,6 @@ func _on_hp_changed(hp: int):
 	_logs.append('HP: %s' % [hp])
 
 
-func _on_card_moved(position: int, from: Player.Field, to: Player.Field):
-	var from_name = Player.Field.find_key(from)
+func _on_card_moved(card: Card, to: Player.Field):
 	var to_name = Player.Field.find_key(to)
-	_logs.append('%s[%s] -> [%s]' % [from_name, position, to_name])
+	_logs.append('A card moved to [%s]' % [to_name])

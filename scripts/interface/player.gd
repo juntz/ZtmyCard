@@ -3,19 +3,20 @@ class_name Player
 @warning_ignore("unused_signal")
 signal hp_changed(hp: int)
 @warning_ignore("unused_signal")
-signal card_moved(idx: int, from: Field, to: Field)
+signal card_moved(card: Card, to: Field)
 @warning_ignore("unused_signal")
-signal card_action_failed(idx: int, at: Field)
+signal card_action_failed(card: Card)
 
 enum Field {
+	NONE,
 	BATTLE,
 	SET_A,
 	SET_B,
 	SET_C,
-	ABYSS,
+	HAND,
 	POWER_CHARGER,
+	ABYSS,
 	DECK,
-	HAND
 }
 
 const MAX_HP: int = 100
