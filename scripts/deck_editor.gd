@@ -5,8 +5,8 @@ var max_card_count = 20
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for i in range(Card.card_info["cards"].size()):
-		var card = Card.from_card_number(i + 1)
+	for i in range(CardNode.card_info["cards"].size()):
+		var card = CardNode.from_card_number(i + 1)
 		card.show_card()
 		card.selectable = true
 		card.card_clicked.connect(_on_card_clicked)
@@ -33,7 +33,7 @@ func _process(delta):
 	pass
 
 
-func _add_card_to_deck(card: Card):
+func _add_card_to_deck(card: CardNode):
 	var cards = $DeckContainer/Deck.cards()
 	
 	if cards.size() >= max_card_count:
@@ -60,20 +60,20 @@ func _add_card_to_deck(card: Card):
 	new_card.global_position = old_global_pos
 
 
-func _on_card_clicked(card: Card):
+func _on_card_clicked(card: CardNode):
 	_add_card_to_deck(card)
 	
 
-func _on_deck_card_clicked(card: Card):
+func _on_deck_card_clicked(card: CardNode):
 	$DeckContainer/Deck.remove_child(card)
 	card.queue_free()
 
 
-func _on_card_entered(card: Card):
+func _on_card_entered(card: CardNode):
 	$CardInfoContainer.set_card(card)
 
 
-func _on_card_exited(card: Card):
+func _on_card_exited(card: CardNode):
 	if $CardInfoContainer.card == card:
 		$CardInfoContainer.unset_card()
 

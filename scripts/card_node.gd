@@ -1,12 +1,12 @@
-class_name Card
+class_name CardNode
 extends Area2D
 
 enum CardType {CHARACTER, ENCHANT}
 
-signal card_entered(card: Card)
-signal card_exited(card: Card)
-signal card_clicked(card: Card)
-signal transition_end(card: Card)
+signal card_entered(card: CardNode)
+signal card_exited(card: CardNode)
+signal card_clicked(card: CardNode)
+signal transition_end(card: CardNode)
 
 const CARD_INFO_FILE_PATH = "cards/cards.json"
 const FLYING_DURATION = 0.5
@@ -27,7 +27,7 @@ var shake_amount = 2
 var orginal_pos: Vector2
 
 
-func clone() -> Card:
+func clone() -> CardNode:
 	var card = card_scene.instantiate()
 	card._set_info(info)
 	card.global_position = global_position
@@ -98,8 +98,8 @@ func get_card_number() -> int:
 	return int(info["number"])
 
 
-static func from_card_number(number: int) -> Card:
-	var card: Card = card_scene.instantiate()
+static func from_card_number(number: int) -> CardNode:
+	var card: CardNode = card_scene.instantiate()
 	card.set_card_number(number)
 	return card
 
@@ -152,7 +152,7 @@ func _on_input_event(_viewport, event, _shape_idx):
 
 func _check_hover():
 	var all_cards = get_overlapping_areas().filter(
-		func (x): return x is Card
+		func (x): return x is CardNode
 	)
 	all_cards.append(self)
 	var cards = all_cards.filter(

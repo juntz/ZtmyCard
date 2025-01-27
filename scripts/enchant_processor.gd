@@ -6,13 +6,13 @@ const ENCAHNTING_SCALE = 1.1
 
 signal enchant_end
 
-@export var player: Player
-@export var opponent: Player
+@export var player: PlayerNode
+@export var opponent: PlayerNode
 @export var game_master: GameMaster
-@export var chronos: Chronos
+@export var chronos: ChronosNode
 var timer: Timer
 var selecting = false
-var enchanting_card: Card
+var enchanting_card: CardNode
 
 
 # Called when the node enters the scene tree for the first time.
@@ -28,7 +28,7 @@ func _process(delta):
 	pass
 
 
-func apply_enchant(card: Card):
+func apply_enchant(card: CardNode):
 	enchanting_card = card
 	timer.stop()
 	if card.info["type"] != "enchant":
@@ -63,17 +63,17 @@ func modifyTime(fields):
 	
 	
 func useFromAbyss(fields):
-	var abyssCards = player.get_cards(Player.Field.ABYSS)
+	var abyssCards = player.get_cards(PlayerNode.Field.ABYSS)
 	if abyssCards.size() <= 0:
 		return
 	
 	timer.stop()
 	selecting = true
 	var selection_zone = player.get_node("SelectionZone")
-	selection_zone.start_selection(player, Player.Field.ABYSS)
+	selection_zone.start_selection(player, PlayerNode.Field.ABYSS)
 	
 	var idx = await selection_zone.card_selected
-	game_master.move_card.rpc(Player.Field.ABYSS, idx, Player.Field.SET)
+	game_master.move_card.rpc(PlayerNode.Field.ABYSS, idx, PlayerNode.Field.SET)
 	selecting = false
 	_end_enchant()
 	
@@ -91,18 +91,18 @@ func modifyAttackPoint(fields):
 	
 	
 func swapHandAndAbyss(fields):
-	var abyssCards = player.get_cards(Player.Field.ABYSS)
+	var abyssCards = player.get_cards(PlayerNode.Field.ABYSS)
 	if abyssCards.size() <= 0:
 		return
 	
 	timer.stop()
 	selecting = true
 	var selection_zone = player.get_node("SelectionZone")
-	selection_zone.start_selection(player, Player.Field.HAND)
+	selection_zone.start_selection(player, PlayerNode.Field.HAND)
 	
 	var idx = await selection_zone.card_selected
-	game_master.move_card.rpc(Player.Field.ABYSS, -1, Player.Field.HAND)
-	game_master.move_card.rpc(Player.Field.HAND, idx, Player.Field.ABYSS)
+	game_master.move_card.rpc(PlayerNode.Field.ABYSS, -1, PlayerNode.Field.HAND)
+	game_master.move_card.rpc(PlayerNode.Field.HAND, idx, PlayerNode.Field.ABYSS)
 	selecting = false
 	_end_enchant()
 	
@@ -141,7 +141,7 @@ func _swap_day_and_night_attack_point(fields: Dictionary):
 	target.swap_day_and_night_attack_point = true
 
 
-func _get_target_player(fields: Dictionary) -> Player:
+func _get_target_player(fields: Dictionary) -> PlayerNode:
 	var call_from_local = multiplayer.get_remote_sender_id() == multiplayer.get_unique_id()
 	var target_is_player = fields["target"] == "player"
 	if call_from_local != target_is_player:

@@ -1,4 +1,4 @@
-class_name Player
+class_name PlayerNode
 extends Node2D
 
 enum Field{NONE, BATTLE, SET, ABYSS, POWER_CHARGER, DECK, HAND, ENCHANT, SELECTION}
@@ -33,11 +33,11 @@ func set_battle_button_state(enable: bool):
 	$ReadyButton.disabled = !enable;
 
 
-func check_powered(card: Card):
+func check_powered(card: CardNode):
 	return card.info["powerCost"] <= get_charged_power()
 
 
-func get_cards(field: Field) -> Array[Card]:
+func get_cards(field: Field) -> Array[CardNode]:
 	return card_fields[field].cards()
 
 
@@ -120,7 +120,7 @@ func battle_field_card():
 
 func is_all_card_open():
 	for field in [Field.BATTLE, Field.SET]:
-		for card: Card in card_fields[field].cards():
+		for card: CardNode in card_fields[field].cards():
 			if card.is_closed():
 				return false
 	return true
@@ -173,7 +173,7 @@ func _init_deck():
 	card_numbers.shuffle()
 	
 	for card_number in card_numbers:
-		var card = Card.from_card_number(card_number)
+		var card = CardNode.from_card_number(card_number)
 		card.card_entered.connect(_on_card_entered)
 		card.card_exited.connect(_on_card_exited)
 		card.card_clicked.connect(_on_card_clicked)
@@ -205,30 +205,30 @@ func _on_selection_done_button_pressed():
 	game_master.next_phase_ready()
 
 
-func _on_card_entered(card: Card):
+func _on_card_entered(card: CardNode):
 	$"../CardInfoContainer".set_card(card, check_powered(card))
 
 
-func _on_card_exited(card: Card):
+func _on_card_exited(card: CardNode):
 	if $"../CardInfoContainer".card == card:
 		$"../CardInfoContainer".unset_card()
 
 
-func _on_mulligan_card_selected(card: Card):
+func _on_mulligan_card_selected(card: CardNode):
 	var from = Field.SELECTION
 	game_master.move_card(from, card, Field.ABYSS)
 
 
-func find_card_field(card: Card) -> Field:
+func find_card_field(card: CardNode) -> Field:
 	for field in card_fields.keys():
 		if get_cards(field).has(card):
 			return field
 	return Field.NONE
 
 
-func find_card_index(card: Card, field: Field) -> int:
+func find_card_index(card: CardNode, field: Field) -> int:
 	return get_cards(field).find(card)
 
 
-func _on_card_clicked(card: Card):
+func _on_card_clicked(card: CardNode):
 	game_master.select_card(self, card)

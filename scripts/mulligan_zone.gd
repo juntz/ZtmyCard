@@ -16,7 +16,7 @@ func _process(_delta):
 
 func start_selection(cards, on_card_clicked):
 	self.on_card_clicked = on_card_clicked
-	for card: Card in cards:
+	for card: CardNode in cards:
 		card.selectable = true
 		card.card_clicked.disconnect(on_card_clicked)
 		card.card_clicked.connect(_on_card_clicked)
@@ -24,7 +24,7 @@ func start_selection(cards, on_card_clicked):
 	visible = true
 		
 		
-func _on_card_clicked(selected_card: Card):
+func _on_card_clicked(selected_card: CardNode):
 	var cards = $SelectionField.cards()
 	for card in cards:
 		card.selectable = false

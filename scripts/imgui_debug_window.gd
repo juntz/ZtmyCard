@@ -40,7 +40,7 @@ func _ready() -> void:
 	imgui_gd.AddFontDefault()
 	imgui_gd.RebuildFontAtlas()
 
-var _player : Player = null
+var _player : PlayerNode = null
 var _game_master : GameMaster = null
 enum SupportType {
 	PLAYER,
@@ -53,7 +53,7 @@ func watch(inst : Object, type : SupportType):
 		return 
 
 	if type == SupportType.PLAYER:
-		_player = inst as Player
+		_player = inst as PlayerNode
 
 	if type == SupportType.GAME_MASTER:
 		_game_master = inst as GameMaster
@@ -99,7 +99,7 @@ func main_window_draw():
 	var _set_time_arr := [_set_time]
 	if imgui.InputInt("##choosetime", _set_time_arr):
 		_set_time = _set_time_arr[0]
-		_set_time = min(_set_time, Chronos.TOTAL_STEP)
+		_set_time = min(_set_time, ChronosNode.TOTAL_STEP)
 		_set_time = max(_set_time, 0)
 
 	if imgui.Button("Set Time (0~18)"):
@@ -130,8 +130,8 @@ var cardInfosKeyName : Dictionary = {}
 @export var card_scene: PackedScene = preload("res://scenes/card.tscn")
 
 func _hand_debugger():
-	var hand_cards := _player.get_cards(Player.Field.HAND)
-	imgui.Text("Card Count: %d" % [hand_cards.size()])
+	var hand_cards := _player.get_cards(PlayerNode.Field.HAND)
+	imgui.Text("CardNode Count: %d" % [hand_cards.size()])
 
 
 	imgui.Separator()
@@ -146,11 +146,11 @@ func _hand_debugger():
 
 
 	var _input_id_arr := [_input_id]
-	if imgui.InputText("Card Name? (cards.json 참고)", _input_id_arr, 40): 
+	if imgui.InputText("CardNode Name? (cards.json 참고)", _input_id_arr, 40): 
 		_input_id = _input_id_arr[0]
 	
-	if imgui.Button("Create Card"):
-		_game_master._add_card(cardInfosKeyName[_input_id]["number"], Player.Field.HAND)
+	if imgui.Button("Create CardNode"):
+		_game_master._add_card(cardInfosKeyName[_input_id]["number"], PlayerNode.Field.HAND)
 
 	if not cardInfosKeyName.is_empty():
 		var keys = cardInfosKeyName.keys()
@@ -180,24 +180,24 @@ func _hand_debugger():
 	
 		if card_info.has("attackPoint"):
 			var card_attack_point = card_info["attackPoint"]
-			imgui.Text("Card Attack Point: Day : %s / Night : %s" % [card_attack_point["day"], card_attack_point["night"]])
+			imgui.Text("CardNode Attack Point: Day : %s / Night : %s" % [card_attack_point["day"], card_attack_point["night"]])
 		else:
-			imgui.Text("Card Attack Point: None")
+			imgui.Text("CardNode Attack Point: None")
 
 
 		imgui.Separator()
 
 func card_field_editor():
-	imgui.Begin("Card Field Editor")
+	imgui.Begin("CardNode Field Editor")
 
 	if _player == null: 
-		imgui.Text("Player is not set.")
+		imgui.Text("PlayerNode is not set.")
 		imgui.End()
 		return
 
 	
 
-	if imgui.TreeNode("# Hand Card Editor"):
+	if imgui.TreeNode("# Hand CardNode Editor"):
 		_hand_debugger()
 
 	

@@ -12,9 +12,9 @@ var row_offset = 0
 var col_offset = 0
 
 
-func cards() -> Array[Card]:
-	var result: Array[Card]
-	var cards = get_children().filter(func(node): return node is Card)
+func cards() -> Array[CardNode]:
+	var result: Array[CardNode]
+	var cards = get_children().filter(func(node): return node is CardNode)
 	result.assign(cards)
 	return result
 
