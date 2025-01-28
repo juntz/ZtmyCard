@@ -1,6 +1,12 @@
 class_name EnchantCard
 extends Card
 
+var effect: CardEffect
+
 
 func enchant():
-	pass
+	effect.apply()
+
+
+func disenchant():
+	effect.revoke()

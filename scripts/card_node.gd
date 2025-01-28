@@ -8,37 +8,22 @@ signal card_exited(card: CardNode)
 signal card_clicked(card: CardNode)
 signal transition_end(card: CardNode)
 
-const CARD_INFO_FILE_PATH = "cards/cards.json"
 const FLYING_DURATION = 0.5
 
-static var card_info: Dictionary
-static var card_scene: PackedScene = preload("res://scenes/card.tscn")
+
+var card: Card
 var order = 0
 var hover_scale = 1.1
 var top_z_index = 1000
-var selectable = false
+var selectable = true
 var flipping = false
 var flipping_speed = 0.1
-var info: Dictionary
 var hover = false
 var mouse_is_in = false
 var shaking = false
 var shake_amount = 2
 var orginal_pos: Vector2
-
-
-func clone() -> CardNode:
-	var card = card_scene.instantiate()
-	card._set_info(info)
-	card.global_position = global_position
-	return card
-
-
-func _set_info(information):
-	info = information
-	var iamge_base_path = str(card_info["imageBasePath"])
-	var image_file_name = str(info["imageFileName"])
-	_load_card_image(iamge_base_path.path_join(image_file_name))
+var description := ""
 
 
 func set_order(i: int):
@@ -88,29 +73,6 @@ func fly_to(pos: Vector2, ease_out = true):
 		position_tween.set_ease(Tween.EASE_OUT)
 
 
-
-func set_card_number(number: int):
-	var cards = card_info["cards"]
-	_set_info(cards[number - 1])
-
-
-func get_card_number() -> int:
-	return int(info["number"])
-
-
-static func from_card_number(number: int) -> CardNode:
-	var card: CardNode = card_scene.instantiate()
-	card.set_card_number(number)
-	return card
-
-
-static func _static_init():
-	var card_file = FileAccess.open(CARD_INFO_FILE_PATH, FileAccess.READ)
-	card_info = JSON.parse_string(card_file.get_as_text())
-	card_file.close()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if shaking:
 		var rng = RandomNumberGenerator.new()
@@ -132,7 +94,7 @@ func _process(_delta):
 				transition_end.emit(self)
 
 
-func _load_card_image(path):
+func set_card_image(path):
 	if !FileAccess.file_exists(path):
 		printerr("Cannot find the card image: " + path)
 		return

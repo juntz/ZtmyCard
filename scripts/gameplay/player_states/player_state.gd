@@ -2,7 +2,7 @@ class_name PlayerState
 ## Abstract class for process user input to modify player depends on current phase.
 
 @warning_ignore("unused_signal")
-signal next_phase_ready
+signal player_ready
 
 var _game: Game
 var _player: Player
@@ -17,14 +17,10 @@ func _init(game: Game, player: Player):
 	_player = player
 
 
-func start() -> void:
+func run_async():
 	pass
 
 
 @warning_ignore("unused_parameter")
 func select_card(card: Card) -> void:
-	pass
-
-
-func player_ready() -> void:
 	pass

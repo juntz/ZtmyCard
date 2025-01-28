@@ -1,7 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://bd377sxk4fxdy"]
+[gd_scene load_steps=13 format=3 uid="uid://bd377sxk4fxdy"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_onpsp"]
-[ext_resource type="PackedScene" uid="uid://q1boos0cq5c3" path="res://scenes/card.tscn" id="2_pgcg1"]
+[ext_resource type="Script" path="res://scripts/player_node.gd" id="1_xi2ub"]
 [ext_resource type="Texture2D" uid="uid://wbp82ufiload" path="res://resources/images/orange_triangle.png" id="6_2fb2j"]
 [ext_resource type="Script" path="res://scripts/selection_zone.gd" id="6_bi0n1"]
 [ext_resource type="PackedScene" uid="uid://cjqvqwm2xpq4t" path="res://scenes/card_field.tscn" id="6_flpfl"]
@@ -116,8 +115,7 @@ _data = {
 
 [node name="Player" type="Node2D"]
 position = Vector2(262, -8)
-script = ExtResource("1_onpsp")
-card_scene = ExtResource("2_pgcg1")
+script = ExtResource("1_xi2ub")
 
 [node name="BattleField" parent="." instance=ExtResource("6_flpfl")]
 position = Vector2(317, 397)
@@ -186,7 +184,6 @@ offset_left = 723.0
 offset_top = 420.0
 offset_right = 819.0
 offset_bottom = 461.0
-disabled = true
 text = "BATTLE"
 
 [node name="SelectionZone" type="Node2D" parent="."]

@@ -13,9 +13,4 @@ func set_card(value: CardNode, powered: bool = true):
 	visible = true
 	$CardInfo.texture = card.get_child(1).texture
 	$UnpoweredMask.visible = !powered
-	if card.info.has("effect"):
-		var desc = card.info["effect"]["description"];
-		if desc.has("ko"):
-			$CardInfoLabel.text = desc["ko"]
-	else:
-		$CardInfoLabel.text = ""
+	$CardInfoLabel.text = card.description

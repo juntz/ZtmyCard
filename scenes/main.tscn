@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bd377sxk4fxdy" path="res://scenes/player.tscn" id="2_x3eei"]
 [ext_resource type="Script" path="res://scripts/background.gd" id="3_ydkjl"]
 [ext_resource type="Texture2D" uid="uid://d12qy5cuvf0mv" path="res://resources/images/orange_circle.png" id="5_d542b"]
-[ext_resource type="Script" path="res://scripts/chronos.gd" id="6_2ficq"]
+[ext_resource type="Script" path="res://scripts/chronos_node.gd" id="6_2ficq"]
 [ext_resource type="Texture2D" uid="uid://b4e4d8upf1iut" path="res://resources/images/chronos.svg" id="8_m762a"]
 [ext_resource type="Script" path="res://scripts/game_master.gd" id="10_0l7ah"]
 [ext_resource type="Script" path="res://scripts/enchant_processor.gd" id="10_vjxuj"]
@@ -33,14 +33,13 @@ position = Vector2(579, 326)
 scale = Vector2(0.2684, 0.2684)
 texture = ExtResource("1_jxmyf")
 
-[node name="Opponent" parent="." node_paths=PackedStringArray("game_master") instance=ExtResource("2_x3eei")]
+[node name="Opponent" parent="." instance=ExtResource("2_x3eei")]
 position = Vector2(896, 657)
 rotation = 3.14159
-game_master = NodePath("../GameMaster")
-
-[node name="Player" parent="." node_paths=PackedStringArray("game_master") instance=ExtResource("2_x3eei")]
 controllable = true
-game_master = NodePath("../GameMaster")
+
+[node name="Player" parent="." instance=ExtResource("2_x3eei")]
+controllable = true
 
 [node name="TimeLabel" type="Label" parent="."]
 visible = false
@@ -52,7 +51,7 @@ text = "Chronos: 5 (Night)"
 
 [node name="Chronos" type="Node2D" parent="."]
 position = Vector2(-72, 725)
-rotation = 0.785398
+rotation = 2.18166
 script = ExtResource("6_2ficq")
 
 [node name="OrangeCircle" type="Sprite2D" parent="Chronos"]
@@ -90,8 +89,6 @@ position = Vector2(1034, 151)
 
 [node name="GameEndOverlay" parent="." instance=ExtResource("14_4v0tr")]
 visible = false
-
-[connection signal="battle_end" from="GameMaster" to="Chronos" method="_on_turn_end"]
 
 [editable path="Opponent"]
 [editable path="Player"]

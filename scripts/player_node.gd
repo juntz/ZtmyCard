@@ -8,8 +8,8 @@ signal on_hit
 @export var card_scene: PackedScene
 @export var controllable: bool
 @export var game_master: GameMaster
+var player: Player
 var draw_require_count = 0
-var setable_card_count = 0
 var attack_point_addend = 0
 var damage_subtrahend = 0
 var damage_got = 0
@@ -24,59 +24,37 @@ func hp() -> int:
 	return $HpBar.hp
 
 
-func battle_ready():
-	if controllable:
-		game_master.next_phase_ready()
-
-
 func set_battle_button_state(enable: bool):
 	$ReadyButton.disabled = !enable;
-
-
-func check_powered(card: CardNode):
-	return card.info["powerCost"] <= get_charged_power()
 
 
 func get_cards(field: Field) -> Array[CardNode]:
 	return card_fields[field].cards()
 
 
-func get_attack_point(is_night: bool) -> int:
-	if $BattleField.cards().size() <= 0:
-		return 0
-	
-	var card = $BattleField.cards()[0]
-	if !check_powered(card):
-		return 0
-	
-	var field_name = "night" if is_night != swap_day_and_night_attack_point else "day"
-	var base_attack_point = int(card.info["attackPoint"][field_name])
-	return base_attack_point + attack_point_addend;
+func move_card(card: Card, to: CardFields.Field):
+	var node = _get_card_node(card)
+	var to_field = _get_field(to)
+	node.show_card()
+	node.reparent(to_field)
 
 
-func get_clock() -> int:
-	var cards = get_cards(Field.BATTLE) + get_cards(Field.SET)
-	return cards.filter(
-		func(c): return c != prev_battle_field_card
-	).filter(
-		func(c): return check_powered(c)
-	).map(
-		func(c): return int(c.info["clock"])
-	).reduce(
-		func(a, b): return a + b,
-		0
-	)
+func _get_card_node(card: Card) -> CardNode:
+	for field in card_fields.values():
+		for c in field.cards():
+			if c.card == card:
+				return c
+	return null
 
 
-func get_charged_power():
-	if CHEAT_super_powered:
-		return 100
-	return $PowerCharger.cards().map(
-		func(c): return c.info["sendToPower"]
-	).reduce(
-		func(a, b): return a + b,
-		0
-	)
+func _get_field(base_field: CardFields.Field) -> CardField:
+	var field: Field
+	match base_field:
+		CardFields.Field.SET_A, CardFields.Field.SET_B, CardFields.Field.SET_C:
+			field = Field.SET
+		_:
+			field = Field[CardFields.Field.find_key(base_field)]
+	return card_fields[field]
 
 
 func attack(damage):
@@ -86,22 +64,6 @@ func attack(damage):
 	on_hit.emit()
 	$AnimationPlayer.play("attack_end")
 	await $AnimationPlayer.animation_finished
-
-
-func hit(damage):
-	damage_got -= damage_subtrahend
-	damage_subtrahend = 0
-	if damage <= 0:
-		damage = 0
-	$HpBar.hp -= damage
-	$HpBar/HpPathFollow/DamageLabel.text = "-" + str(damage)
-
-
-func heal(amount):
-	$HpBar/HpPathFollow/DamageLabel.text = "+" + str(amount)
-	$HpBar.hp += amount
-	if $HpBar.hp > 100:
-		$HpBar.hp = 100
 
 
 func end_battle():
@@ -137,19 +99,11 @@ func _ready():
 	card_fields[Field.ENCHANT] = $EnchantZone
 	card_fields[Field.SELECTION] = $MulliganZone/SelectionField
 	
-	_init_deck()
 	if !controllable:
 		$ReadyButton.visible = false
 		$MulliganZone.visible = false
 	
 	$MulliganZone.card_selected.connect(_on_mulligan_card_selected)
-
-	ImguiDebugWindow.watch(self, ImguiDebugWindow.SupportType.PLAYER)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
 
 
 func abyss_attribute_count():
@@ -157,27 +111,6 @@ func abyss_attribute_count():
 	for card in $Abyss.cards():
 		attributes[card.info["attribute"]] = null
 	return attributes.keys().size()
-
-
-func _init_deck():
-	var card_numbers: Array
-	var deck_file_path = "user://deck.json"
-	if FileAccess.file_exists(deck_file_path) && controllable:
-		var deck_file = FileAccess.open(deck_file_path, FileAccess.READ)
-		var deck_json = JSON.parse_string(deck_file.get_as_text())
-		card_numbers = deck_json["cards"]
-		deck_file.close()
-	else:
-		card_numbers = range(1, 21)
-	
-	card_numbers.shuffle()
-	
-	for card_number in card_numbers:
-		var card = CardNode.from_card_number(card_number)
-		card.card_entered.connect(_on_card_entered)
-		card.card_exited.connect(_on_card_exited)
-		card.card_clicked.connect(_on_card_clicked)
-		$DeckZone.add_child(card)
 
 
 func _hit():
@@ -195,18 +128,17 @@ func _on_attack_end(card):
 
 
 func _on_ready_button_pressed():
-	battle_ready()
+	player.player_ready()
 
 
 func _on_selection_done_button_pressed():
 	$MulliganZone/SelectionDoneButton.visible = false
 	$MulliganZone.visible = false
-	game_master.finish_mulligan()
-	game_master.next_phase_ready()
+	player.player_ready()
 
 
 func _on_card_entered(card: CardNode):
-	$"../CardInfoContainer".set_card(card, check_powered(card))
+	$"../CardInfoContainer".set_card(card, true)
 
 
 func _on_card_exited(card: CardNode):
@@ -215,8 +147,7 @@ func _on_card_exited(card: CardNode):
 
 
 func _on_mulligan_card_selected(card: CardNode):
-	var from = Field.SELECTION
-	game_master.move_card(from, card, Field.ABYSS)
+	player.select_card(card.card)
 
 
 func find_card_field(card: CardNode) -> Field:
@@ -231,4 +162,4 @@ func find_card_index(card: CardNode, field: Field) -> int:
 
 
 func _on_card_clicked(card: CardNode):
-	game_master.select_card(self, card)
+	player.select_card(card.card)

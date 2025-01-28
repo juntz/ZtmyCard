@@ -13,6 +13,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	hp = $"..".player.hp
 	if is_moving():
 		$HpPathFollow/HpIndicator.scale = Vector2(moving_scale, moving_scale)
 		$HpPathFollow/DamageLabel.visible = true

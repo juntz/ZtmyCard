@@ -1,5 +1,7 @@
 class_name CardFields
 
+signal card_moved(card: Card, to: Field)
+
 enum Field {
 	NONE,
 	BATTLE,
@@ -12,6 +14,15 @@ enum Field {
 	DECK,
 }
 
+var battle_field_card: CharacterCard:
+	get:
+		return get_last_card(Field.BATTLE)
+var set_a_field_card: Card:
+	get:
+		return get_last_card(Field.SET_A)
+var set_b_field_card: Card:
+	get:
+		return get_last_card(Field.SET_B)
 var _deck: Array[Card]
 var _card_fields: Dictionary = {}
 var _card_count_limits: Dictionary = {
@@ -43,6 +54,10 @@ func get_cards(field: Field) -> Array[Card]:
 	return cards
 
 
+func is_empty(field: Field) -> bool:
+	return _card_fields[field].is_empty()
+
+
 func move_card(card: Card, to: Field) -> bool:
 	if _is_limit_reached(to):
 		return false
@@ -50,6 +65,7 @@ func move_card(card: Card, to: Field) -> bool:
 	if from != Field.NONE:
 		_card_fields[from].erase(card)
 	_card_fields[to].append(card)
+	card_moved.emit(card, to)
 	return true
 
 
@@ -62,6 +78,8 @@ func draw_cards(count: int) -> void:
 
 
 func dump_card(card: Card) -> void:
+	if card == null:
+		return
 	move_card(card,
 			Field.POWER_CHARGER if card.send_to_power > 0
 			else Field.ABYSS)

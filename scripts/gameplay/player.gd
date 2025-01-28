@@ -14,22 +14,25 @@ var power: int:
 			func(a: Card, b: Card):
 				return a.send_to_power + b.send_to_power,
 			0)
-var card_set_limit: int = 0
+var card_set_limit: int = 1
 var card_fields: CardFields
 var _state: PlayerState
 var _game: Game
+var _empty_state: PlayerState:
+	get:
+		return PlayerStateFactory.create(Game.Phase.NONE, _game, self)
 
 
-func _init(context: CardFields, game: Game):
+func _init(deck: Array[Card], game: Game):
 	_game = game
-	card_fields = context
+	_state = _empty_state
+	card_fields = CardFields.new(deck)
 
 
 func process_phase_async(phase: Game.Phase):
 	_state = PlayerStateFactory.create(phase, _game, self)
-	_state.start()
-	await _state.next_phase_ready
-	_state = PlayerStateFactory.create(Game.Phase.NONE, _game, self)
+	await _state.run_async()
+	_state = _empty_state
 
 
 func select_card(card: Card):
@@ -37,4 +40,4 @@ func select_card(card: Card):
 
 
 func player_ready():
-	_state.player_ready()
+	_state.player_ready.emit()

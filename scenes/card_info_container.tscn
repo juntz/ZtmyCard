@@ -13,11 +13,16 @@ script = ExtResource("1_ql7vd")
 scale = Vector2(0.3, 0.3)
 texture = SubResource("CompressedTexture2D_v6f7b")
 
+[node name="CardShadow2" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.47451)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_5frdd")
+
 [node name="CardInfoLabel" type="Label" parent="."]
 offset_left = -103.0
-offset_top = 156.0
+offset_top = -140.0
 offset_right = 155.0
-offset_bottom = 283.0
+offset_bottom = 206.0
 scale = Vector2(0.8, 0.8)
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 autowrap_mode = 2
