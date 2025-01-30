@@ -40,6 +40,14 @@ func _init(deck: Array[Card]):
 	_card_fields[Field.DECK].append_array(deck)
 
 
+func card_to_idx(card: Card) -> int:
+	return _deck.find(card)
+
+
+func idx_to_card(idx: int) -> Card:
+	return _deck[idx]
+
+
 func get_last_card(field: Field) -> Card:
 	var cards = _card_fields[field]
 	if len(cards) <= 0:
@@ -70,11 +78,13 @@ func move_card(card: Card, to: Field) -> bool:
 
 
 func draw_cards(count: int) -> void:
+	var deck = get_cards(Field.DECK).duplicate()
 	for i in count:
-		var card = get_last_card(Field.DECK)
+		var card = deck.pick_random()
 		if !card:
 			return
 		move_card(card, Field.HAND)
+		deck.erase(card)
 
 
 func dump_card(card: Card) -> void:
@@ -83,10 +93,6 @@ func dump_card(card: Card) -> void:
 	move_card(card,
 			Field.POWER_CHARGER if card.send_to_power > 0
 			else Field.ABYSS)
-
-
-func shuffle_deck():
-	_card_fields[Field.DECK].shuffle()
 
 
 func _is_limit_reached(field: Field) -> bool:

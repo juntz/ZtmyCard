@@ -21,6 +21,7 @@ func from_number(number: int) -> CardNode:
 	var card = _card_factory.from_document(document)
 	var node = card_scene.instantiate()
 	node.card = card
+	node.number = number
 	node.description = _get_description(document)
 	node.set_card_image(_get_image_path(document))
 	return node

@@ -1,5 +1,7 @@
 class_name Chronos
 
+signal time_changed(emitter: Chronos)
+
 enum Period
 {
 	NIGHT,
@@ -16,6 +18,7 @@ var time: int:
 		return _time
 	set(value):
 		_time = value % MAX_TIME
+		time_changed.emit(self)
 var period: Period:
 	get:
 		return Period.NIGHT if time < DAY_START else Period.DAY

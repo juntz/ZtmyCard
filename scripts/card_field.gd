@@ -19,14 +19,6 @@ func cards() -> Array[CardNode]:
 	return result
 
 
-func shuffle():
-	var cards = cards()
-	for card in cards:
-		remove_child(card)
-	cards.shuffle()
-	for card in cards:
-		add_child(card)
-
 func scroll_move_up(scroll : float): 
 	if not scrollable:
 		printerr("scrollable is false, but try scroll up.")

@@ -7,12 +7,10 @@ var _selected_cards: Array[Card] = []
 
 
 func run_async():
-	_card_fields.shuffle_deck()
 	_card_fields.draw_cards(MULLIGAN_CARD_COUNT)
 	await player_ready
 	for card in _selected_cards:
 		_card_fields.move_card(card, CardFields.Field.DECK)
-	_card_fields.shuffle_deck()
 	_card_fields.draw_cards(len(_selected_cards))
 	_selected_cards.clear()
 

@@ -13,8 +13,11 @@ var _total_attack_point: int:
 
 func run_async():
 	var damage = _get_damage(_player)
-	_player.hp -= damage
-	_player.card_set_limit = SET_CARD_LIMIT_LOSE if damage > 0 else SET_CARD_LIMIT_WIN
+	if damage > 0:
+		_player.hp -= damage
+		_player.card_set_limit = SET_CARD_LIMIT_LOSE
+	else:
+		_player.card_set_limit = SET_CARD_LIMIT_WIN
 	_card_fields.dump_card(_card_fields.set_b_field_card)
 	_card_fields.dump_card(_card_fields.set_a_field_card)
 

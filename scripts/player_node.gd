@@ -19,9 +19,11 @@ var prev_battle_field_card = null
 
 var CHEAT_super_powered = false
 
-
-func hp() -> int:
-	return $HpBar.hp
+var hp: int:
+	get:
+		return $HpBar.hp
+	set(value):
+		$HpBar.hp = value
 
 
 func set_battle_button_state(enable: bool):
@@ -32,17 +34,17 @@ func get_cards(field: Field) -> Array[CardNode]:
 	return card_fields[field].cards()
 
 
-func move_card(card: Card, to: CardFields.Field):
-	var node = _get_card_node(card)
+func move_card(idx: int, to: CardFields.Field):
+	var node = _get_card_node(idx)
 	var to_field = _get_field(to)
 	node.show_card()
 	node.reparent(to_field)
 
 
-func _get_card_node(card: Card) -> CardNode:
+func _get_card_node(idx: int) -> CardNode:
 	for field in card_fields.values():
 		for c in field.cards():
-			if c.card == card:
+			if c.name == "Card%s" % idx:
 				return c
 	return null
 

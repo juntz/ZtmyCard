@@ -2,11 +2,12 @@ extends Node2D
 
 @export var card_scene: PackedScene
 var max_card_count = 20
+var _factory := CardNodeFactory.new(null)
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-	for i in range(CardNode.card_info["cards"].size()):
-		var card = CardNode.from_card_number(i + 1)
+	for i in range(CardNodeFactory.card_info["cards"].size()):
+		var card = _factory.from_number(i + 1)
 		card.show_card()
 		card.selectable = true
 		card.card_clicked.connect(_on_card_clicked)
@@ -28,11 +29,6 @@ func _ready():
 		_add_card_to_deck(cards[card_number - 1])
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
 func _add_card_to_deck(card: CardNode):
 	var cards = $DeckContainer/Deck.cards()
 	
@@ -42,14 +38,14 @@ func _add_card_to_deck(card: CardNode):
 	var same_cards := 0
 	for c in cards : 
 		# TODO : 2nd/3rd 추가시에 문제 있음. / 카데고리로 추가 비교?
-		if card.info.number == c.info.number:
+		if card.number == c.number:
 			same_cards += 1
 
 	if same_cards >= 2:
 		GlobalUI.send_warning("같은 카드는 2장까지만 추가할 수 있습니다.")
 		return
 
-	var new_card = card.clone()
+	var new_card = _factory.from_number(card.number)
 	new_card.show_card()
 	new_card.selectable = true
 	new_card.card_clicked.connect(_on_deck_card_clicked)
@@ -81,6 +77,6 @@ func _on_card_exited(card: CardNode):
 func _on_exit_button_pressed():
 	var f = FileAccess.open("user://deck.json", FileAccess.WRITE)
 	var data = {}
-	data["cards"] = $DeckContainer/Deck.cards().map(func (x): return x.info["number"])
+	data["cards"] = $DeckContainer/Deck.cards().map(func (x): return x.number)
 	f.store_line(JSON.stringify(data))
 	f.close()

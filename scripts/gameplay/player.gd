@@ -1,5 +1,8 @@
 class_name Player
 
+signal hp_changed(emitter: Player)
+signal card_moved(emitter: Player, card: Card, to: CardFields.Field)
+
 const MAX_HP: int = 100
 
 var is_alive: bool:
@@ -7,7 +10,12 @@ var is_alive: bool:
 		return hp > 0
 
 var battle_ready: bool = false
-var hp: int = MAX_HP
+var hp: int:
+	get:
+		return _hp
+	set(value):
+		_hp = value
+		hp_changed.emit(self)
 var power: int:
 	get:
 		return card_fields.get_cards(CardFields.Field.POWER_CHARGER).reduce(
@@ -16,6 +24,7 @@ var power: int:
 			0)
 var card_set_limit: int = 1
 var card_fields: CardFields
+var _hp: int = MAX_HP
 var _state: PlayerState
 var _game: Game
 var _empty_state: PlayerState:
@@ -27,6 +36,7 @@ func _init(deck: Array[Card], game: Game):
 	_game = game
 	_state = _empty_state
 	card_fields = CardFields.new(deck)
+	card_fields.card_moved.connect(_on_card_moved)
 
 
 func process_phase_async(phase: Game.Phase):
@@ -41,3 +51,7 @@ func select_card(card: Card):
 
 func player_ready():
 	_state.player_ready.emit()
+
+
+func _on_card_moved(card: Card, to: CardFields.Field):
+	card_moved.emit(self, card, to)

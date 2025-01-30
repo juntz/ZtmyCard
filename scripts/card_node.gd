@@ -10,8 +10,8 @@ signal transition_end(card: CardNode)
 
 const FLYING_DURATION = 0.5
 
-
 var card: Card
+var number: int
 var order = 0
 var hover_scale = 1.1
 var top_z_index = 1000
@@ -109,7 +109,12 @@ func _on_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if selectable && hover:
-				card_clicked.emit(self)
+				_on_card_clicked.rpc()
+
+
+@rpc("any_peer")
+func _on_card_clicked():
+	card_clicked.emit(self)
 
 
 func _check_hover():
